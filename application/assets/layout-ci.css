@@ -6,8 +6,13 @@
 body {
 	background-color: #fff;
 	margin: 40px;
-	font: 13px/20px normal Helvetica, Arial, sans-serif;
+	font: .91em/1.4em normal Helvetica, Arial, sans-serif; /*13px/20px*/
 	color: #4F5155;
+}
+
+abbr {
+	border-bottom: 1px dotted gray;
+	cursor:help;
 }
 
 a {
@@ -20,7 +25,7 @@ h1 {
 	color: #444;
 	background-color: transparent;
 	border-bottom: 1px solid #D0D0D0;
-	font-size: 19px;
+	font-size: 1.8em; /*19px*/
 	font-weight: normal;
 	margin: 0 0 14px 0;
 	padding: 14px 15px 10px 15px;
@@ -28,7 +33,7 @@ h1 {
 
 code {
 	font-family: Consolas, Monaco, Courier New, Courier, monospace;
-	font-size: 12px;
+	font-size: ; /*12px*/
 	background-color: #f9f9f9;
 	border: 1px solid #D0D0D0;
 	color: #002166;
@@ -40,10 +45,10 @@ code {
 #body{
 	margin: 0 15px 0 15px;
 }
-	
-p.footer{
+
+p.ci-footer{
 	text-align: right;
-	font-size: 11px;
+	font-size: .81em; /*11px*/
 	border-top: 1px solid #D0D0D0;
 	line-height: 32px;
 	padding: 0 10px 0 10px;
@@ -54,4 +59,8 @@ p.footer{
 	margin: 10px;
 	border: 1px solid #D0D0D0;
 	-webkit-box-shadow: 0 0 8px #D0D0D0;
+}
+
+#container p, h2{
+	padding:0 15px;
 }

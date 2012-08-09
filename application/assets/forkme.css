@@ -1,28 +1,32 @@
 /*
  https://gist.github.com/1679040
- Author: tpryan.
+ Author: tpryan, 2012-02-09.
 */
-.body{ 
+.X-body{
 	padding: 0;
 	margin: 0;
 }
 
-#banner{
+#forkme-banner{
 	height: 149px;
 	width: 149px;
 	overflow:hidden;
 	padding: 0;
 	margin: 0;
+
+	position:absolute;
+	right:0;
+	top:0;
 }
 
-#banner a{
+#forkme-banner a{
 
 	display: block;
 	width: 190px;
-	font-size: 14px;
+	font-size: ; /*14px*/
 	font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", 
 		"Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, 
-		Geneva, "Helvetica Neue", Helvetica, Arial, sans serif;
+		Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
 	background-color: #333;
 	color: #FFF;
 	word-spacing: 2px;

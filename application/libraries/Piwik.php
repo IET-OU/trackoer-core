@@ -14,17 +14,20 @@
 
 class Piwik
 {
-    private $_ci;
-    private $geoip_on = FALSE;
-    private $piwik_url = '';
-    private $site_id = '';
-    private $token = '';
-    private $gi;
+//ou-specific
+    //private $_ci;
+    protected $_ci;
+    protected $geoip_on = FALSE;
+    protected $piwik_url = '';
+    protected $site_id = '';
+    protected $token = '';
+    protected $gi;
 
     function __construct()
     {
         $this->_ci =& get_instance();
-        $this->_ci->load->config('piwik');
+//ou-specific
+        //$this->_ci->load->config('piwik');
         
         $this->piwik_url = $this->_ci->config->item('piwik_url');
         $this->site_id = $this->_ci->config->item('site_id');
@@ -278,7 +281,9 @@ class Piwik
      * @param   string  $url   URL to Piwik API method returning JSON
      * @return  array
      */
-    private function _get_decoded($url)
+//ou-specific
+    //private function _get_decoded($url)
+    protected function _get_decoded($url)
     {
         $json = file_get_contents($url);
         $data = json_decode($json, true);

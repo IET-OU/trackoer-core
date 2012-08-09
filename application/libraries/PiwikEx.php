@@ -1,0 +1,59 @@
+<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * CodeIgniter Piwik Class - extended.
+ *
+ * Library for retrieving stats from Piwik Open Source Analytics API
+ * with geoip capabilities using the free MaxMind GeoLiteCity database
+ *
+ * @package       CodeIgniter
+ * @subpackage    Libraries
+ * @category      Libraries
+ * @author
+ * @license       MIT
+ *
+ * @link  https://github.com/wingdspur/codeigniter-piwik
+ * @link  http://piwik.org/docs/analytics-api/reference/#toc-module-sitesmanager
+ */
+require_once APPPATH .'/libraries/Piwik.php';
+
+
+class PiwikEx extends Piwik {
+  
+    /**
+     * version
+     * Get the version of Piwik.
+     *
+     * @access  public
+     * @param   string
+     * @return  array
+     */
+    public function version()
+    {
+        $url = $this->_piwik_url('API.getPiwikVersion');
+        return $this->_get_decoded($url);
+    }
+
+
+    public function getAllSites()
+    {
+        $url = $this->_piwik_url('SitesManager.getAllSites');
+        return $this->_get_decoded($url);
+    }
+
+
+    public function getSitesIdFromSiteUrl($url)
+    {
+        $url = $this->_piwik_url('SitesManager.getSitesIdFromSiteUrl')
+            .'&url='.urlencode($url);
+        return $this->_get_decoded($url);
+    }
+
+
+    protected function _piwik_url($method, $module = 'API')
+    {
+        return $this->piwik_url.'/index.php?module='.$module
+            .'&method='.$method.'&format=JSON&token_auth='.$this->token;
+    }
+
+}
+

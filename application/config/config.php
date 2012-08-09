@@ -1,5 +1,8 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+// Prevent warnings!
+date_default_timezone_set('Europe/London');
+
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
@@ -26,7 +29,7 @@ $config['base_url']	= '';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';  //'index.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -180,7 +183,7 @@ $config['directory_trigger']	= 'd'; // experimental not currently in use
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 0;
+$config['log_threshold'] = 1;  //0;
 
 /*
 |--------------------------------------------------------------------------

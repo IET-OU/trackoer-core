@@ -22,27 +22,9 @@
 */
 class MY_Controller extends CI_Controller {
 
-
   // Default layout/template.
   const LAYOUT = 'ci'; #'bare';
 
-
-  protected function _get_cc_code($site_id=2, $source_url=self::SOURCE_LEARN, $title='Learning to Learn', $author='OpenLearn/Bridge to Success', $author_url=self::AUTHOR_URL, $cc_license='by-nc-sa') {
-    $p = parse_url($source_url);
-
-    $view_data = array(
-      'site_id' => $site_id,
-	  'title'   => $title,
-	  'source_url' => $source_url,
-	  'source_host'=> $p['host'],
-	  'source_path'=> ltrim($p['path'], '/'),
-	  'author' => $author,
-	  'author_url' => $author_url,
-	  'cc_license' => $cc_license,
-	);
-
-	return $this->load->view('cc_code/cc_code', $view_data, TRUE);
-  }
 
   /** Load the layout library with a 'bare' or OUICE template.
   */

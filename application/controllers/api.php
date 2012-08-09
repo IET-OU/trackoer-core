@@ -15,11 +15,11 @@
 
 
 class Api extends MY_Controller {
-  
+
   public function __construct() {
     parent::__construct();
 
-    $this->load->library('PiwikEx', NULL, 'piwik');
+    $this->load->library('PiwikEx');
   }
 
 

@@ -117,4 +117,16 @@ p.ci-footer{
 #ou-org-footer .ci-footer {
 	padding-left:;
 }
+#ou-org-footer #forkme-banner {font-size:1.1em; }
+.warn, #cc-code {
+	text-align:center;
+	padding:8px; /*!important*/
+	margin:16px;
+	color:#111;
+	background:#eef;
+	border:1px solid #ccc;
+}
+#cc-code{ text-align:right; }
+.test-content{ font-size:.86em; }
+.elip{ font-size:x-large; }
 

@@ -1,10 +1,11 @@
 
+/*
 ::selection{ background-color: #E13300; color: white; }
 ::moz-selection{ background-color: #E13300; color: white; }
 ::webkit-selection{ background-color: #E13300; color: white; }
-
+*/
 body {
-	background-color: #fff;
+	background-color: #fdfdfd; /*#fff*/
 	margin: 40px;
 	font: .91em/1.4em normal Helvetica, Arial, sans-serif; /*13px/20px*/
 	color: #4F5155;
@@ -23,6 +24,9 @@ a {
 	color: #003399;
 	background-color: transparent;
 	font-weight: normal;
+}
+a:hover, a:focus {
+	color: #36a;
 }
 
 h1 {
@@ -62,7 +66,8 @@ p.ci-footer{
 #container{
 	margin: 10px;
 	border: 1px solid #D0D0D0;
-	-webkit-box-shadow: 0 0 8px #D0D0D0;
+	/*-webkit-box-shadow: 0 0 8px #D0D0D0;*/
+	box-shadow:0 0 8px #d0d0d0;
 }
 
 #container p, h2, h3{
@@ -86,7 +91,6 @@ p.ci-footer{
 	border-top:1px solid #d0d0d0;
 	padding-top:10px;
 	margin-top:30px;
-	margin-bottom:0;
 }
 #nav li, #ou-org-footer li {
 	font-size: .86em;
@@ -107,6 +111,8 @@ p.ci-footer{
 }
 #ou-org-footer .f-logo a:hover, #ou-org-footer .f-logo a:focus {
 	border-color:gray;
+	box-shadow:0 0 8px #d0d0d0;
+	background:#fff;
 }
 #ou-org-footer .ci-footer {
 	padding-left:;

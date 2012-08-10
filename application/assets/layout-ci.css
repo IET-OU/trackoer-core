@@ -15,6 +15,10 @@ abbr {
 	cursor:help;
 }
 
+a img{
+	border:none;
+}
+
 a {
 	color: #003399;
 	background-color: transparent;
@@ -24,10 +28,10 @@ a {
 h1 {
 	color: #444;
 	background-color: transparent;
-	border-bottom: 1px solid #D0D0D0;
-	font-size: 1.8em; /*19px*/
+	/*border-bottom: 1px solid #D0D0D0;*/
+	font-size: 1.9em; /*19px*/
 	font-weight: normal;
-	margin: 0 0 14px 0;
+	margin: 0 0 16px 0;
 	padding: 14px 15px 10px 15px;
 }
 
@@ -48,13 +52,13 @@ code {
 
 p.ci-footer{
 	text-align: right;
-	font-size: .81em; /*11px*/
-	border-top: 1px solid #D0D0D0;
+	font-size: .8em; /*11px*/
+	/*border-top: 1px solid #D0D0D0;*/
 	line-height: 32px;
 	padding: 0 10px 0 10px;
-	margin: 20px 0 0 0;
+	margin:0; /*20px 0 0 0*/
 }
-	
+
 #container{
 	margin: 10px;
 	border: 1px solid #D0D0D0;
@@ -63,4 +67,48 @@ p.ci-footer{
 
 #container p, h2, h3{
 	padding:0 15px;
+	font-weight:normal;
 }
+
+
+
+/* Navigation/ menus.
+*/
+#nav ul, #ou-org-footer ul {
+	margin:15px 0;
+	padding:0 9px; /*=15-6*/
+}
+#nav ul {
+	border-bottom:1px solid #d0d0d0;
+	padding-bottom:15px;
+}
+#ou-org-footer ul {
+	border-top:1px solid #d0d0d0;
+	padding-top:10px;
+	margin-top:30px;
+	margin-bottom:0;
+}
+#nav li, #ou-org-footer li {
+	font-size: .86em;
+	display:inline-block;
+	list-style:none;
+	padding:3px 6px;
+}
+#ou-org-footer .f-logo a {
+	display:inline-block;
+	height:auto;
+	padding:1px;
+	border:1px dotted transparent;
+
+	transition:all .6s;
+	-moz-transition:all .6s; /* Firefox 4 */
+	-webkit-transition:all .6s; /* Safari and Chrome */
+	-o-transition:all .6s; /* Opera */
+}
+#ou-org-footer .f-logo a:hover, #ou-org-footer .f-logo a:focus {
+	border-color:gray;
+}
+#ou-org-footer .ci-footer {
+	padding-left:;
+}
+

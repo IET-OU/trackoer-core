@@ -19,7 +19,7 @@ redirection to no-Javascript web-bugs for <a href="http://piwik.org/">Piwik</a> 
 
 <h2><a name="credits" class="anchor" href="#credits"><span class="mini-icon mini-icon-link"></span></a>Credits</h2>
 
-<p>trackoer-core: <a href="http://www.open.ac.uk/copyright">Copyright 2012 The Open University</a>.</p>
+<p>trackoer-core: <a href="http://open.ac.uk/">&copy;2012 The Open University</a>.</p>
 
 <ul>
 <li>License: [free/open source -- license to be decided]

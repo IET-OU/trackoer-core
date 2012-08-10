@@ -1,16 +1,23 @@
 
-<a rel="license" href="http://creativecommons.org/licenses/<?php echo $cc_license ?>/2.0/uk/deed.en_GB"
+<a rel="license" href="http://creativecommons.org/licenses/<?php echo $cc_license ?>/deed.<?php echo $cc_loc ?>"
  ><img
  alt="Creative Commons Licence"
  style="border-width:0"
- data-X-src="http://i.creativecommons.org/l/<?php echo $cc_license ?>/2.0/uk/88x31.png"
+<?php if($with_tracker): ?>
  src=
-"<?php echo site_url('track/r') ?>/piwik/<?php echo $site_id ?>/cc:<?php echo $cc_license ?>/<?php echo $source_host ?>/<?php echo $source_path 
+"<?php echo site_url('track/r') ?>/<?php echo $serv ?>/<?php echo $site_id ?>/cc:<?php echo $cc_terms ?>/<?php echo $source_host ?>/<?php echo $source_path 
   ?>?t=<?php echo urlencode($title) ?>&amp;debug=2"
+ class="wb"
+ title="Creative Commons License - with tracking**"
+<?php else: ?>
+ src="http://i.creativecommons.org/l/<?php echo $cc_license ?>/<?php echo $cc_siz ?>.png"
+<?php endif; ?>
  /></a>
  <br />
  <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><?php echo $title ?></span>
  by <a xmlns:cc="http://creativecommons.org/ns#" href="<?php echo $author_url ?>" property="cc:attributionName" rel="cc:attributionURL"><?php echo $author ?></a>
- is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/uk/deed.en_GB">Creative Commons Attribution-NonCommercial-ShareAlike 2.0 UK: England &amp; Wales License</a>.
+ is licensed under a
+ <a rel="license" href="http://creativecommons.org/licenses/<?php echo $cc_license ?>/deed.<?php echo $cc_loc ?>">Creative Commons Attribution-NonCommercial-ShareAlike 2.0 UK: England &amp; Wales License</a><?php
+  if($with_tracker): ?>, <a class="wt" href="<?php echo $explain_tracking_url ?>">with tracking</a><?php endif; ?>.
  <br />
  Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="<?php echo $source_url ?>" rel="dct:source"><?php echo $source_url ?></a>.

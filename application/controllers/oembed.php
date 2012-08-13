@@ -11,6 +11,7 @@
  * @filesource
  */
 ini_set('display_errors', 1);
+#error_reporting(E_ALL);
 
 
 class Oembed extends MY_Controller {
@@ -19,9 +20,7 @@ class Oembed extends MY_Controller {
 
     $url = $this->input->get('url');
 
-    var_dump($url, $format);
-
-    $this->load->oembed_provider('Openlearn');
+    $this->load->oembed_provider('Openlearn_track');
 
     $re = $this->provider->getInternalRegex();
 
@@ -29,8 +28,23 @@ class Oembed extends MY_Controller {
       $this->_error('Woops, bad URL, '.$url, 400);
     }
 
+
     $result = $this->provider->call($url, $matches);
-    
+
+
+    if ('Oembed' == get_class($this)) {
+      // Needs more work - security etc.!
+      $view_data = array(
+        'url' => $url,
+        'format' => 'json', #$this->input->get('format'),
+        'callback' => $this->input->get('callback'),
+        'oembed' => (array) $result,
+      );
+      $this->load->view('api/oembed_render', $view_data);
+    }
+
+    // Else, hand back to the 'Oerform' controller..
+    return $result;
   }
 
 /*}

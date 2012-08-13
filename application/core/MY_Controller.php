@@ -15,6 +15,7 @@
  */
 
 
+
 /**
 * Based on,
 *  @link  https://github.com/IET-OU/ouplayer/blob/master/application/core/MY_Controller.php
@@ -24,6 +25,18 @@ class MY_Controller extends CI_Controller {
 
   // Default layout/template.
   const LAYOUT = 'ci'; #'bare';
+
+
+  public function __construct() {
+    parent::__construct();
+
+    // Enable Cross-Origin Resource Sharing (CORS), http://enable-cors.org | http://w3.org/TR/cors
+    @header('Access-Control-Allow-Origin: *');
+    @header('Content-Type: text/html; charset=UTF-8');
+    #@header("X-Powered-By:");
+
+    log_message('debug', __CLASS__." Class Initialized");
+  }
 
 
   /** Load the layout library with a 'bare' or OUICE template.
@@ -90,3 +103,22 @@ class MY_Controller extends CI_Controller {
     #$this->firephp->fb($msg, $fp_label, $fp_level);
   }
 }
+
+
+/* Placeholder for translate text function.
+ * See: cloudengine/libs./MY_Language; Drupal.
+ * @link https://github.com/IET-OU/ouplayer/blob/master/application/core/MY_Lang.php
+ */
+if (!function_exists('t')) {
+  function t($s, $args=null) {
+	if (is_array($args)) {
+      $s = vsprintf($s, $args);
+    }
+	// Important: accept empty string!
+    elseif ($args || ''==$args) {
+      $s = sprintf($s, $args);
+    }
+    return $s;
+  }
+}
+

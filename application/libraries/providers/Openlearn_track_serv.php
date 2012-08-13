@@ -29,7 +29,8 @@ EOT;
   public $_about_url= 'http://open.edu/openlearn';
   public $_logo_url = 'http://open.edu/includes/headers-footers/oulogo-56.jpg';
 
-  public $_regex_real = ':\/\/(openlearn|labspace).open.ac.uk\/(course|mod)\/(oucontent\/)?view(.php)?\?.+';
+  public $_regex_real = ':\/\/(openlearn|labspace).open.ac.uk\/(([\w_\.]+)|(course)\/view.php\?.+|(mod)\/oucontent\/view.php\?.+)$';
+  #public $_regex_real = ':\/\/(openlearn|labspace).open.ac.uk\/(course|mod)\/(oucontent\/)?view(.php)?\?.+';
   public $_examples = array(
     'Course: Learning to Learn - B2S on LabSpace'
         => 'http://labspace.open.ac.uk/Learning_to_Learn_1.0',
@@ -37,11 +38,12 @@ EOT;
     => 'http://labspace.open.ac.uk/course/view.php?name=Learning_to_Learn_1.0',
     'Course: Learning to Learn - B2S on LabSpace (id)'
         => 'http://labspace.open.ac.uk/course/view.php?id=7442',
-    'Page: Learning to Learn ▶ 2.3 Gathering Evidence—Your... - B2S on LabSpace'
+    'Page: Learning to Learn ► 2.3 Gathering Evidence—Your... - B2S on LabSpace'
     => 'http://labspace.open.ac.uk/mod/oucontent/view.php?id=471422&section=3',
     '_RDF' => 'http://labspace.open.ac.uk/course/view.php?id=7442&format=rdf',
-    '_OEM' => '/oembed?url=http://labspace.open.ac.uk/course/view.php?id=7442',
-    '_RE' =>
+    '_OEM' => '/oembed?url=http%3A//labspace.open.ac.uk/Learning_to_Learn_1.0',
+    '_OEM_2' => '/oembed?url=http%3A//labspace.open.ac.uk/mod/oucontent/view.php%3Fid=471422%26section=3',
+    '_USE' =>
 'http://reuser.example.edu/a/page#!Learning_to_Learn_1.0!mod/oucontent/view.php?id=471422&section=3',
   );
   public $_access = 'public';

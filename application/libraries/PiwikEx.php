@@ -18,7 +18,7 @@ require_once APPPATH .'/libraries/Piwik.php';
 
 
 class PiwikEx extends Piwik {
-  
+
     /**
      * version
      * Get the version of Piwik.
@@ -41,10 +41,10 @@ class PiwikEx extends Piwik {
     }
 
 
-    public function getSitesIdFromSiteUrl($url)
+    public function getSitesIdFromSiteUrl($site_url)
     {
         $url = $this->_piwik_url('SitesManager.getSitesIdFromSiteUrl')
-            .'&url='.urlencode($url);
+            .'&url='.urlencode($site_url);
         return $this->_get_decoded($url);
     }
 
@@ -55,5 +55,10 @@ class PiwikEx extends Piwik {
             .'&method='.$method.'&format=JSON&token_auth='.$this->token;
     }
 
+
+	protected function _extend_get_decoded($url) {
+	    $this->_ci->load->library('Http');
+		return json_decode($this->_ci->http->request($url));
+	}
 }
 

@@ -17,6 +17,7 @@ interface iService {
   public function call($url, $regex_matches);
 }
 
+
 /** Was: Base_service
 */
 abstract class Oembed_Provider implements iService {
@@ -112,14 +113,12 @@ abstract class Oembed_Provider implements iService {
 
 
   protected function _http_request($url, $spoof=TRUE, $options=array()) { #_curl
-    #$this->CI->load->library('http');
-    #return $this->CI->http->request($url, $spoof, $options);
-    
-    return file_get_contents($url);
+    $this->CI->load->library('http');
+    return $this->CI->http->request($url, $spoof, $options);
   }
 
   protected function _http_request_json($url, $spoof=TRUE, $options=array()) {
-    $result = $this->_http_request_curl($url, $spoof, $options);
+    $result = $this->_http_request($url, $spoof, $options);
     if ($result->success) {
       $result->json = json_decode($result->data);
     }

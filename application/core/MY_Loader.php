@@ -10,10 +10,16 @@
  * @license
  * @filesource
  *
- * @link  https://github.com/IET-OU/ouplayer/blob/master/application/core/MY_Loader.php
  */
 
 
+/**
+ * Extend the CI Loader class, so that it handles Tracker services, and oEmbed providers.
+ *
+ * @author N.D.Freear, 20 March 2012.
+ * @link
+ * http://github.com/IET-OU/ouplayer/blob/master/application/core/MY_Loader.php
+ */
 class MY_Loader extends CI_Loader {
 
   /**
@@ -36,11 +42,27 @@ class MY_Loader extends CI_Loader {
   }
 
 
-  /**
-  * Load a tracker service.
+  /** Load a Tracker service library.
+  * @return	void
   */
-  public function tracker($service, $obj_name = 'tracker') {
+  public function tracker($service, $object_name = 'tracker') {
     $this->file(APPPATH .'/libraries/Base_Tracker.php');
-    $this->library('trackers/'. ucfirst($service) .'_Tracker', NULL, $obj_name);
+    return parent::library('trackers/'. ucfirst($service) .'_Tracker', NULL, $object_name);
+  }
+
+
+  /** Load an oEmbed provider class.
+  * @return	void
+  */
+  public function oembed_provider($provider, $object_name = 'provider') {
+    // Require the base provider class file.
+    $this->file(APPPATH .'/libraries/Oembed_Provider.php');
+
+    // If appropriate, include intermediate class file.
+    if ('Moodle_rdf' != $provider) {
+      $this->file(APPPATH .'/libraries/providers/Moodle_rdf_serv.php');
+    }
+    // Simplify lines like, $regex = $this->{"{$name}_serv"}->regex;
+    return parent::library("providers/{$provider}_serv", NULL, $object_name);
   }
 }

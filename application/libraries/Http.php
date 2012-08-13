@@ -5,24 +5,54 @@
  *
  * @copyright Copyright 2011 The Open University.
  * @author N.D.Freear, 6 March 2012.
+ * @link https://github.com/IET-OU/ouplayer/blob/master/application/libraries/http.php
+ * @link http://api.drupal.org/api/drupal/core%21includes%21common.inc/function/drupal_http_request/8
  */
+
 
 class Http {
 
   protected $CI;
 
-  public function request($url, $spoof=TRUE, $options=array()) {
-    $result = $this->_prepare_request($url, $spoof, $options);
+  const UA_DEFAULT = 'OU Player/0.9 (PHP/cURL)';
+  const UA_BROWSER = 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.142 Safari/535.19'; // Updated, April 2012.
+  const UA_BROWSER_2 = 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-GB; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3';
+  const UA_GOOGLEBOT = 'Googlebot/2.1 (+http://www.googlebot.com/bot.html)';
+  const UA_LIKE_BOT = 'TrackOER/0.1 (PHP/cURL like Googlebot/2.1) (+http://track.olnet.org)';
+  const UA_LIKE_BOT_2 = 'Mozilla/5.0 (compatible; PHP-trackoer/0.1; Googlebot/2.1)';
 
-    return $this->_http_request_curl($url, $spoof, $options, $result);
+
+  public function request($url, $spoof=TRUE, $options=array()) {
+    $use_curl = TRUE;
+    if ($use_curl) {
+      $result = $this->_prepare_request($url, $spoof, $options);
+      return $this->_http_request_curl($url, $spoof, $options, $result);
+    }
+    else {
+      // php.ini: allow_url_fopen
+      #ini_set('track_errors', 1);	global $php_errormsg;
+      ini_set('user_agent', 'PHP-trackoer/0.1 (+http://track.olnet.org)');
+
+      $result = (object) array(
+        'url' => $url,
+        'success' => NULL,
+        'http_code' => NULL,
+        'data' => @ file_get_contents($url),
+        '_headers' => $http_response_header,
+        #'_er' => error_get_last(), '_e2' => $php_errormsg,
+      );
+      $result->success = $result->data!==FALSE;
+      $result->http_code = (int) substr($result->_headers[0], 9, 3);
+      return $result;
+    }
   }
 
 
   /** Prepare the HTTP request.
   */
-#http://api.drupal.org/api/drupal/core%21includes%21common.inc/function/drupal_http_request/8
   protected function _prepare_request($url, $spoof, &$options) {
     $this->CI =& get_instance();
+    $this->CI->load->helper('url');
 
 	$result = new stdClass();
 
@@ -59,13 +89,6 @@ class Http {
     }
 
 
-    $ua = 'OU Player/0.9 (PHP/cURL)';
-    if ($spoof) {
-       // Updated, April 2012.
-       $ua = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.142 Safari/535.19";
-       #$ua="Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-GB; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3";
-    }
-
     // Merge the default options.
     $options += array(
       'headers' => array(),
@@ -76,7 +99,7 @@ class Http {
       'context' => NULL,
 
       'cookie' => NULL,
-      'ua' => $ua,
+      'ua' => $this->_get_user_agent($spoof),
       'debug' => FALSE,
       'auth' => NULL, #'[domain\]user:password'
     );
@@ -142,5 +165,36 @@ class Http {
     $result->success = ($result->info['http_code'] < 300);
     return (object) $result;
   }
-  
+
+
+  /** Determine a User-Agent string.
+  *
+  * http://www.installationwiki.org/Moodle#opentogoogle
+  *
+  https://github.com/moodle/moodle/blob/f49c53615410071d994f636ad687f1dc19b2ea32/lib/sessionlib.php#L209 -- skodak July 25, 2010 MDL-21249 improved php docs and adding direct access prevention in co…
+  https://github.com/moodle/moodle/blob/master/lib/sessionlib.php#L257 : check_user_initialised() $CFG->opentogoogle -- 2012-05-06
+  https://github.com/moodle/moodle/blob/master/lib/setuplib.php#L1330 : is_web_crawler() -- 2012-07-03
+  http://xref.schoolsict.net/moodle/2.2/nav.html?lib/setuplib.php.html#is_web_crawler
+  ini_set('user_agent', 'Googlebot/2.1 (+http://www.googlebot.com/bot.html)');
+  ini_set('user_agent', 'Mozilla/5.0 (compatible; PHP-trackoer/0.1; Googlebot/2.1');
+  */
+  protected function _get_user_agent($spoof) {
+    switch ($spoof) {
+      case 'googlebot':
+	    $ua = self::UA_GOOGLEBOT;
+		break;
+	  case 'like bot':
+	    $ua = self::UA_LIKE_BOT;
+	    break;
+      case 'browser': # Fall-through.
+      case TRUE:
+        $ua = self::UA_BROWSER;
+		break;
+	  default:
+        $ua = self::UA_DEFAULT;
+        break;
+    }
+	return $ua;
+  }
+
 }

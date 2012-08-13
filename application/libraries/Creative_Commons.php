@@ -22,11 +22,13 @@ class Creative_Commons {
 
   protected $CI;
 
-
   public function __construct() {
     $this->CI =& get_instance();
   }
 
+
+  /** Generate a HTML license-tracker snippet (embed code).
+  */
   public function getCode($site_id=2, $source_url=self::SOURCE_LEARN, $title='Learning to Learn', $author='OpenLearn/Bridge to Success', $author_url=self::AUTHOR_URL, $cc_terms='by-nc-sa') {
     $p = parse_url($source_url);
 
@@ -53,4 +55,10 @@ class Creative_Commons {
 	return $this->CI->load->view('cc_code/cc_code', $view, TRUE);
   }
 
+
+  /** Escape the input embed code, for use in a [textarea].
+  */
+  public function escape($code) {
+    return str_replace(array('<', "\n"), array('&lt;', ''), $code);
+  }
 }

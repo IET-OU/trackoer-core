@@ -11,7 +11,6 @@
  * @filesource
  */
 ini_set('display_errors', 1);
-#error_reporting(E_ALL);
 
 
 class Oembed extends MY_Controller {
@@ -21,11 +20,10 @@ class Oembed extends MY_Controller {
     $url = $this->input->get('url');
 
     $this->load->oembed_provider('Openlearn_track');
-
     $re = $this->provider->getInternalRegex();
 
     if (! preg_match("@$re@", $url, $matches)) {
-      $this->_error('Woops, bad URL, '.$url, 400);
+      $this->_error('Sorry the URL doesn\'t match the acceptable patterns, '.$url, 400);
     }
 
 

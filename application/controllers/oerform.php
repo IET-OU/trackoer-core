@@ -11,38 +11,36 @@
  * @since		Version 1.0
  * @filesource
  */
+require_once APPPATH .'/controllers/oembed.php';
 
 
-class Oerform extends MY_Controller {
+class Oerform extends Oembed { #MY_Controller {
 
 	public function __construct() {
       parent::__construct();
 
-      header('Content-Type: text/html; charset=utf-8');
-	  $this->load->helper('url');
+      $this->load->helper('url');
 	  $this->load->library('Creative_Commons');
     }
 
 
 	public function index($layout = self::LAYOUT) {
 		$this->_load_layout($layout);
+        $view_data = array();
 
-		$source_url = $this->input->get('url');
-		#$p = parse_url($url);
-		if ($source_url && ! preg_match('@\/(labspace.open.ac.uk|openlearn.open.ac.uk)\/@', $source_url)) {
+        if ($this->input->get('url')) {
 
-			$this->_error('Unexpected value for {url} parameter.', 400);
-		}
+          $result = parent::index();
 
-		
-		$view_data = array(
-			'url' => $source_url,
-			'cc_code' => $this->cc->getCode(),
-		);
-		$view_data['cc_code_esc'] = str_replace(array('<', "\n"), array('&lt;', ''), $view_data['cc_code']);
+          $view_data = array(
+            'url' => $result->original_url,
+            'cc_code' => $result->html,
+          );
+          $view_data['cc_code_esc'] = $this->cc->escape($result->html);
+          #$view_data['oembed'] = (array) $result;
 
-
-		$this->layout->view('oer_form/oer_form', $view_data);
+        }
+        $this->layout->view('oer_form/oer_form', $view_data);
 	}
 
 }

@@ -83,6 +83,13 @@ p.ci-footer{
 
 
 
+/* 'Alpha' / 'Beta'
+*/
+h1 em, h2 em {
+	font-size:.8em;
+	color:#888;
+}
+
 /* Navigation/ menus.
 */
 #nav ul, #ou-org-footer ul {
@@ -141,14 +148,23 @@ p.ci-footer{
 /* OER form.
 */
 .oer-form input, .oer-form textarea {
-	margin:1.5em 0;
-	padding:.5em;
-	font-size:1em;
+	margin:1.4em 0;
+	padding:.4em;
+	font-size:.95em;
+	color:#333;
 }
+.oer-form input {
+	font-size:1.25em;
+	padding:.7em;
+	background:#ddd;
+	border:1px solid #d0d0d0;
+}
+input[type=submit]{ cursor:pointer; }
+.oer-form [type=submit]:hover{ background:#e8e8e8; }
 .oer-form input#url{
 	width:30em;
 	background:#f8f8f8;
-	border:1px solid #d0d0d0;
+	border-right:none;
 }
 .oer-form input#url:focus{
 	box-shadow:0 0 20px #d0d0d0;

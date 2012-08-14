@@ -1,0 +1,1 @@
+{"type":"class","digest":"295bf48a","mime":"image/png","file_only":false,"dsl":"[Abstract: Base_Tracker]-[Abstract: Redirect_Tracker], [Abstract: Redirect_Tracker]^-[Another_Tracker...{bg:cornsilk}], [Abstract: Redirect_Tracker]^-[Piwik_Tracker], [Abstract: Redirect_Tracker]^-[Google_analytics_Tracker]","customisations":"scruffy;","extension":"png"}

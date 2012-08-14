@@ -15,9 +15,15 @@
  */
 
 
+/**
+ * Library to generate Creative Commons License embed code snippets.
+ * (Note, we could use the Creative Commons API - jurisdiction/locale support)
+ * @link http://creativecommons.org/
+ */
 class Creative_Commons {
 
-  const SOURCE_LEARN = 'http://labspace.open.ac.uk/Learning_to_Learn_1.0';
+  const SOURCE_LEARN = 'http://labspace.open.ac.uk/course/view.php?id=7442';
+  const SOURCE_ID = 'Learning_to_Learn_1.0';
   const AUTHOR_URL = 'http://labspace.open.ac.uk/b2s';
 
   protected $CI;
@@ -29,7 +35,7 @@ class Creative_Commons {
 
   /** Generate a HTML license-tracker snippet (embed code).
   */
-  public function getCode($site_id=2, $source_url=self::SOURCE_LEARN, $title='Learning to Learn', $author='OpenLearn/Bridge to Success', $author_url=self::AUTHOR_URL, $cc_terms='by-nc-sa') {
+  public function getCode($site_id=2, $source_url=self::SOURCE_LEARN, $source_identifier=self::SOURCE_ID, $title='Learning to Learn', $author='OpenLearn/Bridge to Success', $author_url=self::AUTHOR_URL, $cc_terms='by-nc-sa') {
     $p = parse_url($source_url);
 
     $view = array(
@@ -38,7 +44,8 @@ class Creative_Commons {
 	  'title'   => $title,
 	  'source_url' => $source_url,
 	  'source_host'=> $p['host'],
-	  'source_path'=> ltrim($p['path'], '/'),
+	  'source_identifier' => $source_identifier,
+	  'source_path'=> ltrim($p['path'], '/') .'?'. $p['query'],
 	  'author' => $author,
 	  'author_url' => $author_url,
 	  'cc_license' => NULL,

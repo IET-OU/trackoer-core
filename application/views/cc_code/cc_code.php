@@ -5,8 +5,8 @@
  style="border-width:0"
 <?php if($with_tracker): ?>
  src=
-"<?php echo site_url('track/r') ?>/<?php echo $serv ?>/<?php echo $site_id ?>/cc:<?php echo $cc_terms ?>/<?php echo $source_host ?>/<?php echo $source_path 
-  ?>?t=<?php echo urlencode($title) ?>&amp;debug=2"
+"<?php echo site_url('track/r') ?>/<?php echo $serv ?>/<?php echo $site_id ?>/cc:<?php echo $cc_terms ?>/<?php echo $source_host ?>/<?php echo $source_identifier ?>?<?php
+  if ($source_path): ?>p=<?php echo urlencode($source_path) ?>&amp;<?php endif; ?>t=<?php echo urlencode($title) ?>&amp;debug=2"
  class="wb"
  title="Creative Commons License - with tracking**"
 <?php else: ?>

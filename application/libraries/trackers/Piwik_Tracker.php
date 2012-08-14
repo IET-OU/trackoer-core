@@ -29,7 +29,7 @@ class Piwik_Tracker extends Redirect_Tracker {
   }
 
 
-  public function track($service, $site_id, $image, $source_host, $source_path, $title=NULL, $referer=NULL, $record = 1) {
+  public function track($service, $site_id, $image, $source_host, $source_identifier=NULL, $source_path=NULL, $title=NULL, $referer=NULL, $record = 1) {
     $CI = $this->CI;
 	$CI->_debug(__CLASS__);
 
@@ -43,7 +43,7 @@ class Piwik_Tracker extends Redirect_Tracker {
 	  // 'AlternateImage' plugin for Piwik uses 'img'.
 	  'img' => $image,
 	  // For the no-Javascript web-bug image, the OER's destination URL is the referrer.
-	  'url' => $referer .'#!'. $source_host .':'. $source_path,
+	  'url' => $referer .'#!'. $source_identifier .'!'. $source_path,
 	  // The custom Page title..
 	  'action_name' => $title,
 	  // We don't have a user '_id'...

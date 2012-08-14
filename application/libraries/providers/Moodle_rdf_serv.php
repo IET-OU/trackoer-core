@@ -105,7 +105,7 @@ EOT;
 
 	//
 	$this->CI->load->library('Creative_Commons');
-	$cc_code = $this->CI->cc->getCode($rdf->_piwik_site_id, $rdf->original_url, $title, 'OpenLearn/'. $rdf->contributor, $rdf->_piwik_site_url);
+	$cc_code = $this->CI->cc->getCode($rdf->_piwik_site_id, $rdf->original_url, $rdf->identifier, $title, 'OpenLearn/'. $rdf->contributor, $rdf->_piwik_site_url);
 	$rdf->html = $cc_code;
 
 

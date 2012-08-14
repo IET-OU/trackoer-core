@@ -80,7 +80,7 @@ $autoload['helper'] = array();
 |
 */
 
-$autoload['config'] = array('trackoer_config');
+$autoload['config'] = array('toer_constants', 'trackoer_config');
 
 
 /*

@@ -48,6 +48,11 @@ class MY_Controller extends CI_Controller {
   }
 
 
+  protected function oembedUrl($url, $service = 'oembed', $format = NULL) {
+    return site_url($service) .'?url='. urlencode($url);
+  }
+
+
   public function _is_debug($threshold = 0) {
     $is_debug = 0;
 	$is_debug += (int) $this->input->get('debug');

@@ -34,6 +34,7 @@ class Oerform extends Oembed { #MY_Controller {
 
           $view_data = array(
             'url' => $result->original_url,
+            'oembed_url' => $this->oembedUrl($result->original_url),
             'cc_code' => $result->html,
           );
           $view_data['cc_code_esc'] = $this->cc->escape($result->html);

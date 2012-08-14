@@ -82,6 +82,11 @@ p.ci-footer{
 }
 
 
+.f-rss a {
+	display:inline-block;
+	padding-right:19px;
+	background:url(http://www.open.ac.uk/includes/icons/16x16px/062feed-icon-16x16.gif) no-repeat right;
+}
 
 /* 'Alpha' / 'Beta'
 */

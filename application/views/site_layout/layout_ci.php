@@ -2,6 +2,7 @@
   $base_url = base_url();
   $assets_url = $base_url .'application/assets/';
   $piwik_url = $this->config->item('piwik_url');
+  $feed_url = str_replace('/view/', '/rss/', BLOG_URL);
 
   $with_nav = TRUE;
 
@@ -14,6 +15,14 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="ROBOTS" content="noindex,nofollow" />
+
+<link rel=alternate type="application/rss+xml" title="Track OER project blog RSS feed" href="<?php echo $feed_url ?>" />
+<?php if (isset($oembed_url)): ?>
+<link rel=alternate type="application/json+oembed" title="License-tracker code: <?php #echo $rdf->title ?>"
+	href="<?php echo $oembed_url ?>&amp;format=json" />
+<link rel=alternate type="application/xml+oembed"
+	href="<?php echo $oembed_url ?>&amp;format=xml" />
+<?php endif; ?>
 
 <link rel=stylesheet href="<?php echo $assets_url ?>layout-ci.css" />
 <link rel=stylesheet href="<?php echo $assets_url ?>forkme.css" />
@@ -28,12 +37,12 @@
 		<ul class="ou-sections">
 		<li class="tm-toer-home"><a href="<?php echo $base_url ?>">Track OER home</a>
 		<li class="tm-about"><a href="<?php echo $base_url ?>about">About</a>
-		<li class="tm-piwik"><a href="<?php echo $piwik_url ?>" title="Our Piwik analytics">Piwik</a>
+		<li class="tm-piwik"><a href="<?php echo $piwik_url ?>" title="Piwik analytics for Track OER">Piwik</a>
 		<li class="tm-form"><a href="<?php echo $base_url ?>oerform" title="Get a license-tracker snippet">OER form</a>
 		<?php /* Todo!
 		<li class="tm-choose"><a href="<?php echo $base_url ?>choose">CC Choose</a>*/ ?>
 		<li class="tm-test"><a href="<?php echo $base_url ?>test" title="Demonstrations">Tests/ demos</a>
-		<li class="tm-extern cw blog"><a href="http://cloudworks.ac.uk/tag/view/trackoer" title="Our blog, on Cloudworks">Project blog</a>
+		<li class="tm-extern cw blog"><a href="<?php echo BLOG_URL ?>" title="Track OER project blog, on Cloudworks">Project blog</a>
 		<li class="tm-extern olrn"><a href="http://labspace.open.ac.uk/b2s" title="Bridge to Success content, on OpenLearn-Labspace">Bridge to Success</a>
 		<li class="tm-extern olnet"><a href="http://www.olnet.org/" title="Open Learning Network">OLnet</a>
 		</ul>
@@ -54,14 +63,15 @@
 		<li class="f-logo f-extern hefce"><a href="http://hefce.ac.uk/"><img title="Higher Education Funding Council for England" src="http://www8.open.ac.uk/score/sites/all/themes/zen_score/footerLogos/HEFCELogo.png" data-X-src="http://jisc.ac.uk/aboutus/~/media/JISC/aboutus/funders/HEFCE48.ashx"></a>
 		<li class="f-tx"><a href="http://www.open.ac.uk/privacy-ol">Privacy and cookies</a>
 		<li class="f-tx"><a href="http://www.open.ac.uk/conditions">Conditions of use</a>
-		<li class="f-tx"><a href="#">Contact us/ Feedback</a>
+		<li class="f-tx"><a href="<?php echo CONTACT_URL ?>">Contact us/ Feedback</a>
+		<li class="f-rss"><a href="<?php echo $feed_url ?>" title="RSS feed for the Project blog, on Cloudworks">Feed</a>
 		<li class="ci-footer">Page rendered in <strong>{elapsed_time}</strong> seconds</li>
-		<li id="forkme-banner"><a href="https://github.com/IET-OU/trackoer-core" title="Fork me on GitHub">Fork me on GitHub</a></li>
+		<li id="forkme-banner"><a href="<?php echo CODE_URL ?>" title="Fork me on GitHub">Fork me on GitHub</a></li>
 		</ul>
 	</div>
 <?php else: ?>
 	<p class="ci-footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
-	<div id="forkme-banner"><a href="https://github.com/IET-OU/trackoer-core" title="Fork me on GitHub">Fork me on GitHub</a></div>
+	<div id="forkme-banner"><a href="<?php echo CODE_URL ?>" title="Fork me on GitHub">Fork me on GitHub</a></div>
 <?php endif; ?>
 
 </div>

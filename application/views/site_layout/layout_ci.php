@@ -29,7 +29,7 @@
 		<li class="tm-toer-home"><a href="<?php echo $base_url ?>">Track OER home</a>
 		<li class="tm-about"><a href="<?php echo $base_url ?>about">About</a>
 		<li class="tm-piwik"><a href="<?php echo $piwik_url ?>" title="Our Piwik analytics">Piwik</a>
-		<li class="tm-form"><a href="<?php echo $base_url ?>trackoer" title="Get a license-tracker snippet">OER form</a>
+		<li class="tm-form"><a href="<?php echo $base_url ?>oerform" title="Get a license-tracker snippet">OER form</a>
 		<?php /* Todo!
 		<li class="tm-choose"><a href="<?php echo $base_url ?>choose">CC Choose</a>*/ ?>
 		<li class="tm-test"><a href="<?php echo $base_url ?>test" title="Demonstrations">Tests/ demos</a>

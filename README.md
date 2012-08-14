@@ -14,6 +14,22 @@ redirection to no-Javascript web-bugs for Piwik (and Google Analytics), and test
 * JISC page: [jisc.ac.uk/whatwedo/programmes/ukoer3/rapidinnovation/trackoer.aspx](http://jisc.ac.uk/whatwedo/programmes/ukoer3/rapidinnovation/trackoer.aspx)
 
 
+## Todos
+14 August 2012
+
+* Implement a status/log feature for oerform,
+* Add <link rel=alternate> to oerform - point to oEmbed service,
+* Add visible links to alternative formats - point to oEmbed service,
+* Example links for oerform,
+* Tidy up oerform UI - minimalist!
+* Fix the tracking snippet - source-path,
+* Fix "oucontent/view.php?id=471422§ion=3" - &amp; matters!
+* Javascript 'select-all' for oerform,
+* Document the proposed oEmbed/oerform API,
+* Implement Ga_Tracker,
+* About page, donottrack etc.
+
+
 ## Credits
 
 trackoer-core: Copyright 2012 The Open University.

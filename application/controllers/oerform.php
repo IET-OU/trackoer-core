@@ -14,7 +14,10 @@
 require_once APPPATH .'/controllers/oembed.php';
 
 
-class Oerform extends Oembed { #MY_Controller {
+/**
+ * The OER Form controller, based on oEmbed.
+ */
+class Oerform extends Oembed {
 
 	public function __construct() {
       parent::__construct();

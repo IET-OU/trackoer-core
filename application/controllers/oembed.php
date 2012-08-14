@@ -13,6 +13,10 @@
 ini_set('display_errors', 1);
 
 
+/**
+ * Controller for the oEmbed service/ API
+ * @link http://oembed.com
+ */
 class Oembed extends MY_Controller {
 
   public function index($url = NULL, $format = NULL, $license_url = NULL) {

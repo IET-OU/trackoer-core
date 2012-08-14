@@ -45,7 +45,7 @@ class Creative_Commons {
 	  'source_url' => $source_url,
 	  'source_host'=> $p['host'],
 	  'source_identifier' => $source_identifier,
-	  'source_path'=> ltrim($p['path'], '/') .'?'. $p['query'],
+	  'source_path'=> ltrim($p['path'], '/') . (isset($p['query']) ? '?'. $p['query'] :''),
 	  'author' => $author,
 	  'author_url' => $author_url,
 	  'cc_license' => NULL,

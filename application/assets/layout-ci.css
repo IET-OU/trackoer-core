@@ -147,6 +147,7 @@ h1 em, h2 em {
 
 /* OER form.
 */
+.oer-form label{ display:block; }
 .oer-form input, .oer-form textarea {
 	margin:1.4em 0;
 	padding:.4em;
@@ -154,15 +155,15 @@ h1 em, h2 em {
 	color:#333;
 }
 .oer-form input {
-	font-size:1.25em;
-	padding:.7em;
+	font-size:1.22em;
+	padding:.8em 5px;
 	background:#ddd;
 	border:1px solid #d0d0d0;
 }
-input[type=submit]{ cursor:pointer; }
+input[type=submit]{ cursor:pointer; padding:.8em; }
 .oer-form [type=submit]:hover{ background:#e8e8e8; }
 .oer-form input#url{
-	width:30em;
+	width:42em;
 	background:#f8f8f8;
 	border-right:none;
 }
@@ -171,3 +172,11 @@ input[type=submit]{ cursor:pointer; }
 	background:#fff;
 }
 
+#ex small{ display:block; margin-left:4em; margin-bottom:5em; }
+#ex small a{
+	display:block;
+	overflow:hidden;
+	width:29em;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}

@@ -39,7 +39,11 @@ class Oerform extends Oembed { #MY_Controller {
           $view_data['cc_code_esc'] = $this->cc->escape($result->html);
           #$view_data['oembed'] = (array) $result;
 
+        } else {
+          $this->load->oembed_provider('Openlearn_track');
         }
+        $view_data['examples'] = $this->provider->getExampleLinks();
+
         $this->layout->view('oer_form/oer_form', $view_data);
 	}
 

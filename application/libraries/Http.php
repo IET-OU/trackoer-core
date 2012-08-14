@@ -14,7 +14,7 @@ class Http {
 
   protected $CI;
 
-  const UA_DEFAULT = 'OU Player/0.9 (PHP/cURL)';
+  const UA_DEFAULT = 'TrackOER/0.1 (PHP/cURL) (+http://track.olnet.org)';
   const UA_BROWSER = 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.142 Safari/535.19'; // Updated, April 2012.
   const UA_BROWSER_2 = 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-GB; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3';
   const UA_GOOGLEBOT = 'Googlebot/2.1 (+http://www.googlebot.com/bot.html)';

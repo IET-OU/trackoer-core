@@ -59,9 +59,7 @@ EOT;
 
       $result = $this->_http_request_work_rdf($rdf_url);
 
-      var_dump($result->rdf);
-
-	  $rdf = $result->rdf;
+      $rdf = $result->rdf;
 
     } else {
       // Moodle activity module page, eg. /mod/oucontent/..
@@ -110,7 +108,6 @@ EOT;
 	$cc_code = $this->CI->cc->getCode($rdf->_piwik_site_id, $rdf->original_url, $title, 'OpenLearn/'. $rdf->contributor, $rdf->_piwik_site_url);
 	$rdf->html = $cc_code;
 
-	#var_dump($rdf);
 
 	return $rdf;
   }

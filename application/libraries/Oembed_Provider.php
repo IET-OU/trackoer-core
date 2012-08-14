@@ -103,6 +103,24 @@ abstract class Oembed_Provider implements iService {
   }
 
 
+  /** Generate a list of the example links for a provider.
+  */
+  public function getExampleLinks($sep = ' ', $urlprefix = TRUE, $limit = 5) {
+    $links = '';
+    $count = 0;
+    foreach ($this->_examples as $text => $example_url) {
+      if ($count > $limit) break;
+      if ($text[0] == '_') continue;
+      $actual_url = $example_url;
+      if (TRUE===$urlprefix) {
+        $actual_url = site_url('oerform') .'?url='. urlencode($example_url);
+      }
+      $links .= $sep . anchor(htmlentities($actual_url), htmlentities($example_url));
+    }
+    return $links;
+  }
+
+
   protected function _error($message, $code=500, $from=null, $obj=null) {
     return $this->CI->_error($message, $code, $from, $obj);
   }

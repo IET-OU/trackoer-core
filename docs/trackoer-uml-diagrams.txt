@@ -5,7 +5,7 @@
 
 
 // Track OER Tracker class hierarchy.
-[Abstract: Base_Tracker]-[Abstract: Redirect_Tracker],
+[Abstract: Base_Tracker]^-[Abstract: Redirect_Tracker],
 [Abstract: Redirect_Tracker]^-[Another_Tracker...{bg:cornsilk}],
 [Abstract: Redirect_Tracker]^-[Piwik_Tracker],
 [Abstract: Redirect_Tracker]^-[Google_analytics_Tracker]

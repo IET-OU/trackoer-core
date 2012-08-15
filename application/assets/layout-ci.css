@@ -153,8 +153,9 @@ h1 em, h2 em {
 /* OER form.
 */
 .oer-form label{ display:block; }
+.oer-form p{ margin:2em 0; }
 .oer-form input, .oer-form textarea {
-	margin:1.4em 0;
+	margin:.8em 0;
 	padding:.4em;
 	font-size:.95em;
 	color:#333;

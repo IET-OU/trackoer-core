@@ -10,5 +10,8 @@ application/logs/*
 !application/logs/index.html
 !application/logs/.htaccess
 
+*.patch
+*.diff
+
 piwik/*
 

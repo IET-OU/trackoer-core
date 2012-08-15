@@ -2,7 +2,10 @@
 
 var oer_license_parser = {
 	
-	attr_names: ['license cc:license', 'about', 'src', 'resource', 'href', 'instanceof', 'typeof', 'rel', 'rev', 'property', 'content', 'datatype'],
+	attr_names: ['license cc:license', 'about', 'src', 'resource', 'href', 'instanceof', 'typeof', 'rel', 'rev', 'property', 'content', 'datatype'
+//ou-specific
+		//, 'source', 'identifier'
+	],
 	license_found: false,
 	license_loaded: false,
 	root_node: document,
@@ -12,7 +15,12 @@ var oer_license_parser = {
 										  'license' : "",
 										  'license_link' : "",
 										  'type' : "",
-										  'attribution_url' : ""},
+										  'attribution_url' : ""
+//ou-specific
+										  , 'source_url' : ""
+										  , 'source_id' : ""
+//ou-specific ends.
+										  },
 	
 	get_license: function(){
 		var _self = this;
@@ -56,6 +64,8 @@ var oer_license_parser = {
 							 'basic_attribution': basic_attribution,
 							 'rdf_attribution': rdf_attribution,
 							 'license_html': license_html
+//ou-specific
+							 , 'current_license': _self.current_license
 						 };
 		} else {
 			return '';
@@ -171,7 +181,14 @@ var oer_license_parser = {
     if (attribute == "attributionName") {
       value = n.innerHTML;
     }
-
+//ou-specific
+	if (attribute == "dct:source") {
+      value = n.getAttribute("href")
+	}
+	if (attribute == "dct:identifier") {
+      value = n.getAttribute("href")
+	}
+//ou-specific ends.
     if (value != attribute) {
       if (asset != null && attribute != null && value != null) {
         if (asset.length != 0 && attribute.length != 0 && value.length != 0) {
@@ -216,6 +233,17 @@ var oer_license_parser = {
 		case "author":
 		  _self.current_license["author"] = data_triple[2];
 		  break;
+//ou-specific
+		case "source":
+		case "dct:source":
+		  _self.current_license["source_url"] = data_triple[2];
+		  //console.log(data_triple[1]);
+		  break;
+		case "identifier":
+		case "dct:identifier":
+		  _self.current_license["source_id"] = data_triple[2];
+		  break;
+//ou-specific ends.
 		}
 	},
 	

@@ -25,7 +25,7 @@
 
 <p>[Creative Commons RDFa license snippet]
 
-<p>
+<div id=cc-code><p>
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/uk/deed.en_GB"
  ><img alt="Creative Commons Licence" style="border-width:0" src=
  "http://track.olnet.org/track/r/piwik/<?php echo $piwik_siteid ?>/cc:by-nc-sa/labspace.open.ac.uk/Learning_to_Learn_1.0?p=mod%2Foucontent%2Fview.php%3Fid%3D471422%26section%3D3&t=2.3+Gathering+Evidence%E2%80%94Your+Qualities%2C+Knowledge+and+Skills+-+Learning+to+Learn+-+LabSpace+%28Course%29&debug=2"
@@ -42,7 +42,7 @@
 <!--Extend Creative Commons with a course 'identifier'	-->
  <br />
  Identifier: <a xmlns:dct="http://purl.org/dc/terms/" href="http://labspace.open.ac.uk/Learning_to_Learn_1.0" rel="dct:identifier">Learning_to_Learn_1.0</a>
-</p>
+</div>
 
 
 

@@ -15,7 +15,7 @@
 
 /**
  * Moodle repositories that offer per-OER-course RDF meta-data, eg. OpenLearn.
- * If individual course activity pages link to the course RDF we can offer fine-grained per-source-page analytics.
+ * If individual course activity pages (eg. mod/oucontent/view..) link to the course RDF we can offer fine-grained per-source-page analytics.
  */
 class Moodle_rdf_serv extends Oembed_Provider {
 
@@ -153,20 +153,12 @@ EOT;
 
 
   protected function _get_piwik_site_id($rdf) {
-    // Form a Piwik analytics site URL.
-    $p = parse_url($rdf->original_url);
-    $site_url = $p['scheme'] .'://'. $p['host'];
+    $this->CI->load->tracker('Piwik');
+    $res = $this->CI->tracker->getSiteId($rdf->original_url);
 
-    $this->CI->load->library('PiwikEx');
-    $piwik_result = $this->CI->piwik->getSitesIdFromSiteUrl($site_url);
-    if (! $piwik_result) {
-      $this->_error('Piwik fail, '. $site_url);
-    }
-
-	$rdf->_piwik_site_url = $site_url;
-    $rdf->_piwik_site_id = $piwik_result[0]['idsite'];
-
-	return $rdf;
+    $rdf->_piwik_site_url = $res->site_url;
+    $rdf->_piwik_site_id  = $res->site_id;
+    return $rdf;
   }
 
 }

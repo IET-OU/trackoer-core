@@ -16,6 +16,9 @@
  */
 
 
+/**
+ * A tracker class which redirects to a Piwik instance.
+ */
 class Piwik_Tracker extends Redirect_Tracker {
 
   protected $tracker_url;
@@ -29,6 +32,36 @@ class Piwik_Tracker extends Redirect_Tracker {
   }
 
 
+  public function isValid($site_id) {
+    return is_int($site_id) && $site_id > 0 && $site_id < 100;
+  }
+
+
+  public function getSiteId($url, $subject = NULL) {
+    // Form a Piwik-analytics site URL.
+    $p = parse_url($url);
+    $site_url = $p['scheme'] .'://'. $p['host'];
+
+    $this->CI->load->library('PiwikEx');
+    $piwik_result = $this->CI->piwik->getSitesIdFromSiteUrl($site_url);
+    if (! $piwik_result) {
+      $this->_error('Piwik get site_id fail, '. $site_url);
+    }
+
+    $result = (object) array(
+      'site_id'  => $piwik_result[0]['idsite'],
+      'site_url' => $site_url,
+    );
+    if (! $this->isValid($result->site_id)) {
+      $this->_error("Piwik site_id not valid, $result->site_id, $site_url");
+    }
+    return $result;
+  }
+
+  /**
+  * Implementation of track() - used by Track controller.
+  * @return void
+  */
   public function track($service, $site_id, $image, $source_host, $source_identifier=NULL, $source_path=NULL, $title=NULL, $referer=NULL, $record = 1) {
     $CI = $this->CI;
 	$CI->_debug(__CLASS__);

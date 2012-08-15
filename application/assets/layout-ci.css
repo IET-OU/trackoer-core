@@ -76,7 +76,7 @@ p.ci-footer{
 	box-shadow:0 0 8px #d0d0d0;
 }
 
-#container p, h2, h3{
+#container p, h2, h3, pre{
 	padding:0 15px;
 	font-weight:normal;
 }

@@ -2,7 +2,7 @@
 
 
 ## trackoer-core: Copyright © 2012 The Open University. All rights reserved.
-* License: 
+* License: free/ open-source -- license to be confirmed.
 * Author: Nick Freear <n.d.freear+@+open.ac.uk> / Institute of Educational Technology.
 
 
@@ -22,6 +22,22 @@
 ## php-po-parser: Copyright (C) 2008, Iulian Ilea (http://iulian.net), all rights reserved.
 * License: <http://gnu.org/licenses/gpl.html> GNU GPL v3 onwards (code), or GNU Lesser GPL (project page)
 * Code: <http://code.google.com/p/php-po-parser/>
+
+### oer_license_parser.js: Copyright (C) 2011 by Pat Lockley.
+* License: MIT
+* Author: <patrick.lockley@googlemail.com>
+* Code: <https://github.com/patlockley/openattribute-chrome>
+* Via:  <https://github.com/tatemae/capret/tree/master/public/js>
+
+### parseuri.js / 1.2.2: (c) Steven Levithan <stevenlevithan.com>
+* License: MIT
+* Code: <http://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js>
+* Via:  <http://blog.stevenlevithan.com/archives/parseuri>
+* Via:  <http://james.padolsey.com/javascript/parsing-urls-with-the-dom/>
+
+### parseURL (parseurl-dom.js): Copyright 2009-02-19 James Padolsey
+* License: unknown
+* Code: <http://james.padolsey.com/javascript/parsing-urls-with-the-dom/>
 
 
 [End.]

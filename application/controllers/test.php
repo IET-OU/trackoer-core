@@ -48,6 +48,13 @@ class Test extends MY_Controller {
 
 		$this->layout->view('tests/test-b2s-learn-section', $view_data);
 	}
+	
+	
+	public function b2s_learn_gajs($layout = self::LAYOUT) {
+		$this->_load_layout($layout);
+		
+		$this->layout->view('tests/test-ga-js-learning1');
+	}
 
 
 	public function index() {

@@ -1,4 +1,5 @@
-//http://james.padolsey.com/javascript/parsing-urls-with-the-dom/
+// http://james.padolsey.com/javascript/parsing-urls-with-the-dom/
+// License: public domain (http://unlicense.org/#the-unlicense)
 
 // This function creates a new anchor element and uses location
 // properties (inherent) to get the desired URL data. Some String

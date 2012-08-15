@@ -33,10 +33,10 @@
 * License: MIT
 * Code: <http://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js>
 * Via:  <http://blog.stevenlevithan.com/archives/parseuri>
-* Via:  <http://james.padolsey.com/javascript/parsing-urls-with-the-dom/>
 
 ### parseURL (parseurl-dom.js): Copyright 2009-02-19 James Padolsey
-* License: unknown
+* License: <http://james.padolsey.com/terms-conditions/> public domain
+* License: <http://unlicense.org/#the-unlicense>
 * Code: <http://james.padolsey.com/javascript/parsing-urls-with-the-dom/>
 
 

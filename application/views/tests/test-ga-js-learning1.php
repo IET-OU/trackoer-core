@@ -57,6 +57,7 @@
 
 
 
+<?php /*
 <pre>
 
 
@@ -71,3 +72,4 @@ NDF, 15 August 2012 (follows conversation with Guy Barrett).
 * http://dl.dropbox.com/u/3203144/track/page-learning1.html?key=val#hash
 
 </pre>
+*/ ?>

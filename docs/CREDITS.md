@@ -40,8 +40,13 @@
 * License: <http://unlicense.org/#the-unlicense>
 * Code: <http://james.padolsey.com/javascript/parsing-urls-with-the-dom/>
 
-### busterjs:  @license MIT License (c) copyright B Cavalier & J Hann
+### buster.js: @license MIT License (c) copyright B Cavalier & J Hann
 * License: MIT
 * Code: <http://busterjs.org/>
+
+### Ender/jeesh.js: copyright Dustin Diaz & Jacob Thornton 2011 (@ded @fat)
+* License: MIT
+* Code: <http://ender.no.de/#jeesh>
+
 
 [End.]

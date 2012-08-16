@@ -24,16 +24,21 @@ class PiwikEx extends Piwik {
      * Get the version of Piwik.
      *
      * @access  public
-     * @param   string
-     * @return  array
+     * @return  string
      */
-    public function version()
+    public function getVersion()
     {
         $url = $this->_piwik_url('API.getPiwikVersion');
-        return $this->_get_decoded($url);
+        $result = $this->_get_decoded($url);
+        return isset($result['value']) ? $result['value'] : NULL;
     }
 
-
+    /**
+     * Get..
+     *
+     * @access  public
+     * @return  array
+     */
     public function getAllSites()
     {
         $url = $this->_piwik_url('SitesManager.getAllSites');

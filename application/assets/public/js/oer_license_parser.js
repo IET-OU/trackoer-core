@@ -118,6 +118,10 @@ var oer_license_parser = {
 	
 	is_parseable_node: function(n){
 		if(n.nodeName != "LINK" && 
+//ou-specific -- MSIE 8?
+			 //( n.nodeName != "#document" && n.nodeName != "#text" && )
+			 typeof n.hasAttributes != "undefined" &&
+//ou-specific ends.
 			 n.hasAttributes() &&
 			 n.attributes.length != 1){
 			return true;

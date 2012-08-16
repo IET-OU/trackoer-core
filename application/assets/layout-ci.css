@@ -137,7 +137,7 @@ h1 em, h2 em {
 }
 #ou-org-footer #forkme-banner {font-size:1.1em; }
 #forkme-banner :hover, #forkme-banner :focus{ color:#ffffe0; }
-.warn, #cc-code {
+.warn, #cc-code, #log p {
 	text-align:center;
 	padding:6px; /*!important*/
 	margin:15px;
@@ -148,7 +148,12 @@ h1 em, h2 em {
 #cc-code{ text-align:right; font-size:.92em; }
 .test-content{ font-size:.86em; }
 .elip{ font-size:x-large; }
-
+#log p {
+	font-family:monospace;
+	text-align:left;
+	max-height:6em;
+	overflow-y:scroll;
+}
 
 /* OER form.
 */

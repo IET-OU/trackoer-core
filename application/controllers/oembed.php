@@ -30,7 +30,7 @@ class Oembed extends MY_Controller {
       $this->_error('Sorry the URL doesn\'t match the acceptable patterns, '.$url, 400);
     }
 
-    $this->_addStatus('Controller: the input URL matched a pattern. Handing to OpenLearn tracker provider...');
+    $this->_addStatus('Controller: The input URL matched a pattern. Handing to OpenLearn tracker library...');
 
     $result = $this->provider->call($url, $matches);
 

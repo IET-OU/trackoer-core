@@ -131,7 +131,7 @@ abstract class Oembed_Provider implements iService {
   }
 
   protected function _addStatus($message) {
-    return $this->CI->_addStatus('Provider: '.$message);
+    return $this->CI->_addStatus('Library: '.$message);
   }
 
 

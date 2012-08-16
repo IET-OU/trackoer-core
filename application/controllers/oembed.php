@@ -1,4 +1,4 @@
-<?php
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Track OER
  *
@@ -30,9 +30,11 @@ class Oembed extends MY_Controller {
       $this->_error('Sorry the URL doesn\'t match the acceptable patterns, '.$url, 400);
     }
 
+    $this->_addStatus('Controller: the input URL matched a pattern. Handing to OpenLearn tracker provider...');
 
     $result = $this->provider->call($url, $matches);
 
+    $this->_addStatus('Controller: response complete.');
 
     if ('Oembed' == get_class($this)) {
       // Needs more work - security etc.!

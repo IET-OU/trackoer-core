@@ -26,6 +26,8 @@ class MY_Controller extends CI_Controller {
   // Default layout/template.
   const LAYOUT = 'ci'; #'bare';
 
+  protected $status = array();
+
 
   public function __construct() {
     parent::__construct();
@@ -52,6 +54,17 @@ class MY_Controller extends CI_Controller {
     return site_url($service) .'?url='. urlencode($url);
   }
 
+  /** Add a message to the status queue.
+  */
+  public function _addStatus($message) {
+    $this->status[] = $message;
+  }
+
+  /** Get the status-message array.
+  */
+  protected function _getStatus() {
+    return $this->status;
+  }
 
   public function _is_debug($threshold = 0) {
     $is_debug = 0;

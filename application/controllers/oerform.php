@@ -29,7 +29,7 @@ class Oerform extends Oembed {
 
 	public function index($layout = self::LAYOUT) {
 		$this->_load_layout($layout);
-        $view_data = array();
+        $view_data = array('status'=>array());
 
         if ($this->input->get('url')) {
 
@@ -39,6 +39,7 @@ class Oerform extends Oembed {
             'url' => $result->original_url,
             'oembed_url' => $this->oembedUrl($result->original_url),
             'cc_code' => $result->html,
+            'status'  => $this->_getStatus(),
           );
           $view_data['cc_code_esc'] = $this->cc->escape($result->html);
           #$view_data['oembed'] = (array) $result;

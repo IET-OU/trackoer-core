@@ -130,6 +130,10 @@ abstract class Oembed_Provider implements iService {
     return $this->CI->_log($level, $message, $php_error);
   }
 
+  protected function _addStatus($message) {
+    return $this->CI->_addStatus('Provider: '.$message);
+  }
+
 
   protected function _http_request($url, $spoof=TRUE, $options=array()) { #_curl
     $this->CI->load->library('http');

@@ -57,10 +57,6 @@ EOT;
       $rdf_url .= FALSE===strpos($url, '?') ? '?' : '&';
       $rdf_url .= 'format=rdf&_source=trackoer';
 
-      $result = $this->_http_request_work_rdf($rdf_url);
-
-      $rdf = $result->rdf;
-
     } else {
       // Moodle activity module page, eg. /mod/oucontent/..
       // - Get the HTML page, look for an 'alternate' <LINK>, and follow it to get the Work RDF.
@@ -75,6 +71,9 @@ EOT;
         $this->_error('HTTP Moodle module HTML page error, '. $html_url, $result->http_code);
       }
 
+      $this->_addStatus('Requesting HTML page over the Web... Received OK.');
+      $this->_addStatus('Parsing HTML for RDF link...');
+
       #$xmlo = @ new SimpleXML($result->data);
 
 	  if (! preg_match('@<link[^>]+(alternate|rdf\+xml)[^>]+(http://[^"]+)@', $result->data, $matches_link)) {
@@ -88,11 +87,16 @@ EOT;
 	  $page_title = html_entity_decode($matches_title[1]);
 	  $page_title = trim(str_replace(array('The Open University', '&#x2014;'), array('', '—'), $page_title), '- ');
 
-	  $rdf_result = $this->_http_request_work_rdf($rdf_url);
-
-      $rdf = $rdf_result->rdf;
-	  $rdf->_page_title = $page_title;
     }
+
+    $rdf_result = $this->_http_request_work_rdf($rdf_url);
+
+    $rdf = $rdf_result->rdf;
+    $rdf->_page_title = isset($page_title) ? $page_title : NULL;
+
+    $this->_addStatus("Requesting 'Work' RDF over the Web... Received OK.");
+    $this->_addStatus("Parsing 'Work' RDF...");
+
 
 	$rdf->original_url = $url;
 	$rdf->_rdf_type = $rdf->type;
@@ -102,11 +106,16 @@ EOT;
 
     $rdf = $this->_get_piwik_site_id($rdf);
 
+    $this->_addStatus("Requesting 'site ID' from Piwik API over the Web... Received OK.");
 
 	//
 	$this->CI->load->library('Creative_Commons');
 	$cc_code = $this->CI->cc->getCode($rdf->_piwik_site_id, $rdf->original_url, $rdf->identifier, $title, 'OpenLearn/'. $rdf->contributor, $rdf->_piwik_site_url);
 	$rdf->html = $cc_code;
+
+
+	$this->_addStatus('Rendering the license-embed HTML...');
+	$this->_addStatus('Returning to controller.');
 
 
 	return $rdf;

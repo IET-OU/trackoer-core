@@ -24,7 +24,7 @@
 
 <?php if (isset($cc_code)): ?>
 	<hr />
-	<p>Sample output
+	<h3>Sample output</h3>
 
 	<div id=cc-code><p>
 	<?php echo $cc_code ?>
@@ -37,6 +37,16 @@
 	<textarea id=copy-me readonly rows=10 cols=85
 	><?php echo $cc_code_esc ?></textarea>
 <?php endif; ?>
+
+
+<?php if (isset($status)): ?>
+	<div id=log><h3>Status log</h3> <p>
+	<?php foreach ($status as $stat): ?>
+	<?php echo $stat ?><br>
+	<?php endforeach; ?>
+	</p></div>
+<?php endif; ?>
+
 
 </form>
 

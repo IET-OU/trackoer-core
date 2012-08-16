@@ -1,3 +1,4 @@
+<?php $with_unit_tests = isset($with_unit_tests) && $with_unit_tests; ?>
 
 <?php if ($with_unit_tests): ?>
 <!-- Unit tests - with Buster.js -->

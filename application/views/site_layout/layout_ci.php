@@ -50,9 +50,12 @@
 	</nav>
 <?php endif; ?>
 
+
 <?php if ($with_unit_tests): ?>
-<p class=go-test-result><a href="#test-result">Unit test results</a></p>
+<p class=go-test-result>&rarr; <a href="#test-result">Unit test results</a></p>
 <?php endif; ?>
+
+
 
 	<?php echo $content_for_layout ?>
 

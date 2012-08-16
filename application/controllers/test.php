@@ -50,10 +50,13 @@ class Test extends MY_Controller {
 	}
 	
 	
-	public function b2s_learn_gajs($layout = self::LAYOUT) {
+	public function b2s_learn_gajs($with_unit_tests = FALSE, $layout = self::LAYOUT) {
 		$this->_load_layout($layout);
-		
-		$this->layout->view('tests/test-ga-js-learning1');
+
+		$view_data = array(
+			'with_unit_tests' => $with_unit_tests,
+		);
+		$this->layout->view('tests/test-ga-js-learning1', $view_data);
 	}
 
 

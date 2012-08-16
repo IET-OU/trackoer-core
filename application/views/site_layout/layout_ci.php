@@ -6,6 +6,7 @@
 
   $with_nav = TRUE;
 
+  $with_unit_tests = isset($with_unit_tests) && $with_unit_tests;
 
 ?>
 <!doctype html><html lang="en"><meta charset="utf-8" /><title>Track OER - rapid innovation alpha</title>
@@ -49,13 +50,18 @@
 	</nav>
 <?php endif; ?>
 
-
+<?php if ($with_unit_tests): ?>
+<p class=go-test-result><a href="#test-result">Unit test results</a></p>
+<?php endif; ?>
 
 	<?php echo $content_for_layout ?>
 
 
 
-<?php if ($with_nav): ?>
+<?php if ($with_unit_tests): ?>
+
+<?php elseif ($with_nav): ?>
+
 	<div id="ou-org-footer">
 		<ul>
 		<li class="f-logo ou"><a href="http://open.ac.uk/"><img title="&copy;2012 The Open University" src="http://www8.open.ac.uk/score/sites/all/themes/zen_score/footerLogos/OpenUniversityLogo.png"></a>
@@ -79,6 +85,11 @@
 <?php /*
 <a href="http://github.com/you"><img style="position: absolute; top: 0; left: 149px; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/7afbc8b248c68eb468279e8c17986ad46549fb71/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub"></a>
 */ ?>
+
+
+<?php
+	$this->view('tests/busterjs_unit');
+?>
 
 
 </body>

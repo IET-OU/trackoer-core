@@ -40,5 +40,8 @@
 * License: <http://unlicense.org/#the-unlicense>
 * Code: <http://james.padolsey.com/javascript/parsing-urls-with-the-dom/>
 
+### busterjs:  @license MIT License (c) copyright B Cavalier & J Hann
+* License: MIT
+* Code: <http://busterjs.org/>
 
 [End.]

@@ -46,7 +46,9 @@ class MY_Loader extends CI_Loader {
   * @return	void
   */
   public function tracker($service, $object_name = 'tracker') {
-    $this->file(APPPATH .'/libraries/Base_Tracker.php');
+    if (! class_exists('Base_Tracker')) {
+      $this->file(APPPATH .'/libraries/Base_Tracker.php');
+    }
     return parent::library('trackers/'. ucfirst($service) .'_Tracker', NULL, $object_name);
   }
 
@@ -55,8 +57,10 @@ class MY_Loader extends CI_Loader {
   * @return	void
   */
   public function oembed_provider($provider, $object_name = 'provider') {
-    // Require the base provider class file.
-    $this->file(APPPATH .'/libraries/Oembed_Provider.php');
+    if (! class_exists('Oembed_Provider')) {
+      // Require the base provider class file.
+      $this->file(APPPATH .'/libraries/Oembed_Provider.php');
+    }
 
     // If appropriate, include intermediate class file.
     if ('Moodle_rdf' != $provider) {

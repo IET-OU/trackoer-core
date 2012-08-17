@@ -22,6 +22,14 @@ abstract class Base_Tracker {
     $this->CI =& get_instance();  
   }
 
+  /**
+  * @return boolean
+  */
+  abstract public function isValid($account_or_site_id);
+
+  /**
+  * @return void
+  */
   abstract public function track($service, $site_id, $image, $source_host, $source_path, $title=NULL, $referer=NULL, $record = 1);
 }
 

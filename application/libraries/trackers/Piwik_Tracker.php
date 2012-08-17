@@ -17,7 +17,8 @@
 
 
 /**
- * A tracker class which redirects to a Piwik instance.
+ * PIWIK tracker
+ * It works server-side and redirects to a Piwik installation.
  */
 class Piwik_Tracker extends Redirect_Tracker {
 

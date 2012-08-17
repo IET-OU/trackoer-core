@@ -23,6 +23,25 @@ $config['debug'] = 1;  #OUP_DEBUG_MIN;
 $config['piwik_url'] = 'http://track.olnet.org/piwik';
 #$config['piwik_url'] = 'http://localhost:8888/toer/piwik';
 
+
+// Google Analytics.
+#$config['google_analytics_default_id'] = 'UA-XXXXXXXX-Y';
+
+// Piwik analytics.
+#$config['piwik_default_id'] = N;
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Codeigniter-piwik library configuration.
+| Base URL to the Piwik Install
+| @link  https://github.com/wingdspur/codeigniter-piwik ..config/piwik.php
+*/
+// Piwik library - internal.
+//( $config['piwik_url'] = 'http://track.olnet.org/piwik'; )
+
+
 // HTTPS Base URL to the Piwik Install (not required)
 $config['piwik_url_ssl'] = 'https://stats.example.com';
 

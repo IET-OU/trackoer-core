@@ -37,6 +37,14 @@ class Piwik_Tracker extends Redirect_Tracker {
     return is_int($site_id) && $site_id > 0 && $site_id < 100;
   }
 
+  public function getDefaultId() {
+    return $this->CI->config->item('piwik_default_id');
+  }
+
+
+  public function getBaseUrl() {
+    return $this->CI->config->item('piwik_url');
+  }
 
   public function getSiteId($url, $subject = NULL) {
     // Form a Piwik-analytics site URL.

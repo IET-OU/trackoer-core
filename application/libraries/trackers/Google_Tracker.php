@@ -22,19 +22,24 @@
  */
 class Google_Tracker extends Base_Tracker {
 
-  protected $tracker_url;
-
 
   public function __construct() {
     parent::__construct();
 	$this->CI->load->helper('url');
 
-    $this->tracker_url;
+  }
+
+  public function isValid($account) {
+    return preg_match('/'. $this->getRegex() .'/', $account);
+  }
+
+  public function getRegex() {
+    return '^UA-\d{4,10}-\d{1,2}$';
   }
 
 
-  public function isValid($account) {
-    return preg_match('/^UA-\d{4,10}-\d{1,2}$/', $account);
+  public function getDefaultId() {
+    return $this->CI->config->item('google_analytics_default_id');
   }
 
 
@@ -43,12 +48,17 @@ class Google_Tracker extends Base_Tracker {
   }
 
   /**
+  * Get asynchrous GA HTML snippet (containing <script>).
+  * Note, this should appear after the Creative Commons license code.
+  *
+  * @param string $property GA 'property' identifier. We assume there will be at least 2 Google Analytics accounts on a page - prevent conflicts.
+  * @link http://stackoverflow.com/questions/2651834/google-analytics-async-tracking-with-two-accounts
   * @return string
   */
-  public function getCode($account, $with_trackoer = FALSE, $is_async = TRUE, $property = '_trackoer_content') {
+  public function getCode($account = NULL, $with_trackoer = FALSE, $is_async = TRUE, $property = '_trackoer_content') {
 
     $view_data = array(
-      'account'  => $account,
+      'account'  => $account ? $account : $this->getDefaultId(),
 	  'property' => $property,
 	  'with_trackoer' => $with_trackoer,
     );

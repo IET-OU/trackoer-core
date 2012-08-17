@@ -15,12 +15,5 @@
 
 	<p><label for=file>Offline filename</label>
 	<input id=file name=file placeholder="x_learning_to_learn_0_1.html" size=30 value="<?php echo isset($file) ? $file :'' ?>" maxlength=40 />
-
-<script>
-$('input[name=sv]').change(function(){
-	console.log('#sv-ga change..');
-	$('#ga-ac').attr('class', $('input[name=sv]:checked').val() == 'ga' ? 'show' : 'hide');
-});
-</script>
 </fieldset>
 <?php endif; ?>

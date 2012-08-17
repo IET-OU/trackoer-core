@@ -40,7 +40,7 @@ class Test extends MY_Controller {
 	public function b2s_learn_section($layout = self::LAYOUT) {
 		$this->_load_layout($layout);
 
-		$this->load->tracker('Piwik', 'piwik');
+		$this->load->tracker('Piwik', NULL);
 		$piwik_id = $this->piwik->getDefaultId();
 
 		$view_data = array(
@@ -56,8 +56,8 @@ class Test extends MY_Controller {
 	public function b2s_learn_gajs($with_unit_tests = FALSE, $layout = self::LAYOUT) {
 		$this->_load_layout($layout);
 
-		$this->load->tracker('Google', 'ga');
-		$this->load->tracker('Piwik', 'piwik');
+		$this->load->tracker('Google', NULL);
+		$this->load->tracker('Piwik', NULL);
 		$piwik_id = $this->piwik->getDefaultId();
 
 		$view_data = array(

@@ -23,6 +23,7 @@ class Oembed extends MY_Controller {
 
     $url = $this->input->get('url');
 
+
     $this->load->oembed_provider('Openlearn_track');
     $re = $this->provider->getInternalRegex();
 
@@ -30,11 +31,30 @@ class Oembed extends MY_Controller {
       $this->_error('Sorry the URL doesn\'t match the acceptable patterns, '.$url, 400);
     }
 
-    $this->_addStatus('Controller: The input URL matched a pattern. Handing to OpenLearn tracker library...');
+    $this->_addStatus("Controller: The input 'url' parameter matched a pattern.");
+
+
+    // Google Analytics.
+    $account = $this->input->get('ac');
+    if ($account) {
+      $this->load->tracker('Google', NULL);
+    }
+    if ($account && $this->ga->isValid($account)) {
+      $ga_code = $this->ga->getCode($account, $with_trackoer = TRUE);
+
+      $this->_addStatus("Controller: The input 'ac' parameter seems to be a Google Analytics ID. Getting GA embed snippet..."); 
+    }
+
+    $this->_addStatus('Controller: Handing to OpenLearn tracker library...');
 
     $result = $this->provider->call($url, $matches);
 
     $this->_addStatus('Controller: response complete.');
+
+    if (isset($ga_code)) {
+      $result->html .= $ga_code;
+      $result->_ga_account = $account;
+    }
 
     if ('Oembed' == get_class($this)) {
       // Needs more work - security etc.!

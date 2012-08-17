@@ -11,6 +11,13 @@
 
 ?>
 
+
+<div id=cc-code><p>
+<?php echo $cc_code ?>
+</div>
+
+
+<?php /*
 <script>
   var _gaq = _gaq || [];
   _gaq.push(['<?php echo $ga_property_id ?>._setAccount', '<?php echo $google_analytics_id ?>']);
@@ -52,7 +59,7 @@
 
 
 <script src="<?php echo $public_js_url ?>oer_license_parser.js"></script>
-<?php /*<script src="<?php echo $public_js_url ?>parseuri.js"></script>*/ ?>
+<?php /*<script src="<?php echo $public_js_url ?>parseuri.js"></script>*-/ ?>
 <script src="<?php echo $public_js_url ?>parseurl-dom.js"></script>
 <script src="<?php echo $public_js_url ?>trackoer-page-url.js"></script>
 <script>

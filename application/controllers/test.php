@@ -40,21 +40,33 @@ class Test extends MY_Controller {
 	public function b2s_learn_section($layout = self::LAYOUT) {
 		$this->_load_layout($layout);
 
+		$this->load->tracker('Piwik', 'piwik');
+		$piwik_id = $this->piwik->getDefaultId();
+
 		$view_data = array(
-			'cc_code' => $this->cc->getCode(2, 'http://labspace.open.ac.uk/mod/oucontent/view.php?id=471422&section=3',
+			'cc_code' => $this->cc->getCode($piwik_id, 'http://labspace.open.ac.uk/mod/oucontent/view.php?id=471422&section=3',
 				'Learning_to_Learn_1.0', 'Page: Learning to Learn - 2.3 Gathering Evidence—Your... - B2S on LabSpace'
 			),
 		);
 
 		$this->layout->view('tests/test-b2s-learn-section', $view_data);
 	}
-	
-	
+
+
 	public function b2s_learn_gajs($with_unit_tests = FALSE, $layout = self::LAYOUT) {
 		$this->_load_layout($layout);
 
+		$this->load->tracker('Google', 'ga');
+		$this->load->tracker('Piwik', 'piwik');
+		$piwik_id = $this->piwik->getDefaultId();
+
 		$view_data = array(
 			'with_unit_tests' => $with_unit_tests,
+			'cc_code' => $this->cc->getCode($piwik_id, 'http://labspace.open.ac.uk/mod/oucontent/view.php?id=471422&section=3',
+				'Learning_to_Learn_1.0', 'Page: Learning to Learn - 2.3 Gathering Evidence—Your... - B2S on LabSpace'
+			)
+			.
+			$this->ga->getCode(NULL, $with_trackoer = TRUE),
 		);
 		$this->layout->view('tests/test-ga-js-learning1', $view_data);
 	}

@@ -7,6 +7,7 @@
 <?php if ($with_trackoer): ?>
 <script src="<?php echo $script_url ?>oer_license_parser.js"></script>
 <script src="<?php echo $script_url ?>parseurl-dom.js"></script>
+<?php /*<script src="<?php echo $script_url ?>parseuri.js"></script>*/ ?>
 <script src="<?php echo $script_url ?>trackoer-page-url.js"></script>
 <?php endif; ?>
 <script>

@@ -33,6 +33,8 @@ class MY_Loader extends CI_Loader {
       '_Sams_Auth' => 'auth',
       'Creative_Commons' => 'cc',
       'PiwikEx' => 'piwik',
+      'trackers/Google_Tracker' => 'ga',
+      'trackers/Piwik_Tracker' => 'piwik',
     );
     if (!$object_name && isset($lib_register[$library])) {
       $object_name = $lib_register[$library];
@@ -43,13 +45,17 @@ class MY_Loader extends CI_Loader {
 
 
   /** Load a Tracker service library.
+  *
+  * $CI->load->tracker('Google', NULL);  $CI->ga->getCode(..);
+  * $CI->load->tracker('Google');  $CI->tracker->track(..);
+  *
   * @return	void
   */
   public function tracker($service, $object_name = 'tracker') {
     if (! class_exists('Base_Tracker')) {
       $this->file(APPPATH .'/libraries/Base_Tracker.php');
     }
-    return parent::library('trackers/'. ucfirst($service) .'_Tracker', NULL, $object_name);
+    return $this->library('trackers/'. ucfirst($service) .'_Tracker', NULL, $object_name);
   }
 
 

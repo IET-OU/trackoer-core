@@ -2,13 +2,18 @@
 
   $public_js_url = base_url() .'public/js/';
   $google_analytics_id = 'UA-34064304-2';
+  /*
+   We assume there will be 2+ Google Analytics accounts.
+   http://stackoverflow.com/questions/2651834/google-analytics-async-tracking-with-two-accounts
+  */
+  $ga_property_id = '_trackoer_content';
   $piwik_siteid = 4;
 
 ?>
 
 <script>
   var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', '<?php echo $google_analytics_id ?>']);
+  _gaq.push(['<?php echo $ga_property_id ?>._setAccount', '<?php echo $google_analytics_id ?>']);
   //_gaq.push(['_trackPageview']);
 
   (function() {
@@ -52,7 +57,7 @@
 <script src="<?php echo $public_js_url ?>trackoer-page-url.js"></script>
 <script>
   // Just the one line -- after the RDFa!
-  _gaq.push(['_trackPageview', trackoer.getPageUrl()]);
+  _gaq.push(['<?php echo $ga_property_id ?>._trackPageview', trackoer.getPageUrl()]);
 </script>
 
 

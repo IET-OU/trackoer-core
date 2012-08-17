@@ -80,6 +80,11 @@ p.ci-footer{
 	padding:0 15px;
 	font-weight:normal;
 }
+fieldset{
+	margin:15px;
+	border:1px solid #d0d0d0;
+	background:#f8f8f8;
+}
 
 
 .f-rss a {
@@ -148,6 +153,7 @@ h1 em, h2 em {
 #cc-code{ text-align:right; font-size:.92em; }
 .test-content{ font-size:.86em; }
 .elip{ font-size:x-large; }
+/* Status log. */
 #log p {
 	font-family:monospace;
 	text-align:left;
@@ -157,15 +163,18 @@ h1 em, h2 em {
 
 /* OER form.
 */
-.oer-form label{ display:block; }
+.oer-form label.blk{ display:block; }
+.oer-form .sp{ display:inline-block; width:3em; }
 .oer-form p{ margin:2em 0; }
-.oer-form input, .oer-form textarea {
+.oer-form fieldset p{ margin:1.2em 0; }
+.oer-form fieldset{ margin:2em 15px; }
+.oer-form input /*[type=url], .oer-form [type=submit]*/, .oer-form textarea {
 	margin:.8em 0;
 	padding:.4em;
 	font-size:.95em;
 	color:#333;
 }
-.oer-form input {
+.oer-form input[type=url], .oer-form [type=submit] {
 	font-size:1.22em;
 	padding:.8em 5px;
 	background:#ddd;
@@ -191,3 +200,16 @@ input[type=submit]{ cursor:pointer; padding:.8em; }
 	white-space:nowrap;
 	text-overflow:ellipsis;
 }
+
+/* OER form - '?edge=1'.
+*/
+.oer-form #ga-ac{
+	height:0; overflow:hidden; background:#e8e8e8; border:1px solid #ddd;
+
+	transition:all 1s;
+	-moz-transition:all .6s; /* Firefox 4 */
+	-webkit-transition:all 1s; /* Safari and Chrome */
+	-o-transition:all .6s; /* Opera */
+}
+.oer-form #ga-ac.show{ height:3em; }
+

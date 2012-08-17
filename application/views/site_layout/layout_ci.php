@@ -28,6 +28,8 @@
 <link rel=stylesheet href="<?php echo $assets_url ?>layout-ci.css" />
 <link rel=stylesheet href="<?php echo $assets_url ?>forkme.css" />
 
+<script src="http://cdn.enderjs.com/jeesh.js"></script>
+
 <body>
 
 

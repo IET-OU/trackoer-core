@@ -14,4 +14,4 @@ application/logs/*
 *.diff
 
 piwik/*
-
+_scratch

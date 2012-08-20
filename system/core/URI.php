@@ -232,7 +232,9 @@ class CI_URI {
 	 * @access	private
 	 * @return	string
 	 */
-	private function _parse_cli_args()
+//ou-specific, Was 'private'.
+	protected function _parse_cli_args()
+//ou-specific ends.
 	{
 		$args = array_slice($_SERVER['argv'], 1);
 

@@ -23,7 +23,8 @@ class Oerform extends Oembed {
       parent::__construct();
 
       $this->load->helper('url');
-	  $this->load->library('Creative_Commons');
+      $this->load->library('form_validation');
+      $this->load->library('Creative_Commons');
     }
 
 
@@ -40,9 +41,6 @@ class Oerform extends Oembed {
             'oembed_url' => $this->oembedUrl($result->original_url),
             'cc_code' => $result->html,
             'status'  => $this->_getStatus(),
-            // Extensions.
-            'sv' => $this->input->get_default('sv', 'piwik'),
-            'ac' => $this->request->ac,
           );
           $view_data['cc_code_esc'] = $this->cc->escape($result->html);
           #$view_data['oembed'] = (array) $result;
@@ -51,6 +49,10 @@ class Oerform extends Oembed {
           $this->load->oembed_provider('Openlearn_track');
         }
         $view_data['examples'] = $this->provider->getExampleLinks();
+
+        // Extensions.
+        $view_data['sv'] = $this->input->get_default('sv', 'piwik');
+        $view_data['ac'] = $this->input->get('ac'); #? $this->request->ac : NULL;
 
         $this->layout->view('oer_form/oer_form', $view_data);
 	}

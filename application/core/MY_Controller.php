@@ -101,6 +101,13 @@ class MY_Controller extends CI_Controller {
 
         exit (2);
     }
+    /*NDF: needs work!
+	elseif ((integer) $code == 400 && 'Oerform' == get_class($this)) {
+        if (preg_match('/\{(.+)\}/', $message, $matches)) {
+          $this->form_validation->set_message($matches[1], $message);
+          return;
+        }
+    }*/
     #$this->firephp->fb("$code: $message", $from, 'ERROR');
     $this->_log('error', "$from: $code, $message");
     #@header('HTTP/1.1 '. (integer) $code);

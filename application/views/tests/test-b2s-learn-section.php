@@ -1,5 +1,4 @@
 
-<div class=warn><p>Note, this is a test/ demonstration page, which contains a Creative Commons license <a href="#cc-code">image-tracker</a>.</div>
 
 <div class="test-content ou b2s">
 

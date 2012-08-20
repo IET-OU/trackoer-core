@@ -4,6 +4,8 @@
   $piwik_url = $this->config->item('piwik_url');
   $feed_url = str_replace('/view/', '/rss/', BLOG_URL);
 
+  $segment_1 = $this->uri->segment(1);
+  $body_classes = $segment_1 ? 'pg-' . $segment_1 : 'pg-home';
   $with_nav = TRUE;
 
   $with_unit_tests = isset($with_unit_tests) && $with_unit_tests;
@@ -30,7 +32,7 @@
 
 <script src="http://cdn.enderjs.com/jeesh.js"></script>
 
-<body>
+<body class="<?php echo $body_classes ?>">
 
 
 <div id="container">
@@ -52,6 +54,14 @@
 	</nav>
 <?php endif; ?>
 
+<?php if ('test' == $segment_1): ?>
+	<ul id=test-nav>
+		<li><a href="<?php echo site_url('test/b2s_learn') ?>">Learning to Learn/ B2S</a>
+		<li><a href="<?php echo site_url('test/b2s_learn_section') ?>">Learning to Learn section/page</a>
+		<li><a href="<?php echo site_url('test/b2s_learn_gajs') ?>?param1=value1#hash">Google Analytics script</a>
+	</ul>
+	<div class=warn><p>Note, this is a test/ demonstration page, which contains a Creative Commons license <a href="#cc-code">image-tracker</a>.</div>
+<?php endif; ?>
 
 <?php if ($with_unit_tests): ?>
 <p class=go-test-result>&rarr; <a href="#test-result">Unit test results</a></p>

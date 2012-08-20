@@ -71,18 +71,5 @@ class Oembed extends MY_Controller {
     return $result;
   }
 
-/*}
-
-
-// Commandline usage
-//   php index.php oerform/cli --format=html --license=cc:by-nc-sa/2.0/uk[/88x31] http://labspace.open.ac.uk/...
-
-class _Oerform extends MY_Controller {
-*/
-  public function cli($url = NULL, $format = NULL, $license_url = NULL) {
-
-    var_dump($url, $format);
-  
-  } 
 }
 

@@ -40,6 +40,9 @@ class Oerform extends Oembed {
             'oembed_url' => $this->oembedUrl($result->original_url),
             'cc_code' => $result->html,
             'status'  => $this->_getStatus(),
+            // Extensions.
+            'sv' => $this->input->get_default('sv', 'piwik'),
+            'ac' => $this->request->ac,
           );
           $view_data['cc_code_esc'] = $this->cc->escape($result->html);
           #$view_data['oembed'] = (array) $result;

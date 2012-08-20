@@ -33,6 +33,7 @@
 <link rel=stylesheet href="<?php echo $assets_url ?>forkme.css" />
 
 <script src="http://cdn.enderjs.com/jeesh.js"></script>
+<script src="<?php echo $assets_url ?>site/js/trackoer-site.js"></script>
 
 <body class="<?php echo $body_classes ?>">
 
@@ -101,8 +102,7 @@
 </div>
 
 
-<script src="<?php echo $assets_url ?>site/js/trackoer-site.js"></script>
-
+<?php /*<script src="<?php echo $assets_url ?>site/js/trackoer-site.js"></script>*/ ?>
 
 <?php
 	$this->view('tests/busterjs_unit');

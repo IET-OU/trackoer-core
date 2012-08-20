@@ -3,11 +3,21 @@
  Copyright 2012-08-17 The Open University.
 */
 
+/* Utilities.
+*/
+$.log = function(ob){if(typeof console!=='undefined'){console.log(arguments)}};
+
 /* OER Form - extended.
 */
-$('input[name=sv]').change(function(){
-	console.log('#sv-ga change..');
-	$('#ga-ac').attr('class', $('input[name=sv]:checked').val() == 'ga' ? 'show' : 'hide');
+$(document).ready(function(){
+	function trackoer_form() {
+		$('#ga-ac').attr('class', $('input[name=sv]:checked').val() == 'ga' ? 'show' : 'hide');
+		$.log('#sv-ga change..');
+	}
+	$('input[name=sv]').change(function(){
+		trackoer_form();
+	});
+	trackoer_form();
 });
 
 /* Make every test License-tracker code clickable. A click reveals the code-snippet.

@@ -19,11 +19,14 @@ ini_set('display_errors', 1);
  */
 class Oembed extends MY_Controller {
 
+  protected $request;
+
   /**
   * THE handler for the oEmbed endpoint.
   */
   public function index($cli_args = NULL) {
 
+    $this->request =
     $request = $this->_parse_oembed_params($cli_args);
 
     $this->load->oembed_provider('Openlearn_track');

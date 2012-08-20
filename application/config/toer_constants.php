@@ -9,6 +9,12 @@
 $config['oup_constants'] = 'dummy';
 
 
+/*
+| Separator character for Analytics 'page' URLs.
+*/
+define('TRACKER_PAGE_URL_SEP', '!');
+
+
 
 /**
 |--------------------------------------------------------------------------
@@ -23,4 +29,12 @@ define('CODE_URL', 'https://github.com/IET-OU/trackoer-core');
 // Contact/feedback link - email?
 define('CONTACT_URL', '#!Contact/todo');
 
+// Bridge to success content.
+define('B2S_CONTENT_URL', 'http://labspace.open.ac.uk/b2s');
+
+// OU-OER 'umbrella' site.
+define('OU_OER_URL', 'http://www8.open.ac.uk/about/open-educational-resources/');
+
+// OLnet site.
+define('_disable_OLNET_URL', 'http://www.olnet.org/');
 

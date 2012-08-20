@@ -4,8 +4,10 @@
   $piwik_url = $this->config->item('piwik_url');
   $feed_url = str_replace('/view/', '/rss/', BLOG_URL);
 
+  // Create HTML body classes - 'page' and/or 'route'.
   $segment_1 = $this->uri->segment(1);
-  $body_classes = $segment_1 ? 'pg-' . $segment_1 : 'pg-home';
+  $body_classes = $segment_1 ? 'pg-'.strtolower(get_class(get_instance())) ." rt-$segment_1" : 'pg-home';
+
   $with_nav = TRUE;
 
   $with_unit_tests = isset($with_unit_tests) && $with_unit_tests;
@@ -48,8 +50,9 @@
 		<li class="tm-choose"><a href="<?php echo $base_url ?>choose">CC Choose</a>*/ ?>
 		<li class="tm-test"><a href="<?php echo $base_url ?>test" title="Demonstrations">Tests/ demos</a>
 		<li class="tm-extern cw blog"><a href="<?php echo BLOG_URL ?>" title="Track OER project blog, on Cloudworks">Project blog</a>
-		<li class="tm-extern olrn"><a href="http://labspace.open.ac.uk/b2s" title="Bridge to Success content, on OpenLearn-Labspace">Bridge to Success</a>
-		<li class="tm-extern olnet"><a href="http://www.olnet.org/" title="Open Learning Network">OLnet</a>
+		<?php if(defined('B2S_CONTENT_URL')): ?><li class="tm-extern b2s olrn"><a href="<?php echo B2S_CONTENT_URL ?>" title="Bridge to Success content, on OpenLearn-Labspace">Bridge to Success content</a><?php endif; ?>
+		<?php if(defined('OLNET_URL')): ?><li class="tm-extern olnet"><a href="<?php echo OLNET_URL ?>" title="Open Learning Network">OLnet</a><?php endif; ?>
+		<?php if(defined('OU_OER_URL')): ?><li class="tm-extern ou-oer"><a href="<?php echo OU_OER_URL ?>" title="About Open Educational Resources at The Open University">OER at The Open University</a><?php endif; ?>
 		</ul>
 	</nav>
 <?php endif; ?>
@@ -58,7 +61,7 @@
 	<ul id=test-nav>
 		<li><a href="<?php echo site_url('test/b2s_learn') ?>">Learning to Learn/ B2S</a>
 		<li><a href="<?php echo site_url('test/b2s_learn_section') ?>">Learning to Learn section/page</a>
-		<li><a href="<?php echo site_url('test/b2s_learn_gajs') ?>?param1=value1#hash">Google Analytics script</a>
+		<li><a href="<?php echo site_url('test/b2s_learn_gajs') ?>?param1=value1#hash">Google Analytics custom script</a>
 	</ul>
 	<div class=warn><p>Note, this is a test/ demonstration page, which contains a Creative Commons license <a href="#cc-code">image-tracker</a>.</div>
 <?php endif; ?>

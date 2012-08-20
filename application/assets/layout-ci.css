@@ -121,6 +121,15 @@ h1 em, h2 em {
 	list-style:none;
 	padding:3px 6px;
 }
+.pg-home .tm-toer-home, .pg-test .tm-test, .pg-oerform .tm-form {
+	background:#eee;
+	border:1px solid #e8e8e8;
+}
+.pg-home .tm-toer-home a, .pg-test .tm-test a, .pg-oerform .tm-form a {
+	color: #36a;
+	text-decoration:none;
+	x-cursor:default;
+}
 #ou-org-footer .f-logo a {
 	display:inline-block;
 	height:auto;

@@ -61,13 +61,14 @@ buster.testCase("buster.js: Custom Google Analytics tests", {
 	    assert.isString( $("a[rel='dct:identifier']").attr('href') );
 	}
 
-// trackoer-page-url.js
-	, "trackoer-page-url.js: trackoer.getPageUrl() exists": function() {
+// trackoer-page-url.js / trackoer-ga.js
+	, "trackoer-(ga|page-url).js: trackoer.getPageUrl() exists": function() {
 	    assert.isFunction( trackoer.getPageUrl );
 	}
 
-	, "trackoer-page-url.js: trackoer.getPageUrl() string": function() {
-	    assert.isString( trackoer.getPageUrl() );
+	, "trackoer-(ga|page-url).js: trackoer.getPageUrl() string": function() {
+	    var trackoer_ga_only = '!example.edu!Course_ID!Course_page!';
+		assert.isString( trackoer.getPageUrl(trackoer_ga_only) );
 	}
 
 //...?

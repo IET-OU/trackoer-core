@@ -83,7 +83,7 @@ class MY_Controller extends CI_Controller {
     if ($this->_is_debug()) {
       # $where could be based on __FUNCTION__ or debug_stacktrace().
       if(!$where) $where = str_replace(array('_', '.'), '-', basename(__FILE__));
-      header("X-D-$where-".sprintf('%02d', $count).': '.json_encode($exp));
+      @header("X-D-$where-".sprintf('%02d', $count).': '.json_encode($exp));
 
       foreach (func_get_args() as $c => $arg) {
         if($c > 0) $this->_debug($arg); #Recurse.
@@ -95,6 +95,10 @@ class MY_Controller extends CI_Controller {
   /** Handle fatal errors.
   */
   public function _error($message, $code=500, $from=null, $obj=null) { #Was: protected.
+    if ($this->input->is_cli_request()) {
+        echo "Error, $message, $code, $from".PHP_EOL;
+        return;
+    }
     #$this->firephp->fb("$code: $message", $from, 'ERROR');
     $this->_log('error', "$from: $code, $message");
     @header('HTTP/1.1 '. (integer) $code);
@@ -108,10 +112,10 @@ class MY_Controller extends CI_Controller {
   public function _log($level='error', $message, $php_error=FALSE) {
     $_CI = $this;
     $_CI->load->library('user_agent');
-    $ip = $_SERVER['REMOTE_ADDR'];
+    $ip = $_CI->input->server('REMOTE_ADDR');
     $ref= $_CI->agent->referrer();
     $ua = $_CI->agent->agent_string();
-    $request = $_CI->uri->uri_string().'?'.$_SERVER['QUERY_STRING'];
+    $request = $_CI->uri->uri_string().'?'.$_CI->input->server('QUERY_STRING');
     $msg = "$message, $request -- $ip, $ref, $ua";
     log_message($level, $msg);  #, $php_error);
 

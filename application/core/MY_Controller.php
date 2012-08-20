@@ -97,14 +97,16 @@ class MY_Controller extends CI_Controller {
   public function _error($message, $code=500, $from=null, $obj=null) { #Was: protected.
     if ($this->input->is_cli_request()) {
         echo "Error, $message, $code, $from".PHP_EOL;
-        return;
+        #return;
+
+        exit (2);
     }
     #$this->firephp->fb("$code: $message", $from, 'ERROR');
     $this->_log('error', "$from: $code, $message");
-    @header('HTTP/1.1 '. (integer) $code);
+    #@header('HTTP/1.1 '. (integer) $code);
 
     $ex =& load_class('Exceptions', 'core');
-    echo $ex->show_error('Track OER error', $message, 'error_general', $code);
+    echo $ex->show_error('Track OER error', "$message ($code)", 'error_general', (integer) $code);
     exit;
   }
 

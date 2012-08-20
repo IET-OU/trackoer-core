@@ -20,9 +20,9 @@ class Cli extends Oembed { #MY_Controller {
   #public function index($url = NULL, $format = NULL, $license_url = NULL) { }
 
   protected static $ARGS_ALL = array(
-      'url' => 'http://labspace.open.ac.uk%2FLearning_to_Learn_1.0',
+      'url' => 'http://labspace.open.ac.uk%2FLearning_to_Learn_1.0', //Course URL.
       'ac'  => 'UA-1234578-9',
-      'fmt' => 'plain-zip',
+      'mode' => 'plain-zip', // Was 'fmt'
       'lic' => 'cc:by-nc-sa%2F2.0%2Fuk[/88x31]',
       'dir' => '/input/directory',
       'out' => '"C:/output directory"',
@@ -127,17 +127,29 @@ var_dump($param_r, func_get_args());
   public function batch($args = NULL) {
     $params = $this->_parse_batch_args(func_get_args());
 
+
+    // Make an oEmbed call..
+    $result = parent::index($params);
+
+
     $this->load->helper('directory');
 
     $dir_map = directory_map($params->dir);
 
-    var_dump($params, $dir_map);
+    var_dump($params); #, $dir_map);
 
     if (! $dir_map) {
       $this->_cli_error("directory_map failed, $params->dir");
     }
 
-    foreach ($dir_map as $filename) {
+    foreach ($dir_map as $key => $filename) {
+      // Filter directories!
+      if (is_array($filename)) {
+        echo "Skipping directory, $key" .PHP_EOL;
+        exit;
+
+        continue;
+      }
       // Filter - only HTML/ XML?
       $input = file_get_contents($params->dir .'/'. $filename);
 

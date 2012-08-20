@@ -51,16 +51,18 @@ class Google_Tracker extends Base_Tracker {
   * Get asynchrous GA HTML snippet (containing <script>).
   * Note, this should appear after the Creative Commons license code.
   *
-  * @param string $property GA 'property' identifier. We assume there will be at least 2 Google Analytics accounts on a page - prevent conflicts.
+  * @param string $custom_hash  Hash fragment, example "!labspace.open.ac.uk!Learning_to_Learn_1.0!mod/oucontent/view.php?id=1422&section=3!plain-zip!Debug!12"
+  * @param string $property  GA 'property' identifier. We assume there will be at least 2 Google Analytics accounts on a page - prevent conflicts.
   * @link http://stackoverflow.com/questions/2651834/google-analytics-async-tracking-with-two-accounts
   * @return string
   */
-  public function getCode($account = NULL, $with_trackoer = FALSE, $is_async = TRUE, $property = '_trackoer_content') {
+  public function getCode($account = NULL, $with_trackoer = FALSE, $custom_hash = NULL, $is_async = TRUE, $property = '_trackoer_content') {
 
     $view_data = array(
       'account'  => $account ? $account : $this->getDefaultId(),
 	  'property' => $property,
 	  'with_trackoer' => $with_trackoer,
+	  'custom_hash' => $custom_hash,
     );
     return $this->CI->load->view('cc_code/google_analytics_code_async', $view_data, TRUE);
   }

@@ -60,13 +60,18 @@ class Test extends MY_Controller {
 		$this->load->tracker('Piwik', NULL);
 		$piwik_id = $this->piwik->getDefaultId();
 
+		$custom_arg = NULL;
+		if (! $this->input->get('parsedfa')) {
+			define('SP', TRACKER_PAGE_URL_SEP);
+			$custom_arg = SP. 'labspace.open.ac.uk' .SP. 'Learning_to_Learn_1.0' .SP. 'mod/oucontent/view.php?id=471422&section=3' .SP. 'zip';
+		}
 		$view_data = array(
 			'with_unit_tests' => $with_unit_tests,
 			'cc_code' => $this->cc->getCode($piwik_id, 'http://labspace.open.ac.uk/mod/oucontent/view.php?id=471422&section=3',
 				'Learning_to_Learn_1.0', 'Page: Learning to Learn - 2.3 Gathering Evidence—Your... - B2S on LabSpace'
 			)
 			.
-			$this->ga->getCode(NULL, $with_trackoer = TRUE),
+			$this->ga->getCode(NULL, $with_trackoer = TRUE, $custom_arg),
 		);
 		$this->layout->view('tests/test-ga-js-learning1', $view_data);
 	}

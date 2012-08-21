@@ -73,10 +73,12 @@ DirectoryIndex index.php
     # Hide all PHP files so none can be accessed by HTTP
     #RewriteRule (.*)\.php$ index.php/$1
 
-#ou-specific. For images, styles, scripts, SWFs.
+#ou-specific.
 
-    RewriteRule ^(assets|engines|themes)(/.*)$ application/$1$2 [QSA,L]
-	RewriteRule ^(public)(/.*)$ application/assets/$1$2 [QSA,L]
+    # Map CSS/ graphic/ Javascript directories.
+    RewriteRule ^(assets|engines)(/.*)$ application/$1$2 [QSA,L]
+    RewriteRule ^(public|site|capret)(/.*)$ application/assets/$1$2 [QSA,L]
+
 #ou-specific ends.
 
     # If the file/dir is NOT real go to index

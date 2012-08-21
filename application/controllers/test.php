@@ -76,6 +76,16 @@ class Test extends MY_Controller {
 		$this->layout->view('tests/test-ga-js-learning1', $view_data);
 	}
 
+	/**
+	* Test page(s) for CaPReT, mocked up from OpenLearn-LabSpace - acceptance test server.
+	* @author NDF, 21 August 2012.
+	* @link http://labspaceacct.open.ac.uk/course/view.php?id=7654
+	*/
+	public function capret($course = 'math', $page = 'course-view') {
+
+		$this->load->view("capret_test/labspace-acct-b2s-$course-$page-1");
+	}
+
 
 	public function index() {
 		redirect('test/b2s_learn');

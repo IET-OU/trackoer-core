@@ -1,3 +1,13 @@
+<?php
+
+    $resource_url = 'http://labspaceacct.open.ac.uk/';
+
+    $jquery_js_url = 'https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js';
+    ##$capret_js_url = 'http://capret.mitoeit.org/js/';
+    $capret_js_url = base_url() .'capret/js/';
+    ##$capret_js_url = 'http://track.olnet.org/capret/js/';
+
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html  xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -137,7 +147,7 @@ var id2suffix = {};
   #help #page { width: auto; }
   </style>
 <![endif]-->
-<script type="text/javascript" src="/includes/header.js"></script>
+<script type="text/javascript" src="<?php echo $resource_url ?>includes/header.js"></script>
 <script type="text/javascript" src="http://labspaceacct.open.ac.uk/theme/oci/header.js"></script>
 
 <link rel="alternate" type="application/rss+xml" title="RSS: All Units" href="http://labspaceacct.open.ac.uk/rss/file.php/stdfeed/1/labspace.xml" /></head>
@@ -254,14 +264,22 @@ elementCookieHide("inst17","Show Related educational resources block","Hide Rela
 //<![CDATA[
 elementCookieHide("inst9","Show Versions block","Hide Versions block");
 //]]>
-</script><span id="sb-9" class="skip-block-to"></span><div  id="inst32" class="block_html sideblock"><div class="content"><p>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-<script src="http://capret.mitoeit.org/js/jquery.plugin.clipboard.js"></script>
-<script src="http://capret.mitoeit.org/js/oer_license_parser.js"></script>
-<script src="http://capret.mitoeit.org/js/capret.js"></script>
+</script><span id="sb-9" class="skip-block-to"></span><div  id="inst32" class="block_html sideblock"><div class="content">
+
+
+<!--Capret-widget begins-->
+<p>
+<script src="<?php echo $jquery_js_url ?>"></script>
+<script src="<?php echo $capret_js_url ?>jquery.plugin.clipboard.js"></script>
+<script src="<?php echo $capret_js_url ?>oer_license_parser.js"></script>
+<script src="<?php echo $capret_js_url ?>capret.js"></script>
 </p>
 <p><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons Licence" style="border-width: 0;" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a><br />This work by <a xmlns:cc="http://creativecommons.org/ns#" href="http://labspace.open.ac.uk" property="cc:attributionName" rel="cc:attributionURL">Labspace - Bridge to success B2S</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p>
-<p>This site is <a href="http://capret.mitoeit.org/">CaPRéT enabled</a>: Cut and Paste Reuse Tracking</p></div></div><script type="text/javascript">
+<p>This site is <a href="http://capret.mitoeit.org/">CaPRéT enabled</a>: Cut and Paste Reuse Tracking</p>
+<!--Capret-widget ends-->
+
+
+</div></div><script type="text/javascript">
 //<![CDATA[
 elementCookieHide("inst32","Show  block","Hide  block");
 //]]>

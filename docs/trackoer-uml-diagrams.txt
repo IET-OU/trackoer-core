@@ -1,6 +1,6 @@
 /*
  * Track OER UML diagrams.
- * N.D.Freear, 14 August 2012.
+ * N.D.Freear, 14-21 August 2012.
  */
 
 
@@ -21,19 +21,36 @@
 [Moodle_rdf_serv]^-[Openlearn_track_serv]
 //...
 //Edit: http://yuml.me/edit/8ddb61e4
-//Edit: http://yuml.me/f12fb8cc)
+//(Was: http://yuml.me/f12fb8cc)
 
 
-// Track OER controller class hierarchy
+
+// Track OER controller class hierarchy (version 2)
+[CI_Controller (CodeIgniter){bg:cornsilk}]^-[MY_Controller (Track OER)],
+[MY_Controller (Track OER)]^-[Another...{bg:cornsilk}],
+[MY_Controller (Track OER)]^-[Api (Piwik API?)],
+[MY_Controller (Track OER)]^-[Track (api)],
+[MY_Controller (Track OER)]^-[Oembed (api)],
+[Oembed (api)]^-[Oerform (web)]
+[Oembed (api)]^-[Cli (command line)]
+//Edit: http://yuml.me/edit/408e50fc
+//(Was: http://yuml.me/edit/87e8758b)
+
+
+// Track OER controller class hierarchy (version 1-b)
+[CI_Controller]-[note: CodeIgniter framework {bg:cornsilk}]
 [CI_Controller]^-[MY_Controller],
+[MY_Controller]-[note: Track OER application {bg:cornsilk}]
 [MY_Controller]^-[Another...{bg:cornsilk}],
 [MY_Controller]^-[Api],
+[Api]-[note: expose Piwik API? {bg:cornsilk}]
 [MY_Controller]^-[Track],
 [MY_Controller]^-[Oembed],
 [Oembed]^-[Oerform]
+[Oembed]^-[Cli]
 //...
-//Edit: http://yuml.me/edit/6b691e01
-
+//Edit: http://yuml.me/edit/02188273
+//(Was: http://yuml.me/edit/6b691e01)
 
 
 //[End.]

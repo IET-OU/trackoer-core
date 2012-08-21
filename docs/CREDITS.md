@@ -48,5 +48,9 @@
 * License: MIT
 * Code: <http://ender.no.de/#jeesh>
 
+### CaPReT public Javascript: CaPRÈT was developed by Tatemae and the [MIT Office of Educational Innovation and Technology](http://oeit.mit.edu)
+* License: MIT
+* Code: <https://github.com/tatemae/capret/tree/master/public/js>
+
 
 [End.]

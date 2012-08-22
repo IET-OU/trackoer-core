@@ -111,6 +111,21 @@ class Test extends MY_Controller {
 	}
 
 
+	/**
+	* Embedding Piwik widgets
+	* @link http://piwik.org/docs/embed-piwik-report
+	*/
+	public function piwik_widget($layout = self::LAYOUT) {
+		$this->_load_layout($layout);
+
+		$view_data = array(
+			'piwik_url' => $this->config->item('piwik_url'),
+			'idsite' => $this->config->item('piwik_default_id'),
+		);
+		$this->layout->view('tests/piwik-widget-1', $view_data);
+	}
+
+
 	public function index() {
 		redirect('test/b2s_learn');
 	}

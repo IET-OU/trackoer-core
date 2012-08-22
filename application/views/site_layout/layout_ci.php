@@ -63,6 +63,8 @@
 		<li><a href="<?php echo site_url('test/b2s_learn') ?>">Learning to Learn/ B2S</a>
 		<li><a href="<?php echo site_url('test/b2s_learn_section') ?>">Learning to Learn section/page</a>
 		<li><a href="<?php echo site_url('test/b2s_learn_gajs') ?>?param1=value1#hash">Google Analytics custom script</a>
+		<li><a href="<?php echo site_url('test/capret/math/course-view') ?>">Succeed with Math/ CaPReT 1</a>
+		<li><a href="<?php echo site_url('test/capret/math/course-piwik') ?>">Maths/ CaPReT-Piwik</a>
 	</ul>
 	<div class=warn><p>Note, this is a test/ demonstration page, which contains a Creative Commons license <a href="#cc-code">image-tracker</a>.</div>
 <?php endif; ?>

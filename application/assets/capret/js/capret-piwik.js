@@ -71,6 +71,12 @@
 	    append: function(e){
 				// A side effect of adding the image tag to the clipboard is that the browser will make a request out to the stats server.
 				// That notifies us that text was copied
+				if (jQuery.browser.msie) {
+					// A fix for MSIE 8.. seems to work!
+					$('body').append( image_tag_piwik(e, env) );
+
+					return license.license_html;
+				}
 				return image_tag_piwik(e, env) + license.license_html;
 			}
 	  });				

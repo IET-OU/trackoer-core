@@ -42,10 +42,16 @@ continue on your math journey.</li></ol>
 </div>
 
 
+
+<div id="cc-code" class="capret capret-piwik">
+
 <!--Capret-widget starts (src=// below is deliberate)-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script src="<?php echo $capret_js_url ?>jquery.plugin.clipboard.js"></script>
 <script src="<?php echo $capret_js_url ?>oer_license_parser.js"></script>
+<!--[if lt IE 8]>
+<script src="//cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js"></script>
+<![endif]-->
 <script
   src="<?php echo $capret_js_url ?>capret<?php echo $which_capret ?>.js"
   data-piwik-idsite="<?php echo $piwik_idsite ?>"
@@ -61,4 +67,4 @@ continue on your math journey.</li></ol>
 <p>This site is <a href="http://capret.mitoeit.org/">CaPRéT enabled</a>: Cut and Paste Reuse Tracking</p>
 <!--Captret-widget ends-->
 
-
+</div>

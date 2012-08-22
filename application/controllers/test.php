@@ -53,6 +53,10 @@ class Test extends MY_Controller {
 	}
 
 
+	/**
+	* Test page(s) for Google Analytics custom Javascript.
+	* Note, originally this used Javascript to parse the License RDFa. We've now simplified it.
+	*/
 	public function b2s_learn_gajs($with_unit_tests = FALSE, $layout = self::LAYOUT) {
 		$this->_load_layout($layout);
 
@@ -76,6 +80,7 @@ class Test extends MY_Controller {
 		$this->layout->view('tests/test-ga-js-learning1', $view_data);
 	}
 
+
 	/**
 	* Test page(s) for CaPReT, mocked up from OpenLearn-LabSpace - acceptance test server.
 	* @author NDF, 21 August 2012.
@@ -83,7 +88,13 @@ class Test extends MY_Controller {
 	*/
 	public function capret($course = 'math', $page = 'course-view') {
 
-		$this->load->view("capret_test/labspace-acct-b2s-$course-$page-1");
+		if ('course-piwik' == $page) {
+			$this->_load_layout(self::LAYOUT);
+			
+			$this->layout->view("capret_test/labspace-acct-b2s-$course-$page-1");
+		} else {
+			$this->load->view("capret_test/labspace-acct-b2s-$course-$page-1");
+		}
 	}
 
 

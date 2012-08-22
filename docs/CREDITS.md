@@ -52,5 +52,9 @@
 * License: MIT
 * Code: <https://github.com/tatemae/capret/tree/master/public/js>
 
+### yUML.me: Copyright Tobin Harris/ Engineroom.
+ * Tool: <http://yuml.me>
+ * Online tool for UML class diagrams.
+
 
 [End.]

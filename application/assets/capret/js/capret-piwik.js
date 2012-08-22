@@ -50,6 +50,7 @@
 		img = '<img src="'+ piwik_url +'piwik.php?' + final_params_pi(copy_text, env) + '"/>';
 		if (debug) {
 			console.log(img, env, piwik_url);
+			console.log(J.stringify({a:1}));
 		}
 		return img;
 	}

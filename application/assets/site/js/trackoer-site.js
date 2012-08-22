@@ -7,9 +7,10 @@
 */
 $.log = function(ob){if(typeof console!=='undefined'){console.log(arguments)}};
 
-/* OER Form - extended.
-*/
 $(document).ready(function(){
+
+	/* OER Form - extended.
+	*/
 	function trackoer_form() {
 		$('#ga-ac').attr('class', $('input[name=sv]:checked').val() == 'ga' ? 'show' : 'hide');
 		$.log('#sv-ga change..');
@@ -18,11 +19,14 @@ $(document).ready(function(){
 		trackoer_form();
 	});
 	trackoer_form();
+
+
+	trackoer_show_embed();
 });
 
 /* Make every test License-tracker code clickable. A click reveals the code-snippet.
 */
-(function trackoer_show_embed(){
+function trackoer_show_embed(){
 	var elem_code = $('#cc-code')
 		, area_id = 'copy-me-js'
 		, dl = document.location
@@ -65,4 +69,5 @@ $(document).ready(function(){
 	if (dl.hash.indexOf(area_id) != -1) {
 		elem_code.click();
 	}
-})();
+}
+

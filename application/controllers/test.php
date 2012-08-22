@@ -88,12 +88,25 @@ class Test extends MY_Controller {
 	*/
 	public function capret($course = 'math', $page = 'course-view') {
 
+		$piwik_idsite = $this->config->item('piwik_capret_id');
+		if (! $piwik_idsite) {
+			$piwik_idsite = 2;
+		}
+
+		$view_data = array(
+			'jquery_js_url' => 'https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js',
+			'capret_js_url' => base_url() .'capret/js/',
+			##$capret_js_url = 'http://capret.mitoeit.org/js/';
+			'piwik_idsite' => $piwik_idsite,
+			'debug' => (bool) $this->input->get('debug'),
+		);
+	
 		if ('course-piwik' == $page) {
 			$this->_load_layout(self::LAYOUT);
 			
-			$this->layout->view("capret_test/labspace-acct-b2s-$course-$page-1");
+			$this->layout->view("capret_test/labspace-acct-b2s-$course-$page-1", $view_data);
 		} else {
-			$this->load->view("capret_test/labspace-acct-b2s-$course-$page-1");
+			$this->load->view("capret_test/labspace-acct-b2s-$course-$page-1", $view_data);
 		}
 	}
 

@@ -30,6 +30,8 @@ $config['piwik_url'] = 'http://track.olnet.org/piwik';
 // Piwik analytics.
 #$config['piwik_default_id'] = N;
 
+// CaPReT-Piwik analytics.
+#$config['piwik_capret_id'] = M;
 
 
 /*

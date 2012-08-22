@@ -27,7 +27,7 @@ $(document).ready(function(){
 /* Make every test License-tracker code clickable. A click reveals the code-snippet.
 */
 function trackoer_show_embed(){
-	var elem_code = $('#cc-code')
+	var elem_code = $('#cc-code,.cc-code')
 		, area_id = 'copy-me-js'
 		, dl = document.location
 		, path = dl.pathname

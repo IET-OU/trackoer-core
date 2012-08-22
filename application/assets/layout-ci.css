@@ -161,8 +161,9 @@ h1 em, h2 em {
 }
 #cc-code{ text-align:right; font-size:.92em; }
 #cc-code[role=button]{ cursor:pointer; }
-#cc-code[role=button]:hover{ outline:1px solid orange; }
+#cc-code[role=button]:hover, .cc-code[role=button]:hover{ outline:1px solid orange; }
 .test-content{ font-size:.86em; }
+#copy-me-js{ margin-left:15px; }
 #copy-me-js.hide{ display:none; }
 .elip{ font-size:x-large; }
 /* Status log. */

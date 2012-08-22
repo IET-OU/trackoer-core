@@ -2,8 +2,8 @@
     $capret_js_url = base_url() .'capret/js/';
 	$which_capret = '-piwik';
 	$piwik_idsite = 2;
-	$debug = 1;
-	
+	$debug = $this->input->get('debug');
+
 ?>
 
 

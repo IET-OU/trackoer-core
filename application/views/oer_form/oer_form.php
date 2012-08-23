@@ -1,9 +1,8 @@
 
-
-<h2>OER license-tracker form <em>alpha</em></h2>
-
-
 <form class="oer-form">
+
+<h1>OER license-tracker form <em>alpha</em></h1>
+
 
 
 <?php

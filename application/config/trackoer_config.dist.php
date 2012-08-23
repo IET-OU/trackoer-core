@@ -27,11 +27,15 @@ $config['piwik_url'] = 'http://track.olnet.org/piwik';
 // Google Analytics.
 #$config['google_analytics_default_id'] = 'UA-XXXXXXXX-Y';
 
-// Piwik analytics.
+// Piwik analytics site ID (idSite).
 #$config['piwik_default_id'] = N;
 
-// CaPReT-Piwik analytics.
+// CaPReT-Piwik analytics site ID.
 #$config['piwik_capret_id'] = M;
+
+
+// Optional <H1> font, http://www.google.com/webfonts
+#$config['google_font'] = 'Amaranth';  #'Racing Sans One';
 
 
 /*

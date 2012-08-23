@@ -11,6 +11,7 @@
   $with_nav = TRUE;
 
   $with_unit_tests = isset($with_unit_tests) && $with_unit_tests;
+  $ggl_font = $this->config->item('google_font');
 
 ?>
 <!doctype html><html lang="en"><meta charset="utf-8" /><title>Track OER - rapid innovation alpha</title>
@@ -29,8 +30,16 @@
 	href="<?php echo $oembed_url ?>&amp;format=xml" />
 <?php endif; ?>
 
+
 <link rel=stylesheet href="<?php echo $assets_url ?>layout-ci.css" />
 <link rel=stylesheet href="<?php echo $assets_url ?>forkme.css" />
+
+<?php if ($ggl_font): ?>
+<link rel=stylesheet href="http://fonts.googleapis.com/css?family=<?php echo urlencode($ggl_font) ?>&amp;v1" />
+<style>
+h1{ font-family:"<?php echo $ggl_font ?>", Helvetica, sans-serif; }
+</style>
+<?php endif; ?>
 
 <script src="http://cdn.enderjs.com/jeesh.js"></script>
 <script src="<?php echo $assets_url ?>site/js/trackoer-site.js"></script>

@@ -177,6 +177,7 @@ h1 em, h2 em {
 /* OER form.
 */
 label.blk{ display:block; }
+.oer-form h1{ font-size:1.7em; }
 .oer-form .sp{ display:inline-block; width:3em; }
 .oer-form p{ margin:2em 0; }
 .oer-form fieldset p{ margin:1.2em 0; }

@@ -88,6 +88,7 @@ class Test extends MY_Controller {
 	*/
 	public function capret($course = 'math', $page = 'course-view') {
 
+		$piwik_url = $this->config->item('piwik_url');
 		$piwik_idsite = $this->config->item('piwik_capret_id');
 		if (! $piwik_idsite) {
 			$piwik_idsite = 2;
@@ -97,6 +98,7 @@ class Test extends MY_Controller {
 			'jquery_js_url' => 'https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js',
 			'capret_js_url' => base_url() .'capret/js/',
 			##$capret_js_url = 'http://capret.mitoeit.org/js/';
+			'data_piwik_url' => 'http://track.olnet.org/piwik'==$piwik_url ? '': "data-piwik-url='$piwik_url'",
 			'piwik_idsite' => $piwik_idsite,
 			'debug' => (bool) $this->input->get('debug'),
 		);

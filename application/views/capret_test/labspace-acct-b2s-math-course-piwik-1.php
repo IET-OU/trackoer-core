@@ -51,6 +51,8 @@ continue on your math journey.</li></ol>
 <script
   src="<?php echo $capret_js_url ?>capret<?php echo $which_capret ?>.js"
   data-piwik-idsite="<?php echo $piwik_idsite ?>"
+  <?php echo $data_piwik_url ?>
+
   data-piwik-debug="<?php echo $debug ?>"
   ></script>
 

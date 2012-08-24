@@ -14,6 +14,7 @@
   $embed_code = strtr(
     $this->load->view('cc_code/b2s_template', $view_data = NULL, $return = TRUE),
     array(
+      '__GA__ID__' => 'UA-12345678-9',
       '__CC_TERMS__' => 'by-sa',   # License terms, eg. 'by', 'by-nc-sa'
       '__CC_VJ__'    => '3.0',     # License version[/jurisdiction], eg. '2.0/uk' or '3.0'
       '__CC_LABEL__' => 'Creative Commons Attribution-ShareAlike 3.0 Unported License',
@@ -35,9 +36,9 @@
 <a rel="license" href="http://creativecommons.org/licenses/__CC_TERMS__/__CC_VJ__/deed.en_GB"
  ><img alt="Creative Commons Licence" style="border-width:0"
  src="http://i.creativecommons.org/l/__CC_TERMS__/__CC_VJ__/88x31.png"
- title="Creative Commons License - with tracking**" /></a>
+<?php /* title="Creative Commons License - with tracking**"*/ ?> /></a>
  <br />
- <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">__ITEM_TITLE__</span>
+ <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">__WORK_TITLE__</span>
  by
  <a xmlns:cc="http://creativecommons.org/ns#" href="__ATTR_URL__" property="cc:attributionName" rel="cc:attributionURL">__ATTR_NAME__</a>
  is licensed under a 

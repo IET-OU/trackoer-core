@@ -26,11 +26,12 @@ class Cli extends Oembed { #MY_Controller {
       'out' => '"C:/output directory"',
       'log' => '%2Flogs%2Ffile.log',
       'jspath' => '../Shared',
+      'css' => 'font-size:small',
       'e' => '(extended debug)',
       'v' => '(version)',
       'h' => '(help)',
     );
-  const ARGS = 'url ac fmt lic dir out log jspath e v h'; //All.
+  const ARGS = 'url ac fmt lic dir out log jspath css e v h'; //All.
   const ARGS_REQ = 'dir out';
 
 
@@ -153,19 +154,22 @@ EOF;
       $this->_cli_error("directory_map failed, $params->dir");
     }
 
-	$batch_template = $this->load->view('cc_code/batch_template', $view_data = NULL, $return = TRUE);
+    $batch_template = $this->load->view('cc_code/batch_template', $view_data = NULL, $return = TRUE);
 
+    // We'll record some 'counts'
+    $cn_proc = $cn_dir = $cn_nohtml = 0;
 
-    $count = 0;
     foreach ($dir_map as $key => $filename) {
       // Filter directories!
       if (is_array($filename)) {
         echo "Skipping directory, $key" .PHP_EOL;
+        $cn_dir++;
 
         continue;
       }
       if (! preg_match('/.+\.html?$/', $filename)) {
         echo "Skipping non-HTML file, $filename" .PHP_EOL;
+        $cn_nohtml++;
 
         continue;
       }
@@ -182,7 +186,7 @@ EOF;
       $embed_code = strtr(
         $batch_template,
         array(
-          '__GA__ID__' => $params->ac,
+          '__GA_ID__' => $params->ac,
 		  '__CC_TERMS__' => str_replace('cc:', '', $params->lic),   # License terms, eg. 'by', 'by-nc-sa'
           '__CC_VJ__'    => '3.0',     # License version[/jurisdiction], eg. '2.0/uk' or '3.0'
           '__CC_LABEL__' => 'Creative Commons Attribution 3.0 Unported License',
@@ -196,21 +200,32 @@ EOF;
           '__MODE__'       => $params->mode,  	# 'scorm', 'ims' etc.
           '__SCRIPT_PATH__'=> $params->jspath, # Relative path.
           '__SCRIPT_ARG__' => 'type="text/javascript"', # HTML5 ''.
+          '__STYLE__' => $params->css,
         )
       );
 
-      $output = preg_replace('@(</(body|html)>)@', $embed_code .PHP_EOL. '$1', $input, 1);
+      // Initially try to inject code before the last closing </div>..
+      $cn_inject = 0;
+      $output = preg_replace('@(</div>\s+</body>)@ms', $embed_code .PHP_EOL. '$1', $input, 1, $cn_inject);
+
+      //..Fallback to injecting before </body>.
+      if (! $cn_inject) {
+        $output = preg_replace('@(</(body|html)>)@i', $embed_code .PHP_EOL. '$1', $input, 1, $cn_inject);
+      }
 
 	  $out_file = $params->out .'/'. $filename;
       $bytes = file_put_contents($out_file, $output);
 
 	  echo "> File out, $bytes : $out_file" .PHP_EOL;
 
-	  $count++;
+	  $cn_proc++;
+
+	  break;
     }
 
 
-    echo "$count files processed, OK" .PHP_EOL;
+    echo "$cn_proc files processed, OK" .PHP_EOL;
+    echo "$cn_dir/$cn_nohtml directories/no-HTML files skipped." .PHP_EOL;
     exit (0);
   }
 

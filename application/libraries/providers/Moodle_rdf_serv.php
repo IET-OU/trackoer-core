@@ -88,7 +88,7 @@ EOT;
 	  $page_title = trim(str_replace(array('The Open University', '&#x2014;'), array('', '—'), $page_title), '- ');
 
     }
-
+var_dump($rdf_url);
     $rdf_result = $this->_http_request_work_rdf($rdf_url);
 
     $rdf = $rdf_result->rdf;
@@ -143,15 +143,15 @@ EOT;
     $result = $this->_http_request($rdf_url);
 
     if (! $result->success) {
-      $this->_error('HTTP Work-RDF error.', $result->http_code);
+      $this->_error('HTTP Work-RDF error', $result->http_code);
     }
 
     $xmlo = NULL;
     if ($result->success) {
-      $xmlo = @ new SimpleXMLElement($result->data);
+      $xmlo = @simplexml_load_string($result->data);
     }
     if (! $xmlo) {
-      $this->_error('XML Work-RDF error.');
+      $this->_error('XML Work-RDF error');
     }
     $xmlo->registerXPathNamespace('_', 'http://creativecommons.org/ns#');
     $xmlo->registerXPathNamespace('rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#');

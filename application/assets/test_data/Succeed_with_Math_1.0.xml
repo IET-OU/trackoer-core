@@ -1,0 +1,26 @@
+<rdf:RDF xmlns="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <Work rdf:about="">
+          <dc:title>Succeed with Math</dc:title>
+          <dc:subject>B2S</dc:subject>
+          <dc:subject>aacc</dc:subject>
+          <dc:subject>anne</dc:subject>
+          <dc:subject>arundel</dc:subject>
+          <dc:subject>bridge</dc:subject>
+          <dc:subject>college</dc:subject>
+          <dc:subject>community</dc:subject>
+          <dc:subject>math</dc:subject>
+          <dc:subject>succeed</dc:subject>
+          <dc:subject>success</dc:subject>
+          <dc:description>Succeed with Math will help you review key math concepts, and then apply these         concepts to real world applications. Units available include: Math and You, Getting Down to         the Basics, Numbers Everywhere, Parts of the Whole, Relationships Among Numbers, Exploring         Patterns and Formulas, Investigating Geometric Shapes and Sizes, and Communicating with         Data, Charts and Graphs.</dc:description>
+          <dc:publisher>The Open University</dc:publisher>
+          <dc:type>Course</dc:type>
+          <dc:format>text/html</dc:format>
+          <dc:identifier>Succeed_with_Math_1.0</dc:identifier>
+          <dc:source/>
+          <dc:rights>Except for third party materials and otherwise stated (see http://www.open.ac.uk/conditions terms and conditions), this content is made available under a http://creativecommons.org/licenses/by-nc-sa/2.0/uk/ Creative Commons Attribution-NonCommercial-ShareAlike 2.0 Licence</dc:rights>
+    </Work>
+</rdf:RDF>
+<!--
+ http://labspace.open.ac.uk/Succeed_with_Math_1.0?format=rdf
+ http://labspace.open.ac.uk/course/view.php?id=7654&amp;format=rdf
+-->

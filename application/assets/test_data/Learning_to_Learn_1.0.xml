@@ -1,0 +1,18 @@
+<rdf:RDF xmlns="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <Work rdf:about="">
+          <dc:title>Learning to Learn</dc:title>
+          <dc:subject>B2S</dc:subject>
+          <dc:description>Welcome to Learning to Learn! By accessing this course you have just taken a major         step toward helping you develop your study skills. Congratulations! Your first task is to         read the course overview and complete the self-reflection questionnaire. This will help you         to think about how Learning to Learn can help you achieve your goals and   aims.</dc:description>
+          <dc:publisher>The Open University</dc:publisher>
+          <dc:contributor>Andrew Studnicky</dc:contributor>
+          <dc:type>Course</dc:type>
+          <dc:format>text/html</dc:format>
+          <dc:identifier>Learning_to_Learn_1.0</dc:identifier>
+          <dc:source>Exploring Learning - Learning_to_Learn</dc:source>
+          <dc:rights>Except for third party materials and otherwise stated (see http://www.open.ac.uk/conditions terms and conditions), this content is made available under a http://creativecommons.org/licenses/by-nc-sa/2.0/uk/ Creative Commons Attribution-NonCommercial-ShareAlike 2.0 Licence</dc:rights>
+    </Work>
+</rdf:RDF>
+<!--
+ http://labspace.open.ac.uk/Learning_to_Learn_1.0?format=rdf
+ http://labspace.open.ac.uk/course/view.php?id=7442&amp;format=rdf
+-->

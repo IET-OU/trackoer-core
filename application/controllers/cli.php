@@ -172,9 +172,12 @@ EOF;
       // Filter - only HTML/ XML?
       $input = file_get_contents($params->dir .'/'. $filename);
 
+      $title = $result->title;
 
       // Get <title>, <h1>..
-
+      if (preg_match('@<h1[^>]*>(.+)</h1@i', $input, $matches)) {
+        $title .= '/ '. $matches[1];
+      }
 
       $embed_code = strtr(
         $batch_template,
@@ -185,12 +188,12 @@ EOF;
           '__CC_LABEL__' => 'Creative Commons Attribution 3.0 Unported License',
           '__ATTR_NAME__'  => 'OpenLearn-LabSpace - Bridge to Success B2S', #'OpenLearn/ Andrew Studnicky',
           '__ATTR_URL__'   => 'http://labspace.open.ac.uk/b2s',
-          '__WORK_TITLE__' => $result->title, #'Learning to Learn 1.0/ Course Overview/ Introduction (page)',
-          '__SOURCE_URL__' => $params->url, #'http://labspace.open.ac.uk/Learning_to_Learn_1.0',
-          '__COURSE_HOST__'=> parse_url($params->url, PHP_URL_HOST), #'labspace.open.ac.uk',
+          '__WORK_TITLE__' => $title,
+          '__SOURCE_URL__' => $params->url,
+          '__COURSE_HOST__'=> parse_url($params->url, PHP_URL_HOST),
           '__COURSE_ID__'  => $result->identifier,
-          '__WORK_ID__'    => $filename, # Source filename, etc.
-          '__MODE__'       => $params->mode,        # 'scorm', 'ims' etc.
+          '__WORK_ID__'    => $filename,
+          '__MODE__'       => $params->mode,  	# 'scorm', 'ims' etc.
           '__SCRIPT_PATH__'=> $params->jspath, # Relative path.
           '__SCRIPT_ARG__' => 'type="text/javascript"', # HTML5 ''.
         )

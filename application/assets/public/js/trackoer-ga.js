@@ -16,9 +16,9 @@ trackoer.getPageUrl = function(custom_hash) {
   , path = /*dl.hostname +*/ Sec(dl.pathname) + Enc(dl.search + dl.hash)
   ;
 
-  path += (path.indexOf('#') == -1 ? Enc('#') :'');
+  path += (path.indexOf('#') == -1 || path.indexOf('%23') == -1 ? '%23' :'');
   path += Enc(custom_hash.replace(/&amp;/g, '&'));
-  path += sp + Enc(dl.protocol);
+  path += sp + Enc(dl.protocol); //.replace(/:/, ',')
 
   path += debug ? sp + 'Debug' + sp + M.floor((M.random()*100)+1) :'';
   Log(path);

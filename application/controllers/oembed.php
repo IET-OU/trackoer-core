@@ -21,6 +21,14 @@ class Oembed extends MY_Controller {
 
   protected $request;
 
+
+  public function __construct() {
+    parent::__construct();
+
+    $this->load->config('providers');
+  }
+
+
   /**
   * THE handler for the oEmbed endpoint.
   */
@@ -29,17 +37,29 @@ class Oembed extends MY_Controller {
     $this->request =
     $request = $this->_parse_oembed_params($cli_args);
 
-    $this->load->oembed_provider('Openlearn_track');
+    $providers = $this->config->item('providers');
+
+    $url  = str_replace('/www.', '/', $request->url);
+    $host = parse_url($url, PHP_URL_HOST);
+    #$host = $p['host'];
+
+    if (! isset($providers[$host])) {
+      $this->_error('The hostname in the {url} parameter is not supported, '. $request->url, 400.1);
+    }
+
+    $provider = $providers[$host];
+
+    $this->load->oembed_provider($provider);  #'Openlearn_track');
     $re = $this->provider->getInternalRegex();
 
-    if (! preg_match("@$re@", $request->url, $matches)) {
-      $this->_error('Sorry the {url} parameter doesn\'t match the acceptable patterns, '.$request->url, 400);
+    if (! preg_match("@$re@", $url, $matches)) {
+      $this->_error('Sorry the {url} parameter doesn\'t match the acceptable patterns, '. $request->url, 400);
     }
 
     $this->_addStatus("Controller: The input 'url' parameter matched a pattern.");
 
 
-    $this->_addStatus('Controller: Handing to OpenLearn tracker library...');
+    $this->_addStatus("Controller: Handing to the $provider library...");
 
     $result = $this->provider->call($request->url, $matches);
 

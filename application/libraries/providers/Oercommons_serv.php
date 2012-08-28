@@ -31,6 +31,8 @@ EOT;
   public $_about_url= 'http://oercommons.org/information';
   public $_logo_url = 'http://www.oercommons.org/media/images/logo.png';
 
+  public $_regex_real = 'oercommons\.org\/courses\/([a-z-]+)';
+
   public $_examples = array(
     'http://oercommons.org/courses/campaigns-and-elections/view',
     'http://oercommons.org/search?f.search=law+contemporary&feed=yes'
@@ -46,10 +48,25 @@ EOT;
   public function call($url, $matches) {
     $course_id = $matches[1];
 
-    $search_url = 'http://www.oercommons.org/search?feed=yes&f.search='
-        . str_replace('-', '+', $course_id);
+    $search_url = 'http://www.oercommons.org/search?feed=yes&f.search=%22'
+        . str_replace('-', '+', $course_id)
+        . '%22';
+    $iframe_url = "http://www.oercommons.org/courses/$course_id/view";
+
+    $result = $this->_http_request($iframe_url);
+
+    if (preg_match('/<iframe.*src="([^"]+)"/', $result->data, $matches_src)) {
+      $course_url = $matches_src[1];
+    }
+    if (preg_match('/button" +data-identifier="([^"]+)"/', $result->data, $matches_id)) {
+      $id = $matches_id[1]; #35.35915
+    }
+
+    #$result = $this->_http_request($search_url);
+
+    var_dump($search_url, $matches, $course_url, $id);
+    #var_dump($result);
     
-    var_dump($search_url);
     exit;
   }
 }

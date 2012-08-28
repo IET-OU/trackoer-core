@@ -6,6 +6,8 @@
  * @copyright 2012-08-23 The Open University.
  */
 
+$use_gatrack = isset($use_gatrack) ? $use_gatrack : FALSE;
+
 
 /*
   Example usage:
@@ -14,7 +16,7 @@
   $embed_code = strtr(
     $this->load->view('cc_code/b2s_template', $view_data = NULL, $return = TRUE),
     array(
-      '__GA__ID__' => 'UA-12345678-9',
+      '__GA_ID__' => 'UA-12345678-9',
       '__CC_TERMS__' => 'by-sa',   # License terms, eg. 'by', 'by-nc-sa'
       '__CC_VJ__'    => '3.0',     # License version[/jurisdiction], eg. '2.0/uk' or '3.0'
       '__CC_LABEL__' => 'Creative Commons Attribution-ShareAlike 3.0 Unported License',
@@ -28,11 +30,13 @@
       '__MODE__'       => 'plain-zip',        # 'scorm', 'ims' etc.
       '__SCRIPT_PATH__'=> '../Shared', # Relative path.
       '__SCRIPT_ARG__' => 'type="text/javascript"', # HTML5 ''.
+      '__STYLE__' => 'font-size:x-small',
     )
   );
 */
 ?>
 
+<div id="trackoer-code" style="__STYLE__">
 <a rel="license" href="http://creativecommons.org/licenses/__CC_TERMS__/__CC_VJ__/deed.en_GB"
  ><img alt="Creative Commons Licence" style="border-width:0"
  src="http://i.creativecommons.org/l/__CC_TERMS__/__CC_VJ__/88x31.png"
@@ -53,6 +57,14 @@
 */ ?>
 <script __SCRIPT_ARG__ src="__SCRIPT_PATH__/trackoer-ga.js"></script>
 <script __SCRIPT_ARG__>
-_gaq.push(['_trackoer_ct._setAccount', '__GA__ID__']);
+<?php if ($use_gatrack): ?>
+gaTrack('__GA_ID__', window.location.host, trackoer.getPageUrl('!__COURSE_HOST__!__COURSE_ID__!__WORK_ID__!__MODE__'));<?php //Remysharp:gajs.js*/ ?>
+<?php else: ?>
+_gaq.push(['_trackoer_ct._setAccount', '__GA_ID__']);
+<?php /*_gaq.push(['_trackoer_ct._setCustomVar', 1, 'via', 'CLI', 3]); //&utme=8(via)9(CLI)&..
+_gaq.push(['_trackoer_ct._trackEvent', 'Cat', 'Act']); */ ?>
 _gaq.push(['_trackoer_ct._trackPageview', trackoer.getPageUrl('!__COURSE_HOST__!__COURSE_ID__!__WORK_ID__!__MODE__')]);
+<?php endif; ?>
+
 </script>
+</div>

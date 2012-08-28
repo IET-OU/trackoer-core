@@ -54,7 +54,7 @@ class Piwik_Tracker extends Redirect_Tracker {
     $this->CI->load->library('PiwikEx');
     $piwik_result = $this->CI->piwik->getSitesIdFromSiteUrl($site_url);
     if (! $piwik_result) {
-      $this->_error('Piwik get site_id fail, '. $site_url);
+      $this->CI->_error('Piwik get site_id fail, '. $site_url);
     }
 
     $result = (object) array(

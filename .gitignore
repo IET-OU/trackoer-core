@@ -13,6 +13,7 @@ application/logs/*
 
 *.patch
 *.diff
+* copy.*
 
 piwik/*
 _scratch

@@ -10,18 +10,21 @@ trackoer.getPageUrl = function(custom_hash) {
   , Enc = encodeURIComponent
   , M = Math
   , Log = function(ob){if(typeof console!=='undefined'){console.log(arguments)}}
+  , Sec = function(u){return u.replace(/(C:\/Users\/|C:\/)/g, '').replace(/file:\/\//, 'http://F')}
   , dl = document.location
   , sp = '!'
-  , path = dl.hostname + dl.pathname + dl.search + dl.hash
+  , path = /*dl.hostname +*/ Sec(dl.pathname) + Enc(dl.search + dl.hash)
   ;
 
-  path += (path.indexOf('#') == -1 ? '#' :'');
+  path += (path.indexOf('#') == -1 ? Enc('#') :'');
   path += Enc(custom_hash.replace(/&amp;/g, '&'));
-  //path += custom_hash.replace(/&amp;/g, '&');
+  path += sp + Enc(dl.protocol);
 
   path += debug ? sp + 'Debug' + sp + M.floor((M.random()*100)+1) :'';
   Log(path);
+  Log(dl);
 
+  //return Enc(path);
   return path;
 };
 

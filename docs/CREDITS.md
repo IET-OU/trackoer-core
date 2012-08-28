@@ -52,6 +52,10 @@
 * License: MIT
 * Code: <https://github.com/tatemae/capret/tree/master/public/js>
 
+### Google Analytics JS v1/gajs.js: Copyright (c) 2009 Remy Sharp remysharp.com
+* License: MIT
+* Code: <http://code.google.com/p/google-analytics-js>
+
 ### yUML.me: Copyright Tobin Harris/ Engineroom.
  * Tool: <http://yuml.me>
  * Online tool for UML class diagrams.

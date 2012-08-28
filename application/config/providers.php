@@ -14,6 +14,7 @@ $config['providers'] = array(
     'openlearn.open.ac.uk' => 'Openlearn_track',
     'labspace.open.ac.uk'  => 'Openlearn_track',
 
+    'oercommons.org' => 'Oercommons',
 );
 
 

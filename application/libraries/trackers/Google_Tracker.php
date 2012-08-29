@@ -6,10 +6,10 @@
  *
  * @package		trackoer-core
  * @copyright	Copyright 2012 The Open University.
- * @author		N.D.Freear, 9 August 2012.
+ * @author		N.D.Freear, 16 August 2012.
  * @license
  * @link		https://github.com/IET-OU/trackoer-core
- * @link		http://piwik.org/docs/tracking-api/reference
+ * @link		http://developers.google.com/analytics/resources/articles/gaTrackingTroubleshooting#gifParameters
  * @link		http://snipplr.com/view/37647
  * @since		Version 1.0
  * @filesource
@@ -91,19 +91,19 @@ class Google_Tracker extends Base_Tracker {
       'utme'  => '-', // Extensible: events/ custom variables.
 
       // Cookie
-      'utmcc' => '__utma%3D'. $cookie .'.'. $random .'.'. $today .'.'. $today .'.'. $today
-          . '.2%3B%2B__utmb%3D'
-          . $cookie .'%3B%2B__utmc%3D'. $cookie .'%3B%2B__utmz%3D'. $cookie
-          . '.'. $today .'.2.2.utmccn%3D(referral)%7Cutmcsr%3D'
-          . urlencode($dest_host) .'%7Cutmcct%3D'. $dest_path .'%7Cutmcmd%3Dreferral%3B%2B__utmv%3D'
-          . $cookie .'.-%3B',
+      'utmcc' => '__utma='. $cookie .'.'. $random .'.'. $today .'.'. $today .'.'. $today
+          . '.2;+__utmb='
+          . $cookie .';+__utmc='. $cookie .';+__utmz='. $cookie
+          . '.'. $today .'.2.2.utmccn=(referral)|utmcsr='
+          . $dest_host .'|utmcct='. $dest_path .'|utmcmd=referral;+__utmv='
+          . $cookie .'.-;',
     );
     $url = 'http://www.google-analytics.com/__utm.gif?'. http_build_query($params);
 
     return $url;
   }
 
-  
+
   /**
   * Get asynchrous GA HTML snippet (containing <script>).
   * Note, this should appear after the Creative Commons license code.

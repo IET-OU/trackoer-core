@@ -47,6 +47,63 @@ class Google_Tracker extends Base_Tracker {
     return NULL;
   }
 
+
+  /** Get a HTML snippet containing one or more <script>
+  */
+  public function getScript($account = NULL, $with_trackoer = FALSE, $custom_hash = NULL, $is_async = TRUE, $property = '_trackoer_content') {
+    return $this->getCode($account, $with_trackoer, $custom_hash, $is_async, $property);
+  }
+
+
+  /** Get the URL with tracking parameters for the web-beacon/web bug.
+  */
+  public function getBeaconUrl($account = NULL, $domain = NULL, $url = NULL, $referer = NULL, $title = NULL) {
+
+    $referer = $referer ? $referer : self::NO_REFERER_URL; #'http://noreferer.example.org/';
+	$account = $account ? $account : $this->getDefaultId();
+    $title = $title ? $title : '-';
+
+    $dest_host = 'reuser.example.edu';
+    $dest_path = '/';
+
+    $i = 1000000000;
+    $cookie = rand(10000000, 99999999); //random cookie number
+    $random = rand($i, 2147483647); //number under 2147483647
+    $today = time() * 1000; //(new Date()).getTime(), Milliseconds.
+
+    // https://developers.google.com/analytics/resources/articles/gaTrackingTroubleshooting#gifParameters
+	// http://remysharp.com/2009/10/15/the-missing-stat-noscript/
+    $params = array(
+      'utmwv' => '1.3', // Tracking code version.
+      'utmn'  => rand($i, 9999999999), // Random request number
+      'utmsr' => '-', // Screen resolution.
+      'utmsc' => '-', // Screen colour depth.
+      'utmul' => '-', // Browser language.
+      'utmje' => 0,   // Java-enabled.
+      'utmfl' => '-', // Flash.
+      //'utmt' => 'event', // Type of request, default 'page'.
+      //'utmdt' => '-',
+      'utmdt' => $title, // Page title.
+      'utmhn' => $domain, // Hostname.
+      'utmr' => $referer,
+      'utmp'  => $url, // Path.
+      'utmac' => $account, //UA-1234..
+      'utme'  => '-', // Extensible: events/ custom variables.
+
+      // Cookie
+      'utmcc' => '__utma%3D'. $cookie .'.'. $random .'.'. $today .'.'. $today .'.'. $today
+          . '.2%3B%2B__utmb%3D'
+          . $cookie .'%3B%2B__utmc%3D'. $cookie .'%3B%2B__utmz%3D'. $cookie
+          . '.'. $today .'.2.2.utmccn%3D(referral)%7Cutmcsr%3D'
+          . urlencode($dest_host) .'%7Cutmcct%3D'. $dest_path .'%7Cutmcmd%3Dreferral%3B%2B__utmv%3D'
+          . $cookie .'.-%3B',
+    );
+    $url = 'http://www.google-analytics.com/__utm.gif?'. http_build_query($params);
+
+    return $url;
+  }
+
+  
   /**
   * Get asynchrous GA HTML snippet (containing <script>).
   * Note, this should appear after the Creative Commons license code.

@@ -90,9 +90,11 @@ class Test extends MY_Controller {
 		$this->load->tracker('Google', NULL);
 		$this->load->tracker('Piwik', NULL);
 		$source_url = 'http://labspace.open.ac.uk/Learning_to_Learn_1.0#!REF';
+		$p = parse_url($source_url);
 
 		$view_data = array(
-			'ga_beacon_url' => $this->ga->getBeaconUrl(NULL, NULL, NULL, $source_url, 'Learning_to_Learn_1.0/ No-script test'),
+			'_OLD_ga_beacon_url' => $this->ga->getBeaconUrl(NULL, NULL, NULL, $source_url, 'Learning_to_Learn_1.0/ No-script test'),
+			'ga_beacon_url' => $this->ga->getBeaconUrl(NULL, $p['host'], $p['path'].'#!REF', 'Learning_to_Learn_1.0/ No-script test'),
 		);
 		$this->layout->view('tests/test-noscript-b2s-learn-1', $view_data);
 	}

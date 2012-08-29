@@ -63,12 +63,12 @@ class Google_Tracker extends Base_Tracker {
   */
   public function getBeaconUrl($account = NULL, $domain = NULL, $url = NULL, $referer = NULL, $title = NULL) {
 
-    $referer = $referer ? $referer : self::NO_REFERER_URL; #'http://noreferer.example.org/';
+    #$referer = $referer ? $referer : self::NO_REFERER_URL; #'http://noreferer.example.org/';
 	$account = $account ? $account : $this->getDefaultId();
     $title = $title ? $title : '-';
 
     $dest_host = $domain ? $domain : self::REUSER_HOST;
-    $dest_path = $url ? $url : '/';
+    $dest_path = $url ? $url : '/noscript';
 
     $i = 1000000000;
     $cookie = rand(10000000, 99999999); //random cookie number

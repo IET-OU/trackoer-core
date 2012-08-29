@@ -48,14 +48,18 @@ class Google_Tracker extends Base_Tracker {
   }
 
 
-  /** Get a HTML snippet containing one or more <script>
+  /**
+  * Get a HTML snippet containing one or more <script>
+  * @return string HTML
   */
   public function getScript($account = NULL, $with_trackoer = FALSE, $custom_hash = NULL, $is_async = TRUE, $property = '_trackoer_content') {
     return $this->getCode($account, $with_trackoer, $custom_hash, $is_async, $property);
   }
 
 
-  /** Get the URL with tracking parameters for the web-beacon/web bug.
+  /**
+  * Get the URL with tracking parameters for the web-beacon/web bug.
+  * @return string URL
   */
   public function getBeaconUrl($account = NULL, $domain = NULL, $url = NULL, $referer = NULL, $title = NULL) {
 
@@ -63,8 +67,8 @@ class Google_Tracker extends Base_Tracker {
 	$account = $account ? $account : $this->getDefaultId();
     $title = $title ? $title : '-';
 
-    $dest_host = 'reuser.example.edu';
-    $dest_path = '/';
+    $dest_host = $domain ? $domain : self::REUSER_HOST;
+    $dest_path = $url ? $url : '/';
 
     $i = 1000000000;
     $cookie = rand(10000000, 99999999); //random cookie number
@@ -74,12 +78,12 @@ class Google_Tracker extends Base_Tracker {
     // https://developers.google.com/analytics/resources/articles/gaTrackingTroubleshooting#gifParameters
 	// http://remysharp.com/2009/10/15/the-missing-stat-noscript/
     $params = array(
-      'utmwv' => '1.3', // Tracking code version.
+      'utmwv' => '3.5.3', #'1.3', // Tracking code version.
       'utmn'  => rand($i, 9999999999), // Random request number
       'utmsr' => '-', // Screen resolution.
       'utmsc' => '-', // Screen colour depth.
       'utmul' => '-', // Browser language.
-      'utmje' => 0,   // Java-enabled.
+      'utmje' => 0,   // Java-enabled?
       'utmfl' => '-', // Flash.
       //'utmt' => 'event', // Type of request, default 'page'.
       //'utmdt' => '-',

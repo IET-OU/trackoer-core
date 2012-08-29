@@ -80,6 +80,22 @@ class Test extends MY_Controller {
 		$this->layout->view('tests/test-ga-js-learning1', $view_data);
 	}
 
+	/**
+	* Testing no-Javascript web-beacons.
+	* @author NDF, 29 August 2012.
+	*/
+	public function noscript($layout = self::LAYOUT) {
+		$this->_load_layout($layout);
+
+		$this->load->tracker('Google', NULL);
+		$this->load->tracker('Piwik', NULL);
+		$source_url = 'http://labspace.open.ac.uk/Learning_to_Learn_1.0#!REF';
+
+		$view_data = array(
+			'ga_beacon_url' => $this->ga->getBeaconUrl(NULL, NULL, NULL, $source_url, 'Learning_to_Learn_1.0/ No-script test'),
+		);
+		$this->layout->view('tests/test-noscript-b2s-learn-1', $view_data);
+	}
 
 	/**
 	* Test page(s) for CaPReT, mocked up from OpenLearn-LabSpace - acceptance test server.

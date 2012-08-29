@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns="http://purl.org/rss/1.0/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:syn="http://purl.org/rss/1.0/modules/syndication/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+
+<channel rdf:about="http://www.oercommons.org/search?f.search=%22campaigns+and+elections%22&amp;feed=yes">
+  <title>OER Commons - Search Results: &quot;campaigns and elections&quot;</title>
+  <link>http://www.oercommons.org/search?f.search=%22campaigns+and+elections%22</link>  
+  <description></description>
+
+  <syn:updatePeriod>daily</syn:updatePeriod>
+  <syn:updateFrequency>1</syn:updateFrequency>
+  <syn:updateBase>2000-01-01T12:00+00:00</syn:updateBase>
+
+  <image rdf:resource="http://www.oercommons.org/media/images/logo.png" />
+
+  <items>
+    <rdf:Seq>
+       
+          <rdf:li rdf:resource="http://www.oercommons.org/courses/campaigns-and-elections" />
+       
+    </rdf:Seq>
+  </items>
+</channel>
+  
+<item rdf:about="http://www.oercommons.org/courses/campaigns-and-elections">
+  <title>Campaigns and Elections</title>
+  <link>http://www.oercommons.org/courses/campaigns-and-elections</link>
+  <description>In this course, the student will explore campaigns and elections, learning their purpose and significance and observing the impact that they have on the American political system.  The course will focus on the history and evolution of elections and voting laws in the United States, as well as what compels individuals to run for office and how campaigns are structured.  Also, the course will teach the student the role that political parties, interest groups, voters, and the media play in elections.  Lastly, the student will take a closer look at electoral outcomes and the impact that elections have on public policy after votes are counted, as well as what types of proposals could be implemented to improve our electoral system.  Upon successful completion of this course, the student will be able to: explain the importance of elections, voting, democracy, and citizenship in the United States; describe the various types of elections that exist within the American political system; identify the legal and constitutional bases of campaigns and elections in the United States; explain the types of individuals that run for political office and why; analyze the influence of incumbency in elections; explain how candidates develop campaigns and financing; discuss the role of money in political campaigns; discuss the influence of political parties on campaigns and elections; describe the characteristics of the U.S. party system; explain the role of interest groups in influence campaigns and election outcomes; explain the various influences and motivations of the American voter; describe the factors associated with both nonvoter and voter disenfranchisement in contemporary elections; analyze and explain the critical role of the media in campaigns and elections; explain how election outcomes impact government actions and public policy; analyze both historical and contemporary election reforms. (POLSC333)</description>
+  
+    <dc:subject>Social Sciences</dc:subject>
+
+    <dc:date>2011-11-21T14:13:21</dc:date>
+  
+  <dc:type>Course Related Materials</dc:type>
+</item>
+
+</rdf:RDF>
+<!--
+http://www.oercommons.org/search?f.search=%22campaigns+and+elections%22&feed=yes
+-->

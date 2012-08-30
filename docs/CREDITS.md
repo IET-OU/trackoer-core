@@ -6,6 +6,9 @@
 * License: free/ open-source -- license to be confirmed.
 * Author: Nick Freear <n.d.freear+@+open.ac.uk> / Institute of Educational Technology.
 
+### Bridge to Success content: Copyright 2011 The Open University.
+* License: <http://creativecommons.org/licenses/by/3.0/>
+* Source: <http://labspace.open.ac.uk/b2s>
 
 ### CodeIgniter: Copyright (c) 2008 - 2012, EllisLab, Inc.
 * License: <http://codeigniter.com/user_guide/license.html>

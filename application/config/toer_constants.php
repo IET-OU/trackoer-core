@@ -21,7 +21,7 @@ define('TRACKER_PAGE_URL_SEP', '!');
 | Various URLs - mostly for application/views/site_layout/layout_ci.php
 */
 // The project blog.
-define('BLOG_URL', 'http://cloudworks.ac.uk/tag/view/trackoer');
+define('BLOG_URL', 'http://cloudworks.ac.uk/tag/view/TrackOER');
 
 // The public Git repository.
 define('CODE_URL', 'https://github.com/IET-OU/trackoer-core');
@@ -37,4 +37,7 @@ define('OU_OER_URL', 'http://www8.open.ac.uk/about/open-educational-resources/')
 
 // OLnet site.
 define('_disable_OLNET_URL', 'http://www.olnet.org/');
+
+// Twitter search.
+define('TWITTER_SEARCH', '#TrackOER');
 

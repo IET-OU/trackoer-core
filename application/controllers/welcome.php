@@ -28,6 +28,12 @@ class Welcome extends MY_Controller {
 
 		$this->layout->view('welcome_message');
 	}
+
+	public function about($layout = self::LAYOUT) {
+		$this->_load_layout($layout);
+
+		$this->layout->view('about/about');
+	}
 }
 
 /* End of file welcome.php */

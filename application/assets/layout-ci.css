@@ -163,9 +163,10 @@ h1 em, h2 em {
 #cc-code[role=button]{ cursor:pointer; }
 #cc-code[role=button]:hover, .cc-code[role=button]:hover{ outline:1px solid orange; }
 .test-content{ font-size:.86em; }
-#copy-me-js{ margin-left:15px; }
+#copy-me-js, #twitter{ margin-left:15px; }
 #copy-me-js.hide{ display:none; }
 .elip{ font-size:x-large; }
+#site-licenses{ text-align:right; }
 /* Status log. */
 #log p {
 	font-family:monospace;
@@ -173,6 +174,7 @@ h1 em, h2 em {
 	max-height:6em;
 	overflow-y:scroll;
 }
+
 
 /* OER form.
 */

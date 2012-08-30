@@ -35,7 +35,7 @@ EOT;
 
   public $_examples = array(
     'http://oercommons.org/courses/campaigns-and-elections/view',
-    'http://oercommons.org/search?f.search=law+contemporary&feed=yes'
+    '_RSS' => 'http://oercommons.org/search?f.search=law+contemporary&feed=yes'
 
   );
   public $_access = 'public';
@@ -55,14 +55,25 @@ EOT;
 
     $result = $this->_http_request($iframe_url);
 
-    if (preg_match('/<iframe.*src="([^"]+)"/', $result->data, $matches_src)) {
-      $course_url = $matches_src[1];
+    if (! $result->success) {
+      $this->_error("Error requesting HTML page, $iframe_url", $result->http_code);
     }
+
+    if (! preg_match('/<iframe.*src="([^"]+)"/', $result->data, $matches_src)) {
+      $this->_error("Error finding course URL in page, $iframe_url");
+    }
+    $course_url = $matches_src[1];
+
     if (preg_match('/button" +data-identifier="([^"]+)"/', $result->data, $matches_id)) {
       $id = $matches_id[1]; #35.35915
     }
 
     #$result = $this->_http_request($search_url);
+
+    if (! $result->success) {
+      $this->_error("Error requesting search feed XML, $search_url", $result->http_code);
+    }
+
 
     var_dump($search_url, $matches, $course_url, $id);
     #var_dump($result);

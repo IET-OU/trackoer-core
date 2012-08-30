@@ -63,6 +63,23 @@ function trackoer_show_embed(){
 			.after('<textarea id="'+ area_id +'" class="show" title="Copy me!" rows="10" cols="85" readonly="">' + code + '</textarea>')
 			//.after('<label class="blk" for="copy-me-js">Copy me!</label>') //Hmm, back to front!
 			.attr({ });
+
+
+		// "Select all".
+		// https://github.com/IET-OU/ouplayer/blob/master/application/themes/ouplayer_base/js/mep-oup-feature-copyembed.js
+		var area = $('#'+ area_id);
+		area.bind('focus click', function(ev){
+			this.select();
+
+			// Work around Chrome's little problem
+			//preventDefault: https://bugs.webkit.org/show_bug.cgi?id=22691
+			//http://stackoverflow.com/questions/5797539/jquery-select-all-text-from-a-textarea
+			area.mouseup(function(e) {
+				if(typeof e.preventDefault!=='undefined'){ e.preventDefault() }
+				// Prevent further mouseup intervention
+			});
+			$.log('Embed code selected');
+		});
 	});
 
 	// Trigger: if the URL ends in #copy-me-js show the <textarea>

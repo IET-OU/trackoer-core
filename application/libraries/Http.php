@@ -161,8 +161,8 @@ class Http {
       #$this->CI->firephp->fb("cURL $errno", "cURL error", "ERROR");
     }
     $result->info = curl_getinfo($h_curl);
-    $result->http_code = $result->info['http_code'];
-    $result->success = ($result->info['http_code'] < 300);
+    $result->http_code = $result->info['http_code'] ? $result->info['http_code'] : 500.01;
+    $result->success = ($result->info['http_code'] < 300 && $result->data);
     return (object) $result;
   }
 

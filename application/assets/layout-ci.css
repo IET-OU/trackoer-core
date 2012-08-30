@@ -167,6 +167,7 @@ h1 em, h2 em {
 #copy-me-js.hide{ display:none; }
 .elip{ font-size:x-large; }
 #site-licenses{ text-align:right; }
+#cloudstream .cloudworks-end{ display:block; margin:0 15px 3em; font-size:small; }
 /* Status log. */
 #log p {
 	font-family:monospace;

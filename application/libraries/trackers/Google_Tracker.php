@@ -22,6 +22,7 @@
  */
 class Google_Tracker extends Base_Tracker {
 
+  protected $with_campaign = TRUE;
 
   public function __construct() {
     parent::__construct();
@@ -29,6 +30,12 @@ class Google_Tracker extends Base_Tracker {
 
   }
 
+  public function withCampaign($flag) {
+    $old = $this->with_campaign;
+    $this->with_campaign = $flag;
+	return $old;
+  }
+  
   public function isValid($account) {
     return preg_match('/'. $this->getRegex() .'/', $account);
   }
@@ -63,6 +70,9 @@ class Google_Tracker extends Base_Tracker {
   * @return string URL with appended parameters.
   */
   public function campaignUrl($url, $mode = TRACKER_MODE_ZIP, $which = TRACKER_RDF_LIC_ICON, $source_host='labspace.open.ac.uk', $source_id='Learning_to_Learn_1.0', $campaign='toer1', $term=NULL) {
+    if (! $this->with_campaign) {
+      return $url;
+    }
     // Todo: URLs containing '#fragments' will be messed up.
     $campaign_url = $url;
     $campaign_url .= FALSE===strpos($url, '?') ? '?' : '';

@@ -11,6 +11,8 @@ $config['_toer_constants'] = 'dummy';
 
 /*
 | Separator character for Analytics 'page' URLs.
+| "!" is reserved as an application-specific ('sub-delims') URI delimiter in RFC 3986
+| @link http://tools.ietf.org/html/rfc3986#section-2.2
 */
 define('TRACKER_PAGE_URL_SEP', '!');
 
@@ -40,6 +42,21 @@ define('TRACKER_MODE_PDF', 'pdf');
 define('TRACKER_MODE_EPUB', 'epub');
 // Word document
 define('TRACKER_MODE_DOC', 'doc');
+
+
+/*
+|--------------------------------------------------------------------------
+| Which link in a (Creative Commons) License RDFa snippet is this?
+| @see Google_Tracker::campaignUrl()
+*/
+// License image-link
+define('TRACKER_RDF_LIC_ICON', 'lic-icon');
+// License text-link
+define('TRACKER_RDF_LIC_LINK', 'lic-link');
+// Source work link/URL
+define('TRACKER_RDF_SRC_LINK', 'src-link');
+// Attribution link
+define('TRACKER_RDF_ATTR_LINK', 'attr-link');
 
 
 /**

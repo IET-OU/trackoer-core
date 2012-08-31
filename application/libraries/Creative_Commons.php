@@ -28,12 +28,38 @@ class Creative_Commons {
   const AUTHOR_URL = 'http://labspace.open.ac.uk/b2s';
   const AUTHOR = 'OpenLearn/Bridge to Success';
   const OL_TERMS  = 'by-nc-sa'; //cc:by-nc-sa/2.0/uk
-  const B2S_TERMS = 'by-sa';    //cc:by-sa/3.0
+  const B2S_TERMS = 'by';    //cc:by/3.0
 
   protected $CI;
 
   public function __construct() {
     $this->CI =& get_instance();
+  }
+
+
+  /**
+  * Parse a license URL or CURIE into it's component parts.
+  * {Namespace}:{Terms}/{Version}/{Jurisdiction}/{Icon size}.{Icon format}
+  * @return object
+  */
+  public function parseUrl($url) {
+    $curie = $this->compactUrl($url);
+    $RE = '^(cc):([a-z\-]{2,8})(/\d\.\d)?(\/[a-z]{2,})?(\/\d{2}x\d{2})?(.png|.gif)?$';
+    if (preg_match('@'. $RE .'@', $curie, $matches)) {
+      $license = (object) array(
+        '_curie' => $curie,
+        '_RE'  => $RE,
+        'ns'  => $matches[1],
+        'term'=> $matches[2],
+        'ver' => isset($matches[3]) ? ltrim($matches[3], '/') : '3.0',
+        'jur' => isset($matches[4]) ? ltrim($matches[4], '/') : '', #uk
+        'sz'  => isset($matches[5]) ? ltrim($matches[5], '/') : '88x31',
+        'fmt' => isset($matches[6]) ? ltrim($matches[6], '.') : 'png',
+      );
+      $license->_vj = $license->ver . ($license->jur ? '/'.$license->jur :'');
+      return $license;
+    }
+    return NULL;
   }
 
   /** Return the URL for a PNG Creative Commons license image.
@@ -43,7 +69,8 @@ class Creative_Commons {
   * @return string URL.
   */
   public function getImageUrl($curie = 'cc:by/3.0', $size = '88x31') {
-    return 'http://i.creativecommons.org/l/'. str_replace('cc:', '', $curie) .'/'. $size .'.png';
+    $lic = $this->parseUrl($curie);
+    return 'http://i.creativecommons.org/l/'. $lic->term .'/'. $lic->_vj .'/'. $lic->sz .'.png';
   }
 
   /** Return a License deed URL.

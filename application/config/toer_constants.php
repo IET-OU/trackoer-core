@@ -6,7 +6,7 @@
 | @link https://github.com/IET-OU/ouplayer/blob/master/application/config/oup_constants.php
 */
 // Prevent CI error.
-$config['oup_constants'] = 'dummy';
+$config['_toer_constants'] = 'dummy';
 
 
 /*
@@ -14,6 +14,32 @@ $config['oup_constants'] = 'dummy';
 */
 define('TRACKER_PAGE_URL_SEP', '!');
 
+
+/*
+|--------------------------------------------------------------------------
+| Content delivery modes or methods.
+| @link http://labspace.open.ac.uk/blocks/formats/download_unit.php?id=7442&name=Learning_to_Learn_1.0
+| @link http://openlearn.open.ac.uk/mod/oucontent/view.php?id=398528&name=S197_1#!Alt
+*/
+// Feeds: RSS (2.0), Atom, eg. 'NAME_rss.xml'
+define('TRACKER_MODE_RSS', 'rss');
+define('TRACKER_MODE_ATOM', 'atom');
+// OU XML Package, eg. 'NAME_ouxml.zip'
+define('TRACKER_MODE_OUXML', 'ouxml');
+// IMS Common Cartridge 1.0, eg. 'NAME_imscc.zip'
+define('TRACKER_MODE_IMS', 'imscc');
+// Sharable Content Object Reference Model/ Package Interchange File, eg. 'NAME_scorm.zip'
+define('TRACKER_MODE_SCORM', 'scorm');
+// Plain Zip, eg. 'NAME_plain.zip'
+define('TRACKER_MODE_ZIP', 'zip');
+// Moodle Backup (.zip/ .mbz)
+define('TRACKER_MODE_MOODLE', 'moodle');
+// Portable Document Format/ Adobe PDF.
+define('TRACKER_MODE_PDF', 'pdf');
+// ePub open e-boook standard (.epub)
+define('TRACKER_MODE_EPUB', 'epub');
+// Word document
+define('TRACKER_MODE_DOC', 'doc');
 
 
 /**

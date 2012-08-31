@@ -47,6 +47,34 @@ class Google_Tracker extends Base_Tracker {
     return NULL;
   }
 
+  /**
+  * Append campaign tracking parameters to a URL.
+  *
+  * GA: http://creativecommons.org/licenses/by/3.0/deed.en_GB?utm_source=labspace.open.ac.uk!Learning_to_Learn_1.0&utm_medium=zip!cc-img&utm_term=learning&utm_campaign=oer1
+  * (Piwik: http://creativecommons.org/licenses/by/3.0/deed.en_GB?pk_campaign=oer1,zip!cc-img,labspace.open.ac.uk!Learning_to_Learn_1.0&pk_kwd=learning)
+  *
+  * @link http://support.google.com/analytics/bin/answer.py?hl=en&answer=1033867 URL Builder
+  * @link http://piwik.org/docs/tracking-campaigns/url-builder/
+  * @link http://piwik.org/faq/general/#faq_119 "Yes, Piwik detects URLs tagged with Google Analytics campaign parameters."
+  *
+  * @param string $url   The input URL.
+  * @param string $mode  The delivery mode, that is, one of 'zip', scorm, ims, rss, atom, pdf..
+  * @param string $which Which link in a (Creative Commons License) RDFa snippet? That is, one of 'lic-img', lic-link, attr-link, src-link..
+  * @return string URL with appended parameters.
+  */
+  public function makeCampaignUrl($url, $mode = TRACKER_MODE_ZIP, $which='lic-img', $source_host='labspace.open.ac.uk', $source_id='Learning_to_Learn_1.0', $campaign='toer1', $term=NULL) {
+    // Todo: URLs containing '#fragments' will be messed up.
+    $campaign_url = $url;
+    $campaign_url .= FALSE===strpos($url, '?') ? '?' : '';
+
+    $params = array(
+      'utm_source' => $source_host .TRACKER_PAGE_URL_SEP. $source_id,
+      'utm_medium' => $mode .TRACKER_PAGE_URL_SEP. $which,
+      'utm_campaign' => $campaign,
+      'utm_term' => $term,
+    );
+    return $campaign_url . http_build_query($params);
+  }
 
   /**
   * Get a HTML snippet containing one or more <script>

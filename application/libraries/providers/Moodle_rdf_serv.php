@@ -88,7 +88,7 @@ EOT;
 	  $page_title = trim(str_replace(array('The Open University', '&#x2014;'), array('', '—'), $page_title), '- ');
 
     }
-var_dump($rdf_url);
+#var_dump($rdf_url);
     $rdf_result = $this->_http_request_work_rdf($rdf_url);
 
     $rdf = $rdf_result->rdf;

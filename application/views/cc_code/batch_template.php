@@ -37,20 +37,20 @@ $use_gatrack = isset($use_gatrack) ? $use_gatrack : FALSE;
 ?>
 
 <div id="trackoer-code" style="__STYLE__">
-<a rel="license" href="http://creativecommons.org/licenses/__CC_TERMS__/__CC_VJ__/deed.en_GB"
+<a rel="license" href="__CC_ICON_URL__"
  ><img alt="Creative Commons Licence" style="border-width:0"
- src="http://i.creativecommons.org/l/__CC_TERMS__/__CC_VJ__/88x31.png"
+ src="__CC_ICON_SRC__"
 <?php /* title="Creative Commons License - with tracking**"*/ ?> /></a>
  <br />
  <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">__WORK_TITLE__</span>
  by
  <a xmlns:cc="http://creativecommons.org/ns#" href="__ATTR_URL__" property="cc:attributionName" rel="cc:attributionURL">__ATTR_NAME__</a>
  is licensed under a 
- <a rel="license" href="http://creativecommons.org/licenses/__CC_TERMS__/__CC_VJ__/deed.en_GB">__CC_LABEL__</a><?php /*
+ <a rel="license" href="__CC_TEXT_URL__">__CC_LABEL__</a><?php /*
  , <a class="wt" href="#!Explain..">with tracking</a>*/ ?>.
  <br />
  Based on a work at
- <a xmlns:dct="http://purl.org/dc/terms/" href="__SOURCE_URL__" rel="dct:source">__SOURCE_URL__</a>.
+ <a xmlns:dct="http://purl.org/dc/terms/" href="__SOURCE_URL__" rel="dct:source">__SOURCE_TEXT__</a>.
 <?php /*<!--Extend Creative Commons with a course 'identifier'-->
  <br />
  Identifier: <a xmlns:dct="http://purl.org/dc/terms/" href="__SOURCE_URL__" rel="dct:identifier">__COURSE_ID__</a>

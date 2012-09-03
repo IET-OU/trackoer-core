@@ -44,6 +44,10 @@ h1{ font-family:"<?php echo $ggl_font ?>", Helvetica, sans-serif; }
 <script src="http://cdn.enderjs.com/jeesh.js"></script>
 <script src="<?php echo $assets_url ?>site/js/trackoer-site.js"></script>
 
+
+<?php $this->load->view('site_layout/site_analytics') ?>
+
+
 <body class="<?php echo $body_classes ?>">
 
 

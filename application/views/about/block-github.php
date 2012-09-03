@@ -1,5 +1,5 @@
 
-
+<?php /*
 <style>
 .X-body{ font:1em sans-serif; }
 #commits li img{ width:36px; height:36px; float:left; margin-right:8px; }
@@ -10,6 +10,8 @@
 <h2>Software coding activity/ Github</h2>
 
 <div id=commits>Loading...</div>
+*/ ?>
+
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js"></script>
 <script>

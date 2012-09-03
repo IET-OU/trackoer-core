@@ -23,9 +23,20 @@
 
   $this->load->view('about/block-cloudworks');
   $this->load->view('about/block-twitter');
-  $this->load->view('about/block-github');
-
 ?>
+
+
+<style>
+.X-body{ font:1em sans-serif; }
+#commits li img{ width:36px; height:36px; float:left; margin-right:8px; }
+#commits li{ clear:left; margin-top:8px; }
+#commits li .co{ display:block; }
+</style>
+
+<h2><a href="<?php echo CODE_URL ?>">Software coding activity on Github</a></h2>
+
+<div id=commits>Loading...</div>
+
 
 
 
@@ -57,3 +68,8 @@
  See the <a href="<?php echo CODE_URL ?>/tree/master/docs/CREDITS.md#readme">full credits</a>
  and <a href="http://cloudworks.ac.uk/cloud/view/6442">list of outputs</a>.
 </div>
+
+
+
+<?php $this->load->view('about/block-github') ?>
+

@@ -18,7 +18,7 @@
 /**
  * Creative Commons
  * Library to generate Creative Commons License embed code snippets, URLs and so on.
- * (Note, we could use the Creative Commons API - jurisdiction/locale support)
+ * (Note, we make use of the Creative Commons API - jurisdiction/locale support)
  * @link http://creativecommons.org/
  */
 class Creative_Commons {
@@ -76,13 +76,18 @@ class Creative_Commons {
   /** Return a License deed URL.
   */
   public function getLicenseUrl($curie = 'cc:by/3.0', $locale = 'en_GB') {
-    return 'http://creativecommons.org/licenses/'. str_replace('cc:', '', $curie) .'/deed.'. $locale;
+    $lic = $this->parseUrl($curie);
+
+    return 'http://creativecommons.org/licenses/'
+        . $lic->term .'/'. $lic->_vj .'/deed.'. $locale;
   }
 
   /** Return an expanded Compact URI.
   */
   public function expandUrl($curie = 'cc:by/3.0') {
-    return 'http://creativecommons.org/licenses/'. str_replace('cc:', '', $curie);
+    $lic = $this->parseUrl($curie);
+
+    return 'http://creativecommons.org/licenses/'. $lic->term .'/'. $lic->_vj .'/';
   }
 
   public function compactUrl($url = 'http://creativecommons.org/licenses/by/3.0') {
@@ -123,5 +128,51 @@ class Creative_Commons {
   */
   public function escape($code) {
     return str_replace(array('<', "\n"), array('&lt;', ''), $code);
+  }
+
+
+  public function requestChooser($locale = 'en', $exclude = 'publicdomain') {
+    $api_path = 'simple/chooser?locale='. $locale .'&exclude='. $exclude;
+
+    $result = $this->_requestApi($api_path);
+
+    return (object) array(
+      'api_url' => $result->info['url'],
+      'exclude' => $exclude,
+      'locale'  => $locale,
+      'html' => $result->data,
+    );
+  }
+
+
+  public function requestDetails($license = 'cc:by', $locale = 'en') {
+    $url = $this->expandUrl($license);
+
+    $api_path = 'details?license-uri='. urlencode($url) .'&locale='. $locale;
+
+    $result = $this->_requestApi($api_path);
+
+    if (preg_match('@<html>(.+)<\/html>@', $result->data, $matches)) {
+      $result->api_url = $result->info['url'];
+      $result->original_url = $url;
+      $result->locale = $locale;
+      $result->html = $matches[1];
+    }
+    return $result;
+  }
+
+
+  protected function _requestApi($api_path) {
+    $api_url = 'http://api.creativecommons.org/rest/1.5/'. $api_path;
+
+    $this->CI->load->library('Http');
+    $result = $this->CI->http->request($api_url);
+
+    if ($result->success && FALSE !== strpos($result->data, '<error>')) {
+      $result->success = FALSE;
+      preg_match('@<message>(.+)<\/message>@', $result->data, $matches);
+      $this->CI->_error('Creative Commons API error, '. $matches[1] .' '. $api_url);
+    }
+    return $result;
   }
 }

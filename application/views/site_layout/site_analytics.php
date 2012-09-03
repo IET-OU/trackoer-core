@@ -2,6 +2,7 @@
   $piwik_url = $this->config->item('piwik_url');
   $piwik_ssl = 'https://demo.piwik.org/';
 
+  // Assume that we use GA for this site with the ID 'UA-12345-1'.
   $ga_site_id = $this->config->item('google_analytics_default_id');
   $ga_site_id = preg_replace('/-\d$/', '-1', $ga_site_id);
 ?>

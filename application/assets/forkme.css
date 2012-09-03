@@ -15,7 +15,7 @@
 	margin: 0;
 
 	position:absolute;
-	right:0;
+	right:-7px;
 	top:0;
 }
 
@@ -23,7 +23,7 @@
 
 	display: block;
 	width: 190px;
-	font-size: ; /*14px*/
+	/*font-size: 14px;*/
 	font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", 
 		"Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, 
 		Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;

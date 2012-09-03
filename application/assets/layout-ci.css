@@ -6,7 +6,7 @@
 */
 body {
 	background-color: #fdfdfd; /*#fff*/
-	margin: 40px;
+	/*margin: 40px;*/
 	font: .91em/1.4em normal Helvetica, Arial, sans-serif; /*13px/20px*/
 	color: #4F5155;
 }
@@ -70,10 +70,12 @@ p.ci-footer{
 }
 
 #container{
-	margin: 10px;
+	margin: 35px auto;
 	border: 1px solid #D0D0D0;
 	/*-webkit-box-shadow: 0 0 8px #D0D0D0;*/
 	box-shadow:0 0 8px #d0d0d0;
+	min-width:13em;
+	max-width:66em;
 }
 
 #container p, h2, h3, pre{
@@ -121,11 +123,11 @@ h1 em, h2 em {
 	list-style:none;
 	padding:3px 6px;
 }
-.pg-home .tm-toer-home, .pg-test .tm-test, .pg-oerform .tm-form {
+.pg-home .tm-toer-home, .rt-about .tm-about, .pg-test .tm-test, .pg-oerform .tm-form {
 	background:#eee;
 	border:1px solid #e8e8e8;
 }
-.pg-home .tm-toer-home a, .pg-test .tm-test a, .pg-oerform .tm-form a {
+.pg-home .tm-toer-home a, .rt-about .tm-about a, .pg-test .tm-test a, .pg-oerform .tm-form a {
 	color: #36a;
 	text-decoration:none;
 	x-cursor:default;

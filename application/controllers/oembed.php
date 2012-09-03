@@ -64,22 +64,35 @@ class Oembed extends MY_Controller {
     $result = $this->provider->call($request->url, $matches);
 
 
-    // Google Analytics.
-    if (isset($request->ac) && $request->ac) {
-      $this->load->tracker('Google', NULL);
+    $this->load->tracker($request->tracker);
 
-      if ($this->ga->isValid($request->ac)) {
+    $result->_tracker_code = $result->_piwik_site_id = $result->_piwik_site_url = NULL;
+    switch ($request->tracker) {
+      case 'Piwik':
+        $result = $this->_get_piwik_site_id($result);
+        $this->_addStatus("Controller: Requesting 'site ID' from Piwik API over the Web... Received OK.");
+      break;
+      case 'Google':
+        $this->_addStatus("Controller: Rendering Google Analytics embed snippet...");
 
-        $this->_addStatus("Controller: The input 'ac' parameter seems to be a Google Analytics ID. Getting GA embed snippet...");
+        $ga_code = $this->tracker->getCode($request->ac, $with_trackoer = TRUE, $result->_custom_path);
 
-        $ga_code = $this->ga->getCode($request->ac, $with_trackoer = TRUE, $result->_custom_path);
-
-        $result->html .= $ga_code;
+        $result->_tracker_code = $ga_code;
         $result->_ga_account = $request->ac;
-      } else {
-        $this->_error("Unexpected account ID {ac}, $request->ac", 400.10);
-      }
+      break;
+      default:
+
+      break;
     }
+
+
+    $this->load->library('Creative_Commons');
+    $cc_code = $this->cc->getCode($result->_piwik_site_id, $result->original_url, $result->identifier, $result->_title, 'OpenLearn/'. $result->contributor, $result->_piwik_site_url);
+
+    $result->html = $cc_code;
+    $result->html .= $result->_tracker_code;
+
+
 
     $this->_addStatus('Controller: response complete.');
 
@@ -103,7 +116,7 @@ class Oembed extends MY_Controller {
   */
   protected function _parse_oembed_params($cli_args = NULL) {
     if ($this->input->is_cli_request()) {
-       $request = $cli_args;
+      $request = $cli_args;
     } else {
 	  $request = (object) array(
         // oEmbed specification.
@@ -126,6 +139,26 @@ class Oembed extends MY_Controller {
       $this->_error("The URL parameter {url} is invalid - missing host", 400);
     }
 
+
+    // Google Analytics, or Piwik?
+    $request->tracker = NULL;
+    if (isset($request->ac) && $request->ac) {
+      $this->load->tracker('Google', NULL);
+
+      if ($this->ga->isValid($request->ac)) {
+
+        $this->_addStatus("Controller: The input 'ac' parameter seems to be a Google Analytics ID. Proceeding with Google-Tracker..");
+        $request->tracker = 'Google';
+      } else {
+        $this->_error("Unexpected account ID {ac}, $request->ac", 400.10);
+      }
+    }
+    if (! $request->tracker) {
+      $this->_addStatus("Controller: Proceeding with Piwik-Tracker..");
+      $request->tracker = 'Piwik';
+    }
+
+
     if (! $this->input->is_cli_request()) {
       if ('json'!=$request->format && 'xml'!=$request->format) {
         $this->_error("The output format {format} '$request->format' is not recognised.", 400.5);
@@ -139,6 +172,19 @@ class Oembed extends MY_Controller {
 
     return $request;
   }
+
+
+  protected function _get_piwik_site_id($rdf) {
+    if ('Piwik' == $this->request->tracker) {
+	  $this->load->tracker('Piwik');
+      $res = $this->tracker->getSiteId($rdf->original_url);
+
+      $rdf->_piwik_site_url = $res->site_url;
+      $rdf->_piwik_site_id  = $res->site_id;
+	}
+    return $rdf;
+  }
+
 
   /* $host = $req->host = str_replace('www.', '', strtolower($p['host']));
 

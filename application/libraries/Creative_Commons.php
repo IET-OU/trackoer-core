@@ -110,7 +110,7 @@ class Creative_Commons {
 	  'cc_jur' => 'uk',
 	  'cc_loc' => 'en_GB',
 	  'cc_siz' => '88x31', # Or, '80x15'
-	  'with_tracker' => TRUE,
+	  'with_tracker' => (bool) $site_id,
 	  'explain_tracking_url' => '#!Explain..',
 	);
 	$view['cc_license'] = $view['cc_terms'] .'/'. $view['cc_ver'] .'/' .$view['cc_jur'];

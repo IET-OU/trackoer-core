@@ -101,21 +101,10 @@ EOT;
 	$rdf->original_url = $url;
 	$rdf->_rdf_type = $rdf->type;
 	$rdf->type = 'rich';
-	$title = isset($rdf->_page_title) ? $rdf->_page_title .' (Course)' : $rdf->title .' (Module)';
+	$rdf->_title = isset($rdf->_page_title) ? $rdf->_page_title .' (Course)' : $rdf->title .' (Module)';
 
 	$rdf->_custom_path = $this->_get_custom_hash($rdf);
 
-    $rdf = $this->_get_piwik_site_id($rdf);
-
-    $this->_addStatus("Requesting 'site ID' from Piwik API over the Web... Received OK.");
-
-	//
-	$this->CI->load->library('Creative_Commons');
-	$cc_code = $this->CI->cc->getCode($rdf->_piwik_site_id, $rdf->original_url, $rdf->identifier, $title, 'OpenLearn/'. $rdf->contributor, $rdf->_piwik_site_url);
-	$rdf->html = $cc_code;
-
-
-	$this->_addStatus('Rendering the license-embed HTML...');
 	$this->_addStatus('Returning to controller.');
 
 
@@ -169,16 +158,6 @@ EOT;
 	#var_dump((string) $xmlo->Work[0]->{'dc:title'}, $rdf);
 	$result->rdf = (object) $rdf;
     return $result;
-  }
-
-
-  protected function _get_piwik_site_id($rdf) {
-    $this->CI->load->tracker('Piwik');
-    $res = $this->CI->tracker->getSiteId($rdf->original_url);
-
-    $rdf->_piwik_site_url = $res->site_url;
-    $rdf->_piwik_site_id  = $res->site_id;
-    return $rdf;
   }
 
 }

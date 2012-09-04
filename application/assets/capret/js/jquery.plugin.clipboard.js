@@ -19,24 +19,25 @@
 
 			el.oncopy = function(e,b){
 				if (window.clipboardData && document.selection) { // Internet Explorer
+
 					var s = document.selection;
+
 					var r = s.createRange();
-					var t;
-					var txt = r.htmlText;
+					var t = r.htmlText;
 
 					if (options.prepend!==null){
 						if($.isFunction(options.prepend)){
-							t = options.prepend(txt) + txt;
+							t = options.prepend(t) + t;
 						} else {
-							t = options.prepend + txt;
+							t = options.prepend + t;
 						}                        
 					}
 
 					if (options.append!==null){
 						if($.isFunction(options.append)){
-							t = options.append(txt) + txt;
+							t = t + options.append(t);
 						} else {
-							t = options.append + txt;
+							t = t + options.append;
 						}
 					}
 

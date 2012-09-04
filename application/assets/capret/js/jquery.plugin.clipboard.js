@@ -84,9 +84,9 @@
 						if (options.prepend!==null){
 							var prepend;
 							if($.isFunction(options.prepend)){
-								append = options.prepend(tmpr.toString());
+								prepend = options.prepend(tmpr.toString());
 							} else {
-								append = options.prepend;
+								prepend = options.prepend;
 							}
 							var n = $('<span />').html(prepend);
 

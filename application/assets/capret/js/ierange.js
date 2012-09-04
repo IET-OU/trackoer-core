@@ -22,6 +22,11 @@
 
 //[TODO] better exception support
 
+
+//ou-specific - See lines marked / Nick Freear, 2012-09-04.
+//ou-specific ends.
+
+
 (function () {	// sandbox
 
 /*
@@ -113,10 +118,21 @@ var TextRangeUtils = {
 
 			// create a cursor element node to position range (since we can't select text nodes)
 			var cursorNode = domRange._document.createElement('a');
-			anchorParent.insertBefore(cursorNode, anchorNode);
+//ou-specific
+			//console.log(cursorNode, anchorNode, typeof cursorNode);
+			if (typeof anchorNode !== 'undefined') {
+//ou-specific ends.
+				cursorNode = anchorParent.insertBefore(cursorNode, anchorNode);
+			}
 			var cursor = domRange._document.body.createTextRange();
-			cursor.moveToElementText(cursorNode);
-			cursorNode.parentNode.removeChild(cursorNode);
+//ou-specific
+			// this test looks wrong, but is OK!
+			// (http://stackoverflow.com/questions/122546/what-to-do-when-ies-movetoelementtext-spits-out-an-invalid-argument-exception)
+			if (typeof anchorNode !== 'undefined') {
+//ou-specific ends.
+				cursor.moveToElementText(cursorNode);
+				cursorNode.parentNode.removeChild(cursorNode);
+			}
 			// move range
 			textRange.setEndPoint(bStart ? 'StartToStart' : 'EndToStart', cursor);
 			textRange[bStart ? 'moveStart' : 'moveEnd']('character', textOffset);
@@ -261,7 +277,12 @@ DOMRange.prototype = {
 			DOMUtils.splitDataNode(this.startContainer, this.startOffset);
 			this.startContainer.parentNode.insertBefore(newNode, this.startContainer.nextSibling);
 		} else {
-			this.startContainer.insertBefore(newNode, this.startContainer.childNodes[this.startOffset]);
+//ou-specific
+			// Guessing at a solution!
+			//console.log(newNode, this.startContainer.childNodes, this.startOffset);
+			var off = this.startOffset > 0 ? this.startOffset - 1 : 0;
+//ou-specific ends.
+			this.startContainer.insertBefore(newNode, this.startContainer.childNodes[off]);
 		}
 		// resync start anchor
 		this.setStart(this.startContainer, this.startOffset);

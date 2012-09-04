@@ -57,7 +57,11 @@
 
 ### Google Analytics JS v1/gajs.js: Copyright (c) 2009 Remy Sharp remysharp.com
 * License: MIT
-* Code: <http://code.google.com/p/google-analytics-js>
+* Code: <http://code.google.com/p/google-analytics-js#r2>
+
+### ierange.js: Copyright (c) 2009 Tim Cameron Ryan
+* License: MIT
+* Code: <http://code.google.com/p/ierange#r32>
 
 ### yUML.me: Copyright Tobin Harris/ Engineroom.
  * Tool: <http://yuml.me>

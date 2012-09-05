@@ -28,7 +28,7 @@
 		J = JSON,  //3rd party?
 		doc = document,
 		license_parser = oer_license_parser,  //3rd party library.
-		log = function (ob) {if (typeof console !== 'undefined' && debug) {console.log(arguments); } };
+		log = function (s) {if (typeof console === 'object' && debug) {console.log(arguments.length <= 1 ? s : arguments); } };
 
 	function truncate(str, length) {
 		if (str.length > length) {

@@ -21,7 +21,7 @@
 			disable: false,  // disable copying for element
 			oncopy: function (content) {} // callback on copy event
 		},
-			log = function (ob) {if (typeof console === 'object') {console.log(arguments); } }; //(typeof console !== 'undefined')
+			log = function (o) {if (typeof console === 'object') {console.log(arguments.length <= 1 ? o : arguments); } };
 
 		log('jquery.clipboard 2');
 
@@ -37,6 +37,7 @@
 				// Polyfill Internet Explorer/MSIE with 'ierange.js'.
 				if (typeof window.getSelection === 'function') {
 					// (the rest - which don't support clipboardData)
+					log('win.getSelection - non-IE');
 
 					var s = window.getSelection(),
 						r,
@@ -108,7 +109,7 @@
 
 				} else if (window.clipboardData && document.selection) { // (Internet Explorer)
 
-					//console.log('IE route!');
+					log('win.clipboardData - IE!');
 
 					var s = document.selection,
 						r = s.createRange(),

@@ -46,18 +46,33 @@ class PiwikEx extends Piwik {
     }
 
 
-    public function getSitesIdFromSiteUrl($site_url)
+    public function getSitesIdFromSiteUrl($params = array('url' => NULL))
     {
-        $url = $this->_piwik_url('SitesManager.getSitesIdFromSiteUrl')
-            .'&url='.urlencode($site_url);
+        $url = $this->_piwik_url('SitesManager.getSitesIdFromSiteUrl', $params);
         return $this->_get_decoded($url);
     }
 
 
-    protected function _piwik_url($method, $module = 'API')
+    /**
+     * Given a method and optional params generate a URL for the Piwik API.
+     * @return string URL
+     */
+    protected function _piwik_url($method, $params = array(), $module = 'API')
     {
-        return $this->piwik_url.'/index.php?module='.$module
-            .'&method='.$method.'&format=JSON&token_auth='.$this->token;
+        $url = $this->piwik_url.'/index.php?'
+            . http_build_query(array_merge(array(
+                'module' => $module,
+                'method' => $method,
+                'format' => 'JSON',
+                'token_auth' => $this->token,
+            ),
+            $params
+        ));
+
+        $obscure_token = substr($this->token, 0, strlen($this->token) - 4);
+        @header('X-Piwik-Api-Url: '. str_replace($obscure_token, '***', $url));
+
+        return $url;
     }
 
 

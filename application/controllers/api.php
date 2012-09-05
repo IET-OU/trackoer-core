@@ -34,17 +34,23 @@ class Api extends MY_Controller {
   */
   public function piwik($method = NULL) {
     if (! $method) {
-      $this->_error('Missing {method}', 400);
+      $this->_error('Piwik API error: Missing {method}', 400);
     }
 
     $this->load->library('PiwikEx');
 
     if (! method_exists($this->piwik, $method)) {
-      $this->_error('Method not found, '.$method, 404);
+      $this->_error('Piwik API error: Method not found, '.$method, 404);
     }
-    $url = $this->input->get('url');
+    $params = array(
+      'url' => $this->input->get('url'),
+    );
 
-    $result = $this->piwik->{$method}($url);
+    $result = $this->piwik->{$method}($params);
+
+    if (! $result) {
+      $this->_error('Piwik API error: Empty result', 400.2);
+    }
 
     $this->_render($result);
   }
@@ -79,6 +85,8 @@ class Api extends MY_Controller {
   */
   protected function _render($data) {
     @header('Content-Type: text/plain; charset=utf-8');
+    header('Content-Disposition: inline; filename='
+        . str_replace('/', '-', $this->uri->uri_string()) .'.json');
     echo json_encode($data);
   }
 }

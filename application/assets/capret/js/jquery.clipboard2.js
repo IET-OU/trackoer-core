@@ -16,11 +16,14 @@
 
 	$.fn.clipboard = function (options) {
 		var defaults = {
-			prepend: null, // content to prepend to copy selection
-			append: null,  // content to append to copy selection
+			prepend: null, // content/function to prepend to copy selection
+			append: null,  // content/function to append to copy selection
 			disable: false,  // disable copying for element
 			oncopy: function (content) {} // callback on copy event
-		};
+		},
+			log = function (ob) {if (typeof console === 'object') {console.log(arguments); } }; //(typeof console !== 'undefined')
+
+		log('jquery.clipboard 2');
 
 		options = $.extend({}, defaults, options);
 
@@ -32,7 +35,7 @@
                 }
 
 				// Polyfill Internet Explorer/MSIE with 'ierange.js'.
-				if (typeof window.getSelection !== 'undefined') {
+				if (typeof window.getSelection === 'function') {
 					// (the rest - which don't support clipboardData)
 
 					var s = window.getSelection(),

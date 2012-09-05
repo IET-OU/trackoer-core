@@ -4,7 +4,7 @@
 * See, http://piwik.org/docs/tracking-api/reference
 */
 /*jslint browser:true, devel:true, indent:4, maxerr:500 */
-/*global document:false, window:false, oer_license_parse:false, jQuery:false */
+/*global document:false, window:false, oer_license_parser:false, jQuery:false */
 
 (function (jQuery) {
 	'use strict';
@@ -18,7 +18,8 @@
 
 	var piwik_url = get_data('url', 'http://track.olnet.org/piwik'),
 		idsite = get_data('idsite', 1),
-		source_ref = get_data('src-ref', true),
+		source_ref = get_data('src-ref', true),   // Put document.location in 'urlref' Piwik param? (default: true)
+		msie_hack = get_data('msie-hack', false), // Append beacon to source document for IE? (default: false)
 		record = get_data('rec', 1),
 		debug = get_data('debug', false),
 	// Aliases
@@ -26,8 +27,8 @@
 		enc = encodeURIComponent,
 		J = JSON,  //3rd party?
 		doc = document,
-		win = window,
-		license_parser = oer_license_parser;  //3rd party library.
+		license_parser = oer_license_parser,  //3rd party library.
+		log = function (ob) {if (typeof console !== 'undefined' && debug) {console.log(arguments); } };
 
 	function truncate(str, length) {
 		if (str.length > length) {
@@ -62,27 +63,28 @@
 	}
 	function image_tag_piwik(copy_text, env) {
 		var img = '<img src="' + piwik_url + '/piwik.php?' + final_params_pi(copy_text, env) + '"/>';
-		if (debug) {
-			console.log(img);
-			console.log(env);
-			//console.log(J.stringify({a:1}));
-		}
+
+		log(img);
+		log(env);
+		//log(J.stringify({a:1}));
+
 		return img;
 	}
 	jQuery(function () {
 		var env = {},
+			win = jQuery(window),
 			urlkey = source_ref ? 'urlref' : 'url',
 			license = license_parser.get_license();
 
 		env[urlkey] = enc(doc.location.href); //Use 'ContentReuse' Piwik plugin.
-		env.res = enc(win.innerWidth + 'x' + win.innerHeight);
+		env.res = enc(win.width() + 'x' + win.height());
 		//env.id = make_id();
 
 		jQuery('body').clipboard({
 			append: function (e) {
 				// A side effect of adding the image tag to the clipboard is that the browser will make a request out to the stats server.
 				// That notifies us that text was copied
-				if (jQuery.browser.msie) {
+				if (msie_hack && jQuery.browser.msie) {
 					// Maybe a fix for MSIE 8.. seems to work, partly!
 					jQuery('body').append(image_tag_piwik(e, env));
 

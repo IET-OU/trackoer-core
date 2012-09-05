@@ -9,7 +9,7 @@
 (function (jQuery) {
 	'use strict';
 
-	jQuery = jQuery.noConflict(true); //removeAll=true;
+	jQuery = jQuery.noConflict(); //(Not removeAll=true)
 
 	function get_data(key, mydefault) {
 		var val = jQuery('script[src*=capret-piwik]').data('piwik-' + key);

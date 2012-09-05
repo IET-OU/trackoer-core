@@ -46,8 +46,9 @@ class PiwikEx extends Piwik {
     }
 
 
-    public function getSitesIdFromSiteUrl($params = array('url' => NULL))
+    public function getSitesIdFromSiteUrl($params = array())
     {
+        $params = is_array($params) ? $params : array('url' => $params);
         $url = $this->_piwik_url('SitesManager.getSitesIdFromSiteUrl', $params);
         return $this->_get_decoded($url);
     }

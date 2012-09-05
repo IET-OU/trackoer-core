@@ -94,7 +94,9 @@ class Creative_Commons {
     return str_replace('http://creativecommons.org/licenses/', 'cc:', $url);
   }
 
-  /** Generate a HTML license-tracker snippet (embed code).
+  /**
+  * Generate a HTML license-tracker snippet (embed code).
+  * @return string
   */
   public function getCode($site_id=2, $source_url=self::SOURCE_LEARN, $source_identifier=self::SOURCE_ID, $title='Learning to Learn', $author=self::AUTHOR, $author_url=self::AUTHOR_URL, $cc_terms=self::OL_TERMS) {
     $p = parse_url($source_url);
@@ -131,26 +133,38 @@ class Creative_Commons {
   }
 
 
-  public function requestChooser($locale = 'en', $exclude = 'publicdomain') {
-    $api_path = 'simple/chooser?locale='. $locale .'&exclude='. $exclude;
+  /**
+  * API request for a Creative Commons license 'simple' chooser form widget.
+  * @return object
+  */
+  public function requestChooser($locale = 'en', $exclude = 'publicdomain', $select = NULL) {
 
-    $result = $this->_requestApi($api_path);
+    $result = $this->_requestApi('simple/chooser', array(
+        'locale'  => $locale,
+        'exclude' => $exclude,
+        'select'  => $select,
+    ));
 
     return (object) array(
       'api_url' => $result->info['url'],
       'exclude' => $exclude,
       'locale'  => $locale,
+      'select'  => $select,
       'html' => $result->data,
     );
   }
 
-
+  /**
+  * API request for the RDF details for a Creative Commons license.
+  * @return object.
+  */
   public function requestDetails($license = 'cc:by', $locale = 'en') {
     $url = $this->expandUrl($license);
 
-    $api_path = 'details?license-uri='. urlencode($url) .'&locale='. $locale;
-
-    $result = $this->_requestApi($api_path);
+    $result = $this->_requestApi('details', array(
+        'license-uri' => $url,
+        'locale' => $locale,
+    ));
 
     if (preg_match('@<html>(.+)<\/html>@', $result->data, $matches)) {
       $result->api_url = $result->info['url'];
@@ -162,8 +176,15 @@ class Creative_Commons {
   }
 
 
-  protected function _requestApi($api_path) {
-    $api_url = 'http://api.creativecommons.org/rest/1.5/'. $api_path;
+  /**
+  * Make a request to the Creative Commons version 1.5 REST API.
+  *
+  * @link http://api.creativecommons.org/docs/readme_15.html
+  * @return object
+  */
+  protected function _requestApi($api_path, $params = array()) {
+    $api_url = 'http://api.creativecommons.org/rest/1.5/'
+        . $api_path .'?'. http_build_query($params);
 
     $this->CI->load->library('Http');
     $result = $this->CI->http->request($api_url);

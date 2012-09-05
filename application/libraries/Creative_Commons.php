@@ -188,7 +188,7 @@ class Creative_Commons {
       // Hack - if the locale is English trim 'This work'
       $result->_html_hack = rtrim(
           str_replace('. This work', '', '. '. $match_br[1]), '.');
-      $result->_html_hack = _localeSpan($result->_html_hack, $locale);
+      $result->_html_hack = $this->_localeSpan($result->_html_hack, $locale);
     }
 
     // ALT text "Creative Commons License"

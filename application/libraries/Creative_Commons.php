@@ -27,8 +27,8 @@ class Creative_Commons {
   const SOURCE_ID = 'Learning_to_Learn_1.0';
   const AUTHOR_URL = 'http://labspace.open.ac.uk/b2s';
   const AUTHOR = 'OpenLearn/Bridge to Success';
-  const OL_TERMS  = 'by-nc-sa'; //cc:by-nc-sa/2.0/uk
-  const B2S_TERMS = 'by';    //cc:by/3.0
+  const OL_TERMS  = 'cc:by-nc-sa/2.0/uk'; //Was 'by-nc-sa'
+  const B2S_TERMS = 'cc:by/3.0'; //Was 'by'
 
   protected $CI;
 
@@ -101,8 +101,15 @@ class Creative_Commons {
   public function getCode($site_id=2, $source_url=self::SOURCE_LEARN, $source_identifier=self::SOURCE_ID, $title='Learning to Learn', $author=self::AUTHOR, $author_url=self::AUTHOR_URL, $cc_terms=self::OL_TERMS) {
     $p = parse_url($source_url);
 
-    $view = array(
-      'serv' => 'piwik',
+    $locale = $this->CI->input->get_default('locale', 'en_GB');
+
+    $lic = $this->parseUrl($cc_terms);
+    $license = $lic->term .'/'. $lic->_vj;
+
+    $details = $this->requestDetails('cc:'. $license, $locale);
+
+    $view_data = array(
+	  'serv' => $site_id ? 'piwik' : NULL,
 	  'site_id' => $site_id,
 	  'title'   => $title,
 	  'source_url' => htmlentities($source_url),
@@ -112,17 +119,18 @@ class Creative_Commons {
 	  'author' => $author,
 	  'author_url' => $author_url,
 	  'cc_license' => NULL,
-	  'cc_terms'=> $cc_terms,
-	  'cc_ver' => '2.0',
-	  'cc_jur' => 'uk',
-	  'cc_loc' => 'en_GB',
-	  'cc_siz' => '88x31', # Or, '80x15'
+	  'cc_terms'=> $lic->term, //$cc_terms,
+	  'cc_ver' =>  $lic->ver, //2.0,
+	  'cc_jur' => $lic->jur, //'uk',
+	  'cc_loc' => $locale,
+	  'cc_siz' => $lic->sz, //'88x31', # Or, '80x15'
+	  'cc_license' => $license,
+	  'cc_label' => $details->_html_hack,
 	  'with_tracker' => (bool) $site_id,
-	  'explain_tracking_url' => '#!Explain..',
+	  'explain_tracking_url' => NULL,  //'#!Explain..',
 	);
-	$view['cc_license'] = $view['cc_terms'] .'/'. $view['cc_ver'] .'/' .$view['cc_jur'];
 
-	return $this->CI->load->view('cc_code/cc_code', $view, TRUE);
+	return $this->CI->load->view('cc_code/cc_code', $view_data, TRUE);
   }
 
 
@@ -172,7 +180,31 @@ class Creative_Commons {
       $result->locale = $locale;
       $result->html = $matches[1];
     }
+
+    // "This work is licensed under a <a ..>..</a>."
+    if ($result->html && preg_match('@\/a><br\/>(.+?)$@', $result->html, $match_br)) {
+      $result->html_text = $match_br[1];
+
+      // Hack - if the locale is English trim 'This work'
+      $result->_html_hack = rtrim(
+          str_replace('. This work', '', '. '. $match_br[1]), '.');
+      $result->_html_hack = _localeSpan($result->_html_hack, $locale);
+    }
+
+    // ALT text "Creative Commons License"
+    if ($result->html && preg_match('@alt="([^"]+)"@', $result->html, $match_alt)) {
+      $result->alt_text = $match_alt[1];
+    }
+
     return $result;
+  }
+
+
+  protected function _localeSpan($text, $locale) {
+    if (0 !== strpos($locale, 'en')) {
+      $text = "<span lang='$locale'>$text</span>";
+    }
+    return $text;
   }
 
 
@@ -185,6 +217,8 @@ class Creative_Commons {
   protected function _requestApi($api_path, $params = array()) {
     $api_url = 'http://api.creativecommons.org/rest/1.5/'
         . $api_path .'?'. http_build_query($params);
+
+    @header('X-CC-Api-Url: '. $api_url);
 
     $this->CI->load->library('Http');
     $result = $this->CI->http->request($api_url);

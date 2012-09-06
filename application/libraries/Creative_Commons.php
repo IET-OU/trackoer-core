@@ -182,8 +182,6 @@ class Creative_Commons {
     if ($result->html && preg_match('@\/a><br\/>(.+?)$@', $result->html, $match_br)) {
       $result->html_text = $match_br[1];
 
-      #$result->html_text = self::_localeUrl($result->html_text, $locale);
-
       // Hack - if the locale is English trim 'This work'
       $result->_html_hack = rtrim(
           str_replace('. This work', '', '. '. $result->html_text), '.');
@@ -247,14 +245,14 @@ class Creative_Commons {
       $result->locale = $locale;
       $result->html = $matches[1];
 
-      $result->html = self::_localeUrl($result->html, $locale);
+      $result->html = self::_localizeUrl($result->html, $locale);
     }
     return $result;
   }
 
   /** Utility to localize the license-URL in a HTML or text snippet.
   */
-  protected static function _localeUrl($text, $locale) {
+  protected static function _localizeUrl($text, $locale) {
     if (FALSE === strpos($text, '/deed.')) {
       $locale = str_replace('-', '_', $locale);
       #$text = str_replace('/">', '/deed.'. $locale .'">', $text);

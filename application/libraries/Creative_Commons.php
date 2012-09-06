@@ -166,20 +166,15 @@ class Creative_Commons {
   * API request for the RDF details for a Creative Commons license.
   * @return object.
   */
-  public function requestDetails($license = 'cc:by', $locale = 'en') {
-    $url = $this->expandUrl($license);
+  public function requestDetails($curie = 'cc:by', $locale = 'en') {
+    $url = $this->expandUrl($curie);
 
     $result = $this->_requestApi('details', array(
         'license-uri' => $url,
         'locale' => $locale,
     ));
 
-    if (preg_match('@<html>(.+)<\/html>@', $result->data, $matches)) {
-      $result->api_url = $result->info['url'];
-      $result->original_url = $url;
-      $result->locale = $locale;
-      $result->html = $matches[1];
-    }
+    $result = self::_parseRdfHtml($result, $curie, $locale);
 
     // "This work is licensed under a <a ..>..</a>."
     if ($result->html && preg_match('@\/a><br\/>(.+?)$@', $result->html, $match_br)) {
@@ -206,8 +201,8 @@ class Creative_Commons {
   * @return object
   */
 #./get?commercial=n&derivatives=sa&jurisdiction=&locale=&title=&source-url=S&creator=
-  public function requestLicense($license = 'cc:by', $locale = 'en', $class= 'standard') {
-    $lic = $this->parseUrl($license);
+  public function requestLicense($curie = 'cc:by', $locale = 'en', $class= 'standard') {
+    $lic = $this->parseUrl($curie);
 
     $cc_licenses = array(
       'by'      => array('commercial' => 'y', 'derivatives' => 'y'),
@@ -231,9 +226,21 @@ class Creative_Commons {
         #'more_permissions_url' => '_MORE_URL_',
     ));
 
-    return $this->_requestApi("license/$class/get", $params);
+    $result = $this->_requestApi("license/$class/get", $params);
+
+    return self::_parseRdfHtml($result, $curie, $locale);
   }
 
+
+  protected static function _parseRdfHtml($result, $curie, $locale) {
+    if (preg_match('@<html>(.+)<\/html>@', $result->data, $matches)) {
+      $result->api_url = $result->info['url'];
+      $result->curie = $curie; //original_url
+      $result->locale = $locale;
+      $result->html = $matches[1];
+    }
+    return $result;
+  }
 
   protected static function _localeUrl($text, $locale) {
     if (FALSE === strpos($text, '/deed.')) {
@@ -248,7 +255,6 @@ class Creative_Commons {
     }
     return $text;
   }
-
 
   /**
   * Make a request to the Creative Commons version 1.5 REST API.

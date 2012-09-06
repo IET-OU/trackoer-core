@@ -46,7 +46,7 @@ define('TRACKER_MODE_DOC', 'doc');
 
 /*
 |--------------------------------------------------------------------------
-| Which link in a (Creative Commons) License RDFa snippet is this?
+| Campaigns. Which link in a (Creative Commons) License RDFa snippet is this?
 | @see Google_Tracker::campaignUrl()
 */
 // License image-link
@@ -57,6 +57,14 @@ define('TRACKER_RDF_LIC_LINK', 'lic-link');
 define('TRACKER_RDF_SRC_LINK', 'src-link');
 // Attribution link
 define('TRACKER_RDF_ATTR_LINK', 'attr-link');
+
+
+/*
+|--------------------------------------------------------------------------
+| XML Nampsaces - oEmbed extensions; OU Player data-feeds.
+*/
+define('XMLNS_OU_OEMBED_EXTEND', 'http://embed.open.ac.uk/2012/extend#');
+define('XMLNS_OU_RSS_PLAYER', 'http://podcast.open.ac.uk/2012');
 
 
 /**

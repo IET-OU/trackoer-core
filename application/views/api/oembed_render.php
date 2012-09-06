@@ -37,13 +37,16 @@ else:
 function _xml_element($obj) {
   $output = '';
   foreach ($obj as $key => $value) {
+    // Add '_key' and '0' keys to the 'ex:' namespace.
+    $key = '_' == $key[0] ? 'ex:'. $key : $key; //0===strpos($key, '_')
+    $key = is_numeric($key) ? 'ex:n'. $key : $key;
     $output .= "<$key>". (is_array($value) || is_object($value) ? _xml_element($value) : htmlspecialchars($value)) /*WARNING: recurse! */ ."</$key>".PHP_EOL;
   }
   return $output;
 }
 
 ?>
-<oembed xmlns:dc="http://purl.org/dc/elements/1.1/" xml:lang="en">
+<oembed xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ex="<?php echo XMLNS_OU_OEMBED_EXTEND ?>" xml:lang="en">
 <?php echo _xml_element($oembed);
 /* foreach ($oembed as $key => $value): ?>
   <<?php echo"$key>". (is_string($value) ? htmlspecialchars($value) : $value) /*TODO: more work? *-/ ."</$key" ?>>

@@ -285,6 +285,9 @@ class Creative_Commons {
     $this->CI->load->library('Http');
     $result = $this->CI->http->request($api_url);
 
+    if (! $result->success) {
+      $this->CI->_error('Creative Commons API error -- Web proxy maybe? ', $result->http_code);
+    }
     if ($result->success && FALSE !== strpos($result->data, '<error>')) {
       $result->success = FALSE;
       preg_match('@<message>(.+)<\/message>@', $result->data, $matches);

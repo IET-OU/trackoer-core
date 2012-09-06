@@ -10,6 +10,8 @@
  * @license
  *
  * @link		https://github.com/IET-OU/trackoer-core
+ * @link		http://api.creativecommons.org/docs/readme_15.html
+ * @link		http://creativecommons.org/choose/results-one?license_code=by-sa&jurisdiction=&version=3.0&lang=fr
  * @since		Version 1.0
  * @filesource
  */
@@ -180,7 +182,7 @@ class Creative_Commons {
     if ($result->html && preg_match('@\/a><br\/>(.+?)$@', $result->html, $match_br)) {
       $result->html_text = $match_br[1];
 
-      $result->html_text = self::_localeUrl($result->html_text, $locale);
+      #$result->html_text = self::_localeUrl($result->html_text, $locale);
 
       // Hack - if the locale is English trim 'This work'
       $result->_html_hack = rtrim(
@@ -198,12 +200,14 @@ class Creative_Commons {
 
   /**
   * API request for the full RDF for a Creative Commons license.
+  * Template placeholders are used, eg. '_TITLE_' for the 'Title of work'.
   * @return object
   */
 #./get?commercial=n&derivatives=sa&jurisdiction=&locale=&title=&source-url=S&creator=
   public function requestLicense($curie = 'cc:by', $locale = 'en', $class= 'standard') {
     $lic = $this->parseUrl($curie);
 
+    // Deduce the request parameters from the compact URI.
     $cc_licenses = array(
       'by'      => array('commercial' => 'y', 'derivatives' => 'y'),
       'by-nc'   => array('commercial' => 'n', 'derivatives' => 'y'),
@@ -215,11 +219,11 @@ class Creative_Commons {
     $cc_terms = isset($cc_licenses[$lic->term]) ? $cc_licenses[$lic->term] : array('_e' => 'ERROR');
 
     $params = array_merge($cc_terms, array(
-        'locale' => $locale,
+        'locale' => strtolower(str_replace('_', '-', $locale)),
         'jurisdiction' => $lic->jur,
         'title'  => '_TITLE_',
-        'creator'=> '_AUTHOR_',
-        'work-url'  => '_WORK_URL_',
+        'attribution_name'=> '_ATTR_NAME_',
+        'attribution_url'  => '_ATTR_URL_',
         'source-url'=> '_SOURCE_URL_',
 
         #'type' => 'image',
@@ -231,24 +235,36 @@ class Creative_Commons {
     return self::_parseRdfHtml($result, $curie, $locale);
   }
 
-
+  /**
+  * Utility to extract the license HTML snippet from XML/RDF.
+  * (Note, we should fully parse the XML, instead we use a regular expression.)
+  * @return object
+  */
   protected static function _parseRdfHtml($result, $curie, $locale) {
     if (preg_match('@<html>(.+)<\/html>@', $result->data, $matches)) {
       $result->api_url = $result->info['url'];
       $result->curie = $curie; //original_url
       $result->locale = $locale;
       $result->html = $matches[1];
+
+      $result->html = self::_localeUrl($result->html, $locale);
     }
     return $result;
   }
 
+  /** Utility to localize the license-URL in a HTML or text snippet.
+  */
   protected static function _localeUrl($text, $locale) {
     if (FALSE === strpos($text, '/deed.')) {
-      $text = str_replace('/">', '/deed.'. $locale .'">', $text);
+      $locale = str_replace('-', '_', $locale);
+      #$text = str_replace('/">', '/deed.'. $locale .'">', $text);
+      $text = preg_replace('@(creativecommons.org\/licenses[^"]+)\/@', '$1/deed.'. $locale, $text);
     }
     return $text;
   }
 
+  /** Utility to wrap text in a <span>, with a 'lang' attribute (except for English locales - bias?)
+  */
   protected static function _localeSpan($text, $locale) {
     if (0 !== strpos($locale, 'en')) {
       $text = "<span lang='$locale'>$text</span>";

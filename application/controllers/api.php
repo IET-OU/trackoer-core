@@ -59,11 +59,11 @@ class Api extends MY_Controller {
   /**
   * Get a Creative Commons license 'simple' chooser form widget.
   *
-  * @example  /api/cc_chooser/fr/publicdomain/my-select : 'html' in JSON.
+  * @example  /api/cc_chooser/publicdomain/my-select?locale=fr : 'html' in JSON.
   */
-  public function cc_chooser($locale = 'en', $exclude = 'xx', $select = NULL) {
+  public function cc_chooser($exclude = 'xx', $select = NULL) {
     $this->load->library('Creative_Commons');
-    $result = $this->cc->requestChooser($locale, $exclude, $select);
+    $result = $this->cc->requestChooser($this->request('locale'), $exclude, $select);
 
     $this->_render($result);
   }
@@ -71,25 +71,31 @@ class Api extends MY_Controller {
   /**
   * Get the RDF details for a Creative Commons license.
   *
-  * @example  /api/cc_details/cc:by/fr : 'data' RDF/XML in JSON.
+  * @example  /api/cc_details/cc:by/uk?locale=fr : 'data' RDF/XML in JSON.
   */
-  public function cc_details($url = 'cc:by', $locale = 'en') {
+  public function cc_details($terms = 'cc:by', $jurisdiction = NULL) {
     $this->load->library('Creative_Commons');
-    $result = $this->cc->requestDetails($url, $locale);
+
+    $license = "$terms/$jurisdiction";
+    $result = $this->cc->requestDetails($license, $this->request('locale'));
 
     $this->_render($result);
   }
 
   /**
   * Get the full RDF for a Creative Commons license.
-  * @example  /api/cc_license/cc:by/fr/standard : 'data' RDF/XML in JSON.
+  *
+  * @example  /api/cc_license/cc:by/uk/standard?locale=fr : 'data' RDF/XML in JSON.
   */
-  public function cc_license($lic = 'cc:by', $locale = 'en', $class = 'standard') {
+  public function cc_license($terms = 'cc:by', $jurisdiction = NULL, $class = 'standard') {
     $this->load->library('Creative_Commons');
-    $result = $this->cc->requestLicense($lic, $locale, $class);
+
+    $license = "$terms/$jurisdiction";
+    $result = $this->cc->requestLicense($license, $this->request('locale'), $class);
 
     $this->_render($result);
   }
+
 
   /** Basic JSON rendering.
   */

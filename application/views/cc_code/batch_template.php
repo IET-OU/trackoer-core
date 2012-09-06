@@ -20,10 +20,11 @@ $use_gatrack = isset($use_gatrack) ? $use_gatrack : FALSE;
       '__CC_TERMS__' => 'by-sa',   # License terms, eg. 'by', 'by-nc-sa'
       '__CC_VJ__'    => '3.0',     # License version[/jurisdiction], eg. '2.0/uk' or '3.0'
       '__CC_LABEL__' => 'Creative Commons Attribution-ShareAlike 3.0 Unported License',
-      '__ATTR_NAME__'  => 'OpenLearn-LabSpace - Bridge to Success B2S', #'OpenLearn/ Andrew Studnicky',
-      '__ATTR_URL__'   => 'http://labspace.open.ac.uk/b2s',
-      '__WORK_TITLE__' => 'Learning to Learn 1.0/ Course Overview/ Introduction (page)',
-      '__SOURCE_URL__' => 'http://labspace.open.ac.uk/Learning_to_Learn_1.0',
+      '_ATTR_NAME_'  => 'OpenLearn-LabSpace - Bridge to Success B2S', #'OpenLearn/ Andrew Studnicky',
+      '_ATTR_URL_'   => 'http://labspace.open.ac.uk/b2s',
+      '_TITLE_' => 'Learning to Learn 1.0/ Course Overview/ Introduction (page)',
+      '_SOURCE_URL_' => 'http://labspace.open.ac.uk/Learning_to_Learn_1.0',
+	  '_SOURCE_TEXT_'=> NULL,
       '__COURSE_HOST__'=> 'labspace.open.ac.uk',
       '__COURSE_ID__'  => 'Learning_to_Learn_1.0',
       '__WORK_ID__'    => 'x_learning_to_learn_0_1.html', # Source filename, etc.
@@ -42,15 +43,15 @@ $use_gatrack = isset($use_gatrack) ? $use_gatrack : FALSE;
  src="__CC_ICON_SRC__"
 <?php /* title="Creative Commons License - with tracking**"*/ ?> /></a>
  <br />
- <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">__WORK_TITLE__</span>
+ <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">_TITLE_</span>
  by
- <a xmlns:cc="http://creativecommons.org/ns#" href="__ATTR_URL__" property="cc:attributionName" rel="cc:attributionURL">__ATTR_NAME__</a>
+ <a xmlns:cc="http://creativecommons.org/ns#" href="_ATTR_URL_" property="cc:attributionName" rel="cc:attributionURL">_ATTR_NAME_</a>
  is licensed under a 
  <a rel="license" href="__CC_TEXT_URL__">__CC_LABEL__</a><?php /*
  , <a class="wt" href="#!Explain..">with tracking</a>*/ ?>.
  <br />
  Based on a work at
- <a xmlns:dct="http://purl.org/dc/terms/" href="__SOURCE_URL__" rel="dct:source">__SOURCE_TEXT__</a>.
+ <a xmlns:dct="http://purl.org/dc/terms/" href="_SOURCE_URL_" rel="dct:source">_SOURCE_TEXT_</a>.
 <?php /*<!--Extend Creative Commons with a course 'identifier'-->
  <br />
  Identifier: <a xmlns:dct="http://purl.org/dc/terms/" href="__SOURCE_URL__" rel="dct:identifier">__COURSE_ID__</a>

@@ -185,10 +185,12 @@ class Creative_Commons {
     if ($result->html && preg_match('@\/a><br\/>(.+?)$@', $result->html, $match_br)) {
       $result->html_text = $match_br[1];
 
+      $result->html_text = self::_localeUrl($result->html_text, $locale);
+
       // Hack - if the locale is English trim 'This work'
       $result->_html_hack = rtrim(
-          str_replace('. This work', '', '. '. $match_br[1]), '.');
-      $result->_html_hack = $this->_localeSpan($result->_html_hack, $locale);
+          str_replace('. This work', '', '. '. $result->html_text), '.');
+      $result->_html_hack = self::_localeSpan($result->_html_hack, $locale);
     }
 
     // ALT text "Creative Commons License"
@@ -200,7 +202,14 @@ class Creative_Commons {
   }
 
 
-  protected function _localeSpan($text, $locale) {
+  protected static function _localeUrl($text, $locale) {
+    if (FALSE === strpos($text, '/deed.')) {
+      $text = str_replace('/">', '/deed.'. $locale .'">', $text);
+    }
+    return $text;
+  }
+
+  protected static function _localeSpan($text, $locale) {
     if (0 !== strpos($locale, 'en')) {
       $text = "<span lang='$locale'>$text</span>";
     }

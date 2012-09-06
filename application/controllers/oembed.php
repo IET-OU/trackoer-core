@@ -23,6 +23,9 @@ class Oembed extends MY_Controller {
   public function __construct() {
     parent::__construct();
 
+    $this->load->tracker('Google', NULL);
+    $this->load->library('Creative_Commons');
+
     $this->load->config('providers');
   }
 
@@ -69,10 +72,18 @@ class Oembed extends MY_Controller {
 
     $this->load->tracker($request->tracker);
 
-    $result->_tracker_code = $result->_piwik_site_id = $result->_piwik_site_url = NULL;
+    $source_host = parse_url($request->url, PHP_URL_HOST);
+
+    $result->_tracker_code = $result->_piwik_site_id = $result->_piwik_site_url = $_beacon_url = NULL;
+
+    $_cc_icon = '_CC_ICON_';
     switch ($request->tracker) {
       case 'Piwik':
         $result = $this->_get_piwik_site_id($result);
+        $_beacon_url = $this->tracker->getBeaconUrl($result->_piwik_site_id, $request->lic, $source_host, $result->identifier, $request->url, NULL, $result->_title);
+        $result->_beacon_url = $_beacon_url;
+        $result->_cc_icon = $_cc_icon = $this->cc->getImageUrl($request->lic);
+
         $this->_addStatus("Controller: Requesting 'site ID' from Piwik API over the Web... Received OK.");
       break;
       case 'Google':
@@ -89,8 +100,32 @@ class Oembed extends MY_Controller {
     }
 
 
-    $this->load->library('Creative_Commons');
-    $cc_code = $this->cc->getCode($result->_piwik_site_id, $result->original_url, $result->identifier, $result->_title, 'OpenLearn/'. $result->contributor, $result->_piwik_site_url);
+    // Legacy Creative Commons snippet.
+    ///$cc_code = $this->cc->getCode($result->_piwik_site_id, $result->original_url, $result->identifier, $result->_title, 'OpenLearn/'. $result->contributor, $result->_piwik_site_url);
+
+    $this->_addStatus('Controller: Requesting license-template from Creative Commons server..');
+
+
+    $cc_template = $this->cc->requestLicense($request->lic, $request->locale);
+
+    $cc_template->html = str_replace('>_SOURCE_URL_<', '>_SOURCE_TEXT_<', $cc_template->html);
+    $result->_cc_template = $cc_template->html;
+
+
+    $cc_code = strtr(
+      $cc_template->html,
+      array(
+        #'__GA_ID__' => $params->ac,
+        #'__CC_TEXT_URL__' => $this->ga->campaignUrl($license_url, $params->mode, TRACKER_RDF_LIC_LINK, $source_host, $result->identifier),
+        '_ATTR_NAME_'  => 'OpenLearn-LabSpace - Bridge to Success B2S', #'OpenLearn/ Andrew Studnicky',
+        '_ATTR_URL_'   => $this->ga->campaignUrl('http://labspace.open.ac.uk/b2s', $request->mode, TRACKER_RDF_ATTR_LINK, $source_host, $result->identifier),
+        '_TITLE_' => $result->_title,
+        '_SOURCE_URL_' => $this->ga->campaignUrl($request->url, $request->mode, TRACKER_RDF_SRC_LINK, $source_host, $result->identifier),
+        '_SOURCE_TEXT_'=> $request->url,
+
+        $_cc_icon => $_beacon_url,
+      )
+    );
 
     $result->html = $cc_code;
     $result->html .= $result->_tracker_code;

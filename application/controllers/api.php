@@ -80,6 +80,16 @@ class Api extends MY_Controller {
     $this->_render($result);
   }
 
+  /**
+  * Get the full RDF for a Creative Commons license.
+  * @example  /api/cc_license/cc:by/fr/standard : 'data' RDF/XML in JSON.
+  */
+  public function cc_license($lic = 'cc:by', $locale = 'en', $class = 'standard') {
+    $this->load->library('Creative_Commons');
+    $result = $this->cc->requestLicense($lic, $locale, $class);
+
+    $this->_render($result);
+  }
 
   /** Basic JSON rendering.
   */

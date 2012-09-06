@@ -201,6 +201,39 @@ class Creative_Commons {
     return $result;
   }
 
+  /**
+  * API request for the full RDF for a Creative Commons license.
+  * @return object
+  */
+#./get?commercial=n&derivatives=sa&jurisdiction=&locale=&title=&source-url=S&creator=
+  public function requestLicense($license = 'cc:by', $locale = 'en', $class= 'standard') {
+    $lic = $this->parseUrl($license);
+
+    $cc_licenses = array(
+      'by'      => array('commercial' => 'y', 'derivatives' => 'y'),
+      'by-nc'   => array('commercial' => 'n', 'derivatives' => 'y'),
+      'by-nc-sa'=> array('commercial' => 'n', 'derivatives' => 'sa'),
+      'by-nd'   => array('commercial' => 'y', 'derivatives' => 'n'),
+      'by-sa'   => array('commercial' => 'y', 'derivatives' => 'sa'),
+    );
+
+    $cc_terms = isset($cc_licenses[$lic->term]) ? $cc_licenses[$lic->term] : array('_e' => 'ERROR');
+
+    $params = array_merge($cc_terms, array(
+        'locale' => $locale,
+        'jurisdiction' => $lic->jur,
+        'title'  => '_TITLE_',
+        'creator'=> '_AUTHOR_',
+        'work-url'  => '_WORK_URL_',
+        'source-url'=> '_SOURCE_URL_',
+
+        #'type' => 'image',
+        #'more_permissions_url' => '_MORE_URL_',
+    ));
+
+    return $this->_requestApi("license/$class/get", $params);
+  }
+
 
   protected static function _localeUrl($text, $locale) {
     if (FALSE === strpos($text, '/deed.')) {

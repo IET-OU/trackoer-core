@@ -19,8 +19,6 @@ ini_set('display_errors', 1);
  */
 class Oembed extends MY_Controller {
 
-  protected $request;
-
 
   public function __construct() {
     parent::__construct();
@@ -34,8 +32,13 @@ class Oembed extends MY_Controller {
   */
   public function index($cli_args = NULL) {
 
-    $this->request =
-    $request = $this->_parse_oembed_params($cli_args);
+    // Merge the base and extended request arrays - oEmbed parameters override.
+    $this->_request = array_merge(
+      $this->request(),
+      (array) $this->_parse_oembed_params($cli_args)
+    );
+    $request = (object) $this->request();
+
 
     $providers = $this->config->item('providers');
 
@@ -175,7 +178,7 @@ class Oembed extends MY_Controller {
 
 
   protected function _get_piwik_site_id($rdf) {
-    if ('Piwik' == $this->request->tracker) {
+    if ('Piwik' == $this->request('tracker')) {
 	  $this->load->tracker('Piwik');
       $res = $this->tracker->getSiteId($rdf->original_url);
 

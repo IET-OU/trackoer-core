@@ -27,10 +27,13 @@ class MY_Controller extends CI_Controller {
   const LAYOUT = 'ci'; #'bare';
 
   protected $status = array();
+  protected $_request = array();
 
 
   public function __construct() {
     parent::__construct();
+
+    $this->_prepare();
 
     // Enable Cross-Origin Resource Sharing (CORS), http://enable-cors.org | http://w3.org/TR/cors
     @header('Access-Control-Allow-Origin: *');
@@ -39,6 +42,29 @@ class MY_Controller extends CI_Controller {
 
     log_message('debug', __CLASS__." Class Initialized");
   }
+
+
+  /** Initialize the application, including the request array.
+  */
+  protected function _prepare() {
+    $this->_request = array(
+      'locale' => $this->input->get_default('locale', 'en'),
+      'format' => $this->input->get_default('format', 'html'),
+	);
+  }
+
+
+  /**
+  * Get a request variable, or the whole array.
+  * @return mixed
+  */
+  public function request($key = NULL) {
+    if (! $key) {
+      return $this->_request;
+    }
+    return isset($this->_request[$key]) ? $this->_request[$key] : FALSE;
+  }
+
 
 
   /** Load the layout library with a 'bare' or OUICE template.

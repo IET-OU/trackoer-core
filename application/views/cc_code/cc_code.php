@@ -15,7 +15,8 @@
  /></a>
  <br />
  <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><?php echo $title ?></span>
- by <a xmlns:cc="http://creativecommons.org/ns#" href="<?php echo $author_url ?>" property="cc:attributionName" rel="cc:attributionURL"><?php echo $author ?></a><?php echo $cc_label ?>
+ by <a xmlns:cc="http://creativecommons.org/ns#" href="<?php echo $author_url ?>" property="cc:attributionName"
+ rel="cc:attributionURL"><?php echo $author ?></a><?php echo $cc_label ?>
 <?php /*
  is licensed under a
  <a rel="license" href="http://creativecommons.org/licenses/<?php echo $cc_license ?>/deed.<?php echo $cc_loc ?>">Creative Commons Attribution-NonCommercial-ShareAlike 2.0 UK: England &amp; Wales License</a>

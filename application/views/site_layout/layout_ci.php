@@ -1,6 +1,4 @@
 <?php
-  $base_url = base_url();
-  $assets_url = $base_url .'assets/';
   $piwik_url = $this->config->item('piwik_url');
   $feed_url = str_replace('/view/', '/rss/', BLOG_URL);
 
@@ -11,44 +9,16 @@
   $with_nav = TRUE;
 
   $with_unit_tests = isset($with_unit_tests) && $with_unit_tests;
-  $ggl_font = $this->config->item('google_font');
-  $robots = $this->config->item('robots');
+
 
 ?>
-<!doctype html><html lang="en"><meta charset="utf-8" /><title>Track OER &lsaquo; Analytics for open educational resources - OER &rsaquo;<?php /*rapid innovation alpha*/ ?></title>
-<!--[if lt IE 9]>
-<script src="http://html5shim.googlecode.com/svn/trunk/html5-els.js"></script>
-<![endif]-->
-
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<?php if (!$robots): ?>
-<meta name="ROBOTS" content="noindex,nofollow" />
-<?php endif; ?>
-
-<link rel=alternate type="application/rss+xml" title="Track OER project blog RSS feed" href="<?php echo $feed_url ?>" />
-<?php if (isset($oembed_url)): ?>
-<link rel=alternate type="application/json+oembed" title="License-tracker code: <?php #echo $rdf->title ?>"
-	href="<?php echo $oembed_url ?>&amp;format=json" />
-<link rel=alternate type="application/xml+oembed"
-	href="<?php echo $oembed_url ?>&amp;format=xml" />
-<?php endif; ?>
+<!doctype html><html lang="en">
+<?php
 
 
-<link rel=stylesheet href="<?php echo $assets_url ?>layout-ci.css" />
-<link rel=stylesheet href="<?php echo $assets_url ?>forkme.css" />
+  $this->load->view('site_layout/page_head');
 
-<?php if ($ggl_font): ?>
-<link rel=stylesheet href="http://fonts.googleapis.com/css?family=<?php echo urlencode($ggl_font) ?>&amp;v1" />
-<style>
-h1{ font-family:"<?php echo $ggl_font ?>", Helvetica, sans-serif; }
-</style>
-<?php endif; ?>
-
-<script src="http://cdn.enderjs.com/jeesh.js"></script>
-<script src="<?php echo $assets_url ?>site/js/trackoer-site.js"></script>
-
-
-<?php $this->load->view('site_layout/site_analytics') ?>
+?>
 
 
 <body class="<?php echo $body_classes ?>">
@@ -59,13 +29,13 @@ h1{ font-family:"<?php echo $ggl_font ?>", Helvetica, sans-serif; }
 <?php if ($with_nav): ?>
 	<nav id="nav">
 		<ul class="ou-sections">
-		<li class="tm-toer-home"><a href="<?php echo $base_url ?>">Track OER home</a>
-		<li class="tm-about"><a href="<?php echo $base_url ?>about">About</a>
+		<li class="tm-toer-home"><a href="<?php echo site_url() ?>">Track OER home</a>
+		<li class="tm-about"><a href="<?php echo site_url('about') ?>">About</a>
 		<li class="tm-piwik"><a href="<?php echo $piwik_url ?>" title="Piwik analytics for Track OER">Piwik</a>
-		<li class="tm-form"><a href="<?php echo $base_url ?>oerform" title="Get a license-tracker snippet">OER form</a>
+		<li class="tm-form"><a href="<?php echo site_url('oerform') ?>" title="Get a license-tracker snippet">OER form</a>
 		<?php /* Todo!
-		<li class="tm-choose"><a href="<?php echo $base_url ?>choose">CC Choose</a>*/ ?>
-		<li class="tm-test"><a href="<?php echo $base_url ?>test" title="Demonstrations">Tests/ demos</a>
+		<li class="tm-choose"><a href="<?php echo site_url('choose') ?>">CC Choose</a>*/ ?>
+		<li class="tm-test"><a href="<?php echo site_url('test') ?>" title="Demonstrations">Tests/ demos</a>
 		<li class="tm-extern cw blog"><a href="<?php echo BLOG_URL ?>" title="Track OER project blog, on Cloudworks">Project blog</a>
 		<?php if(defined('B2S_CONTENT_URL')): ?><li class="tm-extern b2s olrn"><a href="<?php echo B2S_CONTENT_URL ?>" title="Bridge to Success content, on OpenLearn-Labspace">Bridge to Success content</a><?php endif; ?>
 		<?php if(defined('OLNET_URL')): ?><li class="tm-extern olnet"><a href="<?php echo OLNET_URL ?>" title="Open Learning Network">OLnet</a><?php endif; ?>

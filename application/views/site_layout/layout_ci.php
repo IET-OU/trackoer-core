@@ -12,15 +12,18 @@
 
   $with_unit_tests = isset($with_unit_tests) && $with_unit_tests;
   $ggl_font = $this->config->item('google_font');
+  $robots = $this->config->item('robots');
 
 ?>
-<!doctype html><html lang="en"><meta charset="utf-8" /><title>Track OER - rapid innovation alpha</title>
+<!doctype html><html lang="en"><meta charset="utf-8" /><title>Track OER &lsaquo; Analytics for open educational resources - OER &rsaquo;<?php /*rapid innovation alpha*/ ?></title>
 <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5-els.js"></script>
 <![endif]-->
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<?php if (!$robots): ?>
 <meta name="ROBOTS" content="noindex,nofollow" />
+<?php endif; ?>
 
 <link rel=alternate type="application/rss+xml" title="Track OER project blog RSS feed" href="<?php echo $feed_url ?>" />
 <?php if (isset($oembed_url)): ?>

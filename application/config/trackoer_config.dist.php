@@ -14,6 +14,13 @@ $config['debug'] = 1;  #OUP_DEBUG_MIN;
 
 /*
 |--------------------------------------------------------------------------
+| If missing or FALSE, a robots exclusion <meta> tag is set.
+*/
+#$config['robots'] = TRUE;
+
+
+/*
+|--------------------------------------------------------------------------
 | Web proxy.
 */
 #putenv('http_proxy=wwwcache.open.ac.uk:80');

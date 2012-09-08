@@ -75,7 +75,7 @@ class Google_Tracker extends Base_Tracker {
     }
     // Todo: URLs containing '#fragments' will be messed up.
     $campaign_url = $url;
-    $campaign_url .= FALSE===strpos($url, '?') ? '?' : '';
+    $campaign_url .= FALSE===strpos($url, '?') ? '?' : '&';
 
     $params = array(
       'utm_source' => $source_host .TRACKER_PAGE_URL_SEP. $source_id,

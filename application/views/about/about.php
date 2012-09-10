@@ -12,7 +12,9 @@
  <strong>Track OER</strong> is a <abbr title="Joint Information Systems Committee">JISC</abbr> and
  <abbr title="Higher Education Funding Council for England">HEFCE</abbr>-funded project to facilitate Web analytics for Open Educational Resources.
  It is a rapid innovation project to demonstrate technical solutions, based around software like
- <a href="http://piwik.org/">Piwik</a>, Google Analytics and <a href="http://capret.mitoeit.org/"><abbr title="Cut and Paste Reuse Tracking">CaPRéT</abbr></a>.
+ <a href="http://piwik.org/">Piwik</a>, Google Analytics and <a href="http://capret.mitoeit.org/"><abbr title="Cut and Paste Reuse Tracking">CaPRéT</abbr></a>, the
+ <a href="http://creativecommons.org/">Creative Commons</a> <a href="http://api.creativecommons.org/" title="Creative Commons API">API</a> and
+ <a href="http://oembed.com/">oEmbed</a>.
 <p>
  Find out more on the <a href="<?php echo BLOG_URL ?>" title="Track OER blog, on Cloudworks">Project blog</a>.
 

@@ -148,6 +148,54 @@ abstract class Oembed_Provider implements iService {
     return $result;
   }
 
+
+  /** From: Moodle_rdf_serv::_http_request_work_rdf
+  *
+  <rdf:RDF xmlns="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <Work rdf:about="">
+          <dc:title>Learning to Learn</dc:title>
+  */
+  protected function _http_request_work_rdf($rdf_url, $is_rss = FALSE) {
+    $result = $this->_http_request($rdf_url);
+
+    if (! $result->success) {
+      $this->_error('HTTP Work-RDF error', $result->http_code);
+    }
+
+    $xmlo = NULL;
+    if ($result->success) {
+      $xmlo = @simplexml_load_string($result->data);
+    }
+    if (! $xmlo) {
+      $this->_error('XML Work-RDF error');
+    }
+    $xmlo->registerXPathNamespace('cc', 'http://creativecommons.org/ns#');
+    $xmlo->registerXPathNamespace('rss', 'http://purl.org/rss/1.0/');
+    $xmlo->registerXPathNamespace('rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#');
+    $xmlo->registerXPathNamespace('dc', 'http://purl.org/dc/elements/1.1/');
+
+    $dc_xpath = $is_rss ? '//rss:item/dc:' : '/rdf:RDF/cc:Work/dc:';
+    $def_xpath = $is_rss ? '//rss:item/rss:' : '/rdf:RDF/cc:Work/cc:';
+
+    $dc_props = explode('|', 'title|subject|description|publisher|contributor|type|format|identifier|source|rights|date');
+    $rdf = array();
+    foreach ($dc_props as $key) {
+      $value = NULL;
+	  #$value = $xmlo->xpath("/rdf:RDF/_:Work/dc:$key"); #[1]
+      $value = $xmlo->xpath($dc_xpath . $key);
+      if (! $value) {
+	    $value = $xmlo->xpath($def_xpath . $key);
+	  }
+      $rdf[$key] = $value ? (string) $value[0] : NULL;
+    }
+    if (preg_match_all('@http://[^ ]+@', $rdf['rights'], $matches)) {
+      $rdf['_license_url'] = $matches[0];
+    }
+	#var_dump((string) $xmlo->Work[0]->{'dc:title'}, $rdf);
+	$result->rdf = (object) $rdf;
+    return $result;
+  }
+
   #protected function _safe_xml($xml) {..}
   #function _mkdir_safe($base, $path, $perm=0777) {..}
   #protected function _embedly_api_key() {..}

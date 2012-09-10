@@ -69,13 +69,14 @@ class Google_Tracker extends Base_Tracker {
   * @param string $which Which link in a (Creative Commons License) RDFa snippet? That is, one of 'lic-icon', lic-link, attr-link, src-link..
   * @return string URL with appended parameters.
   */
-  public function campaignUrl($url, $mode = TRACKER_MODE_ZIP, $which = TRACKER_RDF_LIC_ICON, $source_host='labspace.open.ac.uk', $source_id='Learning_to_Learn_1.0', $campaign='toer1', $term=NULL) {
+  public function campaignUrl($url, $mode = TRACKER_MODE_ZIP, $which = TRACKER_RDF_LIC_ICON, $source_host='labspace.open.ac.uk', $source_id='Learning_to_Learn_1.0', $campaign='toer1', $term=NULL, $separator = '&amp;') {
+    $campaign_url = '&amp;'==$separator ? htmlentities($url) : $url;
     if (! $this->with_campaign) {
-      return $url;
+      return $campaign_url;
     }
+
     // Todo: URLs containing '#fragments' will be messed up.
-    $campaign_url = $url;
-    $campaign_url .= FALSE===strpos($url, '?') ? '?' : '&';
+    $campaign_url .= FALSE===strpos($url, '?') ? '?' : $separator;
 
     $params = array(
       'utm_source' => $source_host .TRACKER_PAGE_URL_SEP. $source_id,
@@ -84,7 +85,7 @@ class Google_Tracker extends Base_Tracker {
       'utm_term' => $term,
     );
     // Decode our reserved delimiter '!'
-    return $campaign_url . str_replace('%21', '!', http_build_query($params));
+    return $campaign_url . str_replace('%21', '!', http_build_query($params, NULL, $separator));
   }
 
   /**

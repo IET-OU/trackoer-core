@@ -121,7 +121,7 @@ class Oembed extends MY_Controller {
         '_ATTR_URL_'   => $this->ga->campaignUrl('http://labspace.open.ac.uk/b2s', $request->mode, TRACKER_RDF_ATTR_LINK, $source_host, $result->identifier),
         '_TITLE_' => $result->_title,
         '_SOURCE_URL_' => $this->ga->campaignUrl($request->url, $request->mode, TRACKER_RDF_SRC_LINK, $source_host, $result->identifier),
-        '_SOURCE_TEXT_'=> $request->url,
+        '_SOURCE_TEXT_'=> htmlentities($request->url),
 
         $_cc_icon => $_beacon_url,
       )

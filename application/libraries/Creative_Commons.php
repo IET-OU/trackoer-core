@@ -168,6 +168,9 @@ class Creative_Commons {
 
   /**
   * API request for the RDF details for a Creative Commons license.
+  *
+  * @deprecated  Not very flexible and requires hacks!
+  * @see         Use Creative_Commons::requestLicense instead.
   * @return object.
   */
   public function requestDetails($curie = 'cc:by', $locale = 'en') {
@@ -199,7 +202,7 @@ class Creative_Commons {
   }
 
   /**
-  * API request for the full RDF for a Creative Commons license.
+  * API request for the full RDF for a Creative Commons license, including a HTML template.
   * Template placeholders are used, eg. '_TITLE_' for the 'Title of work'.
   * @return object
   */

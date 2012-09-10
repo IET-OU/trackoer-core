@@ -188,7 +188,7 @@ class Oembed extends MY_Controller {
         $this->_addStatus("Controller: The input 'ac' parameter seems to be a Google Analytics ID. Proceeding with Google-Tracker..");
         $request->tracker = 'Google';
       } else {
-        $this->_error("Unexpected account ID {ac}, $request->ac", 400.10);
+        $this->_error("Unexpected (Google Analytics) account ID {ac}, $request->ac", 400.10);
       }
     }
     if (! $request->tracker) {

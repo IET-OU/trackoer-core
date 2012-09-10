@@ -139,7 +139,9 @@ class Creative_Commons {
   /** Escape the input embed code, for use in a [textarea].
   */
   public function escape($code) {
-    return str_replace(array('<', "\n"), array('&lt;', ''), $code);
+    // Note, order matters.
+    return str_replace(array('&', '<', "\n"), array('&amp;', '&lt;', ''), $code);
+    #return htmlentities($code, ENT_NOQUOTES); (ENT_HTML5);
   }
 
 

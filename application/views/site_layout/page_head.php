@@ -33,7 +33,7 @@
 
 <meta name="copyright" content="&copy;2012 The Open University." />
 <meta name="description" content=
-"Track OER is a JISC and HEFCE-funded project to facilitate Web analytics for Open Educational Resources. It is a rapid innovation project to demonstrate technical solutions, based around software like Piwik, Google Analytics and CaPRéT." />
+"Track OER is a JISC and HEFCE-funded project to facilitate Web analytics for Open Educational Resources. It is a rapid innovation project to demonstrate technical solutions, based around software like Piwik, Google Analytics and CaPRÃ©T." />
 
 
 <?php

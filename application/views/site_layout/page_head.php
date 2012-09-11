@@ -55,6 +55,7 @@
  */ ?>
 <link rel=stylesheet href="<?php echo $assets_url ?>layout-ci.css" />
 <link rel=stylesheet href="<?php echo $assets_url ?>forkme.css" />
+<link rel=stylesheet href="<?php echo $assets_url ?>site/css/mobile.css" />
 
 <?php if ($ggl_font): ?>
 <link rel=stylesheet href="http://fonts.googleapis.com/css?family=<?php echo urlencode($ggl_font) ?>&amp;v1" />

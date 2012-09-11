@@ -79,7 +79,7 @@
 		<li class="f-tx"><a href="<?php echo CONTACT_URL ?>">Contact us/ Feedback</a>
 		<li class="f-rss"><a href="<?php echo $feed_url ?>" title="RSS feed for the Project blog, on Cloudworks">Feed</a>
 		<li class="ci-footer">Page rendered in <strong>{elapsed_time}</strong> seconds</li>
-		<li id="forkme-banner"><a href="<?php echo CODE_URL ?>" title="Fork me on GitHub">Fork me on GitHub</a></li>
+		<li id="forkme-banner"><a href="<?php echo CODE_URL ?>" title="Fork me on GitHub"><span>Fork me on </span>GitHub</a></li>
 		</ul>
 	<?php
 

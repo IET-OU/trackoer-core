@@ -203,8 +203,11 @@ input[type=submit]{ cursor:pointer; padding:.8em; }
 .oer-form [type=submit]:hover{ background:#e8e8e8; }
 .oer-form input#url{
 	width:42em;
+	/*max-width:44em;
+	width:82%;
+	*/
 	background:#f8f8f8;
-	border-right:none;
+	border-right-width:0
 }
 .oer-form input#url:focus{
 	box-shadow:0 0 20px #d0d0d0;

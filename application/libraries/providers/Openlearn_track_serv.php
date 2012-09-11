@@ -51,5 +51,31 @@ EOT;
 
   // 'call' is implemented in the parent..
 
+
+  protected function _get_attribution($rdf) {
+    $url = $rdf->original_url;
+
+    if ('B2S' == $rdf->subject) {
+      $rdf->attribution_name = 'OpenLearn-LabSpace / Bridge to Success (B2S)'; #' / ' . $rdf->contributor;
+      $rdf->attribution_url = 'http://labspace.open.ac.uk/b2s';
+    }
+    elseif (FALSE !== strpos($url, 'labspace.open.ac.uk')) {
+      $rdf->attribution_name = 'OpenLearn-LabSpace / '. $rdf->publisher;
+      $rdf->attribution_url = 'http://labspace.open.ac.uk/';
+    }
+    elseif (FALSE !== strpos($url, 'openlearn.open.ac.uk')) {
+      $rdf->attribution_name = 'OpenLearn-LearningSpace / '. $rdf->publisher;
+      $rdf->attribution_url = 'http://openlearn.open.ac.uk/';
+    }
+    elseif (FALSE !== strpos($url, 'open.edu/openlearn')) {
+      $rdf->attribution_name = 'OpenLearn / The Open University';
+      $rdf->attribution_url = 'http://www.open.edu/openlearn/';
+    }
+    else {
+      $rdf->attribution_name = 'The Open University';
+      $rdf->attribution_url = 'http://www.open.ac.uk/';
+    }
+    return $rdf;
+  }
 }
 

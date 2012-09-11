@@ -104,6 +104,7 @@ EOT;
 	$rdf->_title = isset($rdf->_page_title) ? $rdf->_page_title .' (Course)' : $rdf->title .' (Module)';
 
 	$rdf->_custom_path = $this->_get_custom_hash($rdf);
+	$rdf = $this->_get_attribution($rdf);
 
 	$this->_addStatus('Returning to controller.');
 
@@ -113,6 +114,16 @@ EOT;
 
 
   /**
+   * Overridden in Openlearn_track_serv
+   */
+  protected function _get_attribution($rdf) {
+    $rdf->attribution_name = 'unknown / Moodle-RDF';
+    $rdf->attribution_url = $rdf->original_url;
+
+    return $rdf;
+  }
+
+  /**
   * Create the custom hash fragment.
   * @return string Eg. "!labspace.open.ac.uk!Learning_to_Learn_1.0!mod/oucontent/view.php?id=1422&section=3!plain-zip!Debug!12"
   */
@@ -120,44 +131,6 @@ EOT;
     define('SP', TRACKER_PAGE_URL_SEP);
     $p = parse_url($rdf->original_url); #, PHP_URL_HOST);
     return $custom_arg = SP. $p['host'] .SP. $rdf->identifier .SP. $p['path']. (isset($p['query']) ? '?'. $p['query'] : '') .SP. $format;
-  }
-
-  /**
-  *
-  <rdf:RDF xmlns="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-    <Work rdf:about="">
-          <dc:title>Learning to Learn</dc:title>
-  */
-  protected function _http_request_work_rdf($rdf_url) {
-    $result = $this->_http_request($rdf_url);
-
-    if (! $result->success) {
-      $this->_error('HTTP Work-RDF error', $result->http_code);
-    }
-
-    $xmlo = NULL;
-    if ($result->success) {
-      $xmlo = @simplexml_load_string($result->data);
-    }
-    if (! $xmlo) {
-      $this->_error('XML Work-RDF error');
-    }
-    $xmlo->registerXPathNamespace('_', 'http://creativecommons.org/ns#');
-    $xmlo->registerXPathNamespace('rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#');
-    $xmlo->registerXPathNamespace('dc', 'http://purl.org/dc/elements/1.1/');
-
-    $dc_props = explode('|', 'title|subject|description|publisher|contributor|type|format|identifier|source|rights');
-    $rdf = array();
-    foreach ($dc_props as $key) {
-      $value = $xmlo->xpath("/rdf:RDF/_:Work/dc:$key"); #[1]
-      $rdf[$key] = (string) $value[0];
-    }
-    if (preg_match_all('@http://[^ ]+@', $rdf['rights'], $matches)) {
-      $rdf['_license_url'] = $matches[0];
-    }
-	#var_dump((string) $xmlo->Work[0]->{'dc:title'}, $rdf);
-	$result->rdf = (object) $rdf;
-    return $result;
   }
 
 }

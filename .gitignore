@@ -16,4 +16,7 @@ application/logs/*
 * copy.*
 
 piwik/*
-_scratch
+b2s/*
+
+_old*
+_scratch*

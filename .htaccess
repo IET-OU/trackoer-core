@@ -3,6 +3,10 @@
 ##
 
 
+# http://askapache.com/htaccess/setting-charset-in-htaccess.html
+AddDefaultCharset UTF-8
+
+
 # Deny OR Allow Folder Indexes.
 # Since we disable access to PHP files you
 # can leave this on without worries.

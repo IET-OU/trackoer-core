@@ -71,6 +71,8 @@ define('XMLNS_OU_RSS_PLAYER', 'http://podcast.open.ac.uk/2012');
 |--------------------------------------------------------------------------
 | Various URLs - mostly for application/views/site_layout/layout_ci.php
 */
+define('TRACKOER_LIVE_URL', 'http://track.olnet.org/');
+
 // The project blog.
 define('BLOG_URL', 'http://cloudworks.ac.uk/tag/view/TrackOER');
 

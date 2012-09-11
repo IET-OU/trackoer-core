@@ -123,15 +123,5 @@ EOT;
     return $rdf;
   }
 
-  /**
-  * Create the custom hash fragment.
-  * @return string Eg. "!labspace.open.ac.uk!Learning_to_Learn_1.0!mod/oucontent/view.php?id=1422&section=3!plain-zip!Debug!12"
-  */
-  protected function _get_custom_hash($rdf, $format = 'mode-unknown') {
-    define('SP', TRACKER_PAGE_URL_SEP);
-    $p = parse_url($rdf->original_url); #, PHP_URL_HOST);
-    return $custom_arg = SP. $p['host'] .SP. $rdf->identifier .SP. $p['path']. (isset($p['query']) ? '?'. $p['query'] : '') .SP. $format;
-  }
-
 }
 

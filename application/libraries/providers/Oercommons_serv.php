@@ -87,6 +87,7 @@ EOT;
     $rdf->_rdf_type = $rdf->type;
     $rdf->type = 'rich';
 
+    $rdf->_custom_path = $this->_get_custom_hash($rdf);
     $rdf = $this->requestNameWikipedia($rdf);
 
     $this->_addStatus('Requesting site name from Wikipedia search... Received OK.');

@@ -213,8 +213,37 @@ abstract class Oembed_Provider implements iService {
   protected function _get_custom_hash($rdf, $format = 'mode-unknown') {
     define('SP', TRACKER_PAGE_URL_SEP);
     $source_url = isset($rdf->source_url) ? $rdf->source_url : $rdf->original_url;
-    $p = parse_url($source_url); #, PHP_URL_HOST);
-    return $custom_arg = SP. $p['host'] .SP. $rdf->identifier .SP. $p['path']. (isset($p['query']) ? '?'. $p['query'] : '') .SP. $format;
+    $pun = $this->parse_url_norm($source_url); #, PHP_URL_HOST);
+
+    return SP. $pun->host .SP. $rdf->identifier .SP. $pun->path. ($pun->query ? '?'. $pun->query : '') .SP. $format;
+  }
+
+
+  /**
+  * Parse a URL and return its components - normalized.
+  *
+  * @return mixed
+  * @link  http://php.net/manual/en/function.parse-url.php
+  */
+  public function parse_url_norm($url, $component = -1, $object = TRUE) {
+    $res = parse_url($url, $component);
+    switch ($component) {
+      case -1:
+        $res['host'] = str_ireplace('www.', '', $res['host']);
+        $res['path'] = rtrim($res['path'], '/');
+        if ($object) {
+          $res = (object) $res;
+          if (! isset($res->query)) $res->query = NULL;
+        }
+      break;
+      case PHP_URL_HOST:
+        $res = str_replace('www.', '', $res);
+      break;
+      case PHP_URL_PATH:
+        $res = rtrim($res, '/');
+      break;
+    }
+    return $res;
   }
 
 

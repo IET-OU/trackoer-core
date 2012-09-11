@@ -73,7 +73,7 @@ class Oembed extends MY_Controller {
     $this->load->tracker($request->tracker);
 
     $source_url = isset($result->source_url) ? $result->source_url : $request->url;
-    $source_host = parse_url($source_url, PHP_URL_HOST);
+    $source_host = $this->provider->parse_url_norm($source_url, PHP_URL_HOST);
 
     $result->_tracker_code = $result->_piwik_site_id = $result->_piwik_site_url = $_beacon_url = NULL;
 

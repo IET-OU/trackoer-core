@@ -149,7 +149,10 @@ abstract class Oembed_Provider implements iService {
   }
 
 
-  /** From: Moodle_rdf_serv::_http_request_work_rdf
+  /**
+  * Request and parse a Creative Commons 'Work' RDF/XML (OpenLearn), or RDF-RSS (OER Commons).
+  *
+  * From: Moodle_rdf_serv::_http_request_work_rdf
   *
   <rdf:RDF xmlns="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <Work rdf:about="">
@@ -173,8 +176,10 @@ abstract class Oembed_Provider implements iService {
     $xmlo->registerXPathNamespace('rss', 'http://purl.org/rss/1.0/');
     $xmlo->registerXPathNamespace('rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#');
     $xmlo->registerXPathNamespace('dc', 'http://purl.org/dc/elements/1.1/');
+    $xmlo->registerXPathNamespace('syn', 'http://purl.org/rss/1.0/modules/syndication/');
 
-    $dc_xpath = $is_rss ? '//rss:item/dc:' : '/rdf:RDF/cc:Work/dc:';
+    // Dublin Core and default xPath expressions.
+    $dc_xpath  = $is_rss ? '//rss:item/dc:' : '/rdf:RDF/cc:Work/dc:';
     $def_xpath = $is_rss ? '//rss:item/rss:' : '/rdf:RDF/cc:Work/cc:';
 
     $dc_props = explode('|', 'title|subject|description|publisher|contributor|type|format|identifier|source|rights|date');
@@ -191,10 +196,12 @@ abstract class Oembed_Provider implements iService {
     if (preg_match_all('@http://[^ ]+@', $rdf['rights'], $matches)) {
       $rdf['_license_url'] = $matches[0];
     }
-	#var_dump((string) $xmlo->Work[0]->{'dc:title'}, $rdf);
-	$result->rdf = (object) $rdf;
+    #var_dump((string) $xmlo->Work[0]->{'dc:title'}, $rdf);
+    $result->rdf = (object) $rdf;
+
     return $result;
   }
+
 
   #protected function _safe_xml($xml) {..}
   #function _mkdir_safe($base, $path, $perm=0777) {..}

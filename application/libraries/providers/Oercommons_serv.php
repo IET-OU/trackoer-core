@@ -68,16 +68,60 @@ EOT;
       $id = $matches_id[1]; #35.35915
     }
 
-    #$result = $this->_http_request($search_url);
+    $rdf_result = $this->_http_request_work_rdf($search_url, $is_rss = TRUE);
 
-    if (! $result->success) {
-      $this->_error("Error requesting search feed XML, $search_url", $result->http_code);
+    if (! $rdf_result->success) {
+      $this->_error("Error requesting search feed XML, $search_url", $rdf_result->http_code);
     }
 
+    $this->_addStatus("Requesting RDF-RSS feed over the Web... Received OK.");
+    $this->_addStatus("Parsing RDF...");
 
-    var_dump($search_url, $matches, $course_url, $id);
-    #var_dump($result);
-    
-    exit;
+    $rdf = $rdf_result->rdf;
+
+
+    $rdf->original_url = $url;
+    $rdf->source_url = $course_url;
+    $rdf->provider_mid = $id;
+    $rdf->_title = $rdf->title;  //Hack.
+    $rdf->_rdf_type = $rdf->type;
+    $rdf->type = 'rich';
+
+    $rdf = $this->requestNameWikipedia($rdf);
+
+    $this->_addStatus('Requesting site name from Wikipedia search... Received OK.');
+    $this->_addStatus('Returning to controller.');
+
+#var_dump($rdf);
+    return $rdf;
+  }
+
+
+  /**
+  * Attribution: given a URL, request the name of the site-owner/publisher, from Wikipedia search.
+  * @param object $rdf  A meta-data object containing a 'source_url' property.
+  * @param string $locale
+  * @return object 'RDF'/ meta-data object.
+  */
+  protected function requestNameWikipedia($rdf, $locale = 'en') {
+    $host = parse_url($rdf->source_url, PHP_URL_HOST);
+
+    $search_url = "http://$locale.wikipedia.org/w/api.php?action=query&list=search&srprop=timestamp&format=json&srsearch=" . str_replace('www.', '', $host);
+    $result = $this->_http_request_json($search_url);
+
+    if (! $result->success) {
+      $this->_error("Error requesting Wikipedia search, $search_url", $result->http_code);
+    }
+
+    $query = $result->json->query;
+    if ($query->searchinfo->totalhits < 1) {
+      $rdf->attribution_name = 'unknown / OER Commons';
+    } else {
+      $rdf->attribution_name = $result->json->query->search[0]->title;
+    }
+    $rdf->attribution_url = 'http://' . $host;
+    $rdf->_wikipedia_total = $query->searchinfo->totalhits;
+
+    return $rdf;
   }
 }

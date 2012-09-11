@@ -29,7 +29,7 @@ EOT;
   public $_about_url= 'http://open.edu/openlearn';
   public $_logo_url = 'http://open.edu/includes/headers-footers/oulogo-56.jpg';
 
-  public $_regex_real = ':\/\/(openlearn|labspace).open.ac.uk\/(([\w_\.]+)|(course)\/view.php\?.+|(mod)\/oucontent\/view.php\?.+)$';
+  public $_regex_real = ':\/\/(openlearn|labspace|openlearnacct|labspaceacct).open.ac.uk\/(([\w_\.]+)|(course)\/view.php\?.+|(mod)\/oucontent\/view.php\?.+)$';
   #public $_regex_real = ':\/\/(openlearn|labspace).open.ac.uk\/(course|mod)\/(oucontent\/)?view(.php)?\?.+';
   public $_examples = array(
     'Course: Learning to Learn - B2S on LabSpace'

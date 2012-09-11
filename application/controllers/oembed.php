@@ -72,7 +72,8 @@ class Oembed extends MY_Controller {
 
     $this->load->tracker($request->tracker);
 
-    $source_host = parse_url($request->url, PHP_URL_HOST);
+    $source_url = isset($result->source_url) ? $result->source_url : $request->url;
+    $source_host = parse_url($source_url, PHP_URL_HOST);
 
     $result->_tracker_code = $result->_piwik_site_id = $result->_piwik_site_url = $_beacon_url = NULL;
 
@@ -117,11 +118,11 @@ class Oembed extends MY_Controller {
       array(
         #'__GA_ID__' => $params->ac,
         #'__CC_TEXT_URL__' => $this->ga->campaignUrl($license_url, $params->mode, TRACKER_RDF_LIC_LINK, $source_host, $result->identifier),
-        '_ATTR_NAME_'  => 'OpenLearn-LabSpace - Bridge to Success B2S', #'OpenLearn/ Andrew Studnicky',
-        '_ATTR_URL_'   => $this->ga->campaignUrl('http://labspace.open.ac.uk/b2s', $request->mode, TRACKER_RDF_ATTR_LINK, $source_host, $result->identifier),
+        '_ATTR_NAME_'  => $result->attribution_name,
+        '_ATTR_URL_'   => $this->ga->campaignUrl($result->attribution_url, $request->mode, TRACKER_RDF_ATTR_LINK, $source_host, $result->identifier),
         '_TITLE_' => $result->_title,
-        '_SOURCE_URL_' => $this->ga->campaignUrl($request->url, $request->mode, TRACKER_RDF_SRC_LINK, $source_host, $result->identifier),
-        '_SOURCE_TEXT_'=> htmlentities($request->url),
+        '_SOURCE_URL_' => $this->ga->campaignUrl($source_url, $request->mode, TRACKER_RDF_SRC_LINK, $source_host, $result->identifier),
+        '_SOURCE_TEXT_'=> htmlentities($source_url),
 
         $_cc_icon => $_beacon_url,
       )

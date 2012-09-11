@@ -38,7 +38,10 @@ class MY_Controller extends CI_Controller {
     // Enable Cross-Origin Resource Sharing (CORS), http://enable-cors.org | http://w3.org/TR/cors
     @header('Access-Control-Allow-Origin: *');
     @header('Content-Type: text/html; charset=UTF-8');
-    #@header("X-Powered-By:");
+    if (ini_get('expose_php')) {
+      // 'ofa' - OU flavoured Apache..?
+      @header('X-Powered-By: iet-ou');
+    }
 
     log_message('debug', __CLASS__." Class Initialized");
   }

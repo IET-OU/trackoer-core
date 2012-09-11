@@ -81,6 +81,11 @@
 		<li class="ci-footer">Page rendered in <strong>{elapsed_time}</strong> seconds</li>
 		<li id="forkme-banner"><a href="<?php echo CODE_URL ?>" title="Fork me on GitHub">Fork me on GitHub</a></li>
 		</ul>
+	<?php
+
+	$this->view('site_layout/bookmarklet')
+
+	?>
 	</div>
 <?php else: ?>
 	<p class="ci-footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>

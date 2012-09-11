@@ -231,3 +231,16 @@ input[type=submit]{ cursor:pointer; padding:.8em; }
 	-o-transition:all .6s; /* Opera */
 }
 .oer-form #ga-ac.show{ height:3em; border:1px solid #ddd; }
+
+
+/* Bookmarklet link.
+*/
+#bookmarklet{
+	display:block;
+	position:fixed;
+	bottom:0;
+	left:0;
+	padding:8px;
+	border:2px solid gray;
+	background:#eee;
+}

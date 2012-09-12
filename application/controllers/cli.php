@@ -104,6 +104,10 @@ EOF;
       $this->_cli_error('missing arguments');
     }
 
+    if (! isset($params['css'])) {
+      $params['css'] = '';
+    }
+
 
     // Parameter validation..
     foreach ($params as $key => $value) {
@@ -182,6 +186,9 @@ EOF;
       }
       // Filter - only HTML/ XML?
       $input = file_get_contents($params->dir .'/'. $filename);
+      if (! $input) {
+        $this->_cli_error("reading file, $filename");
+      }
 
       $title = $result->title;
 
@@ -226,7 +233,10 @@ EOF;
       }
 
 	  $out_file = $params->out .'/'. $filename;
-      $bytes = file_put_contents($out_file, $output);
+      $bytes = @file_put_contents($out_file, $output);
+      if (! $bytes) {
+        $this->_cli_error("writing file, $out_file");
+      }
 
 	  echo "> File out, $bytes : $out_file" .PHP_EOL;
 

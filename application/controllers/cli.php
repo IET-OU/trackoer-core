@@ -208,11 +208,11 @@ EOF;
           #'__CC_TERMS__' => str_replace('cc:', '', $params->lic),   # License terms, eg. 'by', 'by-nc-sa'
           #'__CC_VJ__'    => '3.0',     # License version[/jurisdiction], eg. '2.0/uk' or '3.0'
           '__CC_LABEL__' => 'Creative Commons Attribution 3.0 Unported License',
-          '_ATTR_NAME_'  => 'OpenLearn-LabSpace - Bridge to Success B2S', #'OpenLearn/ Andrew Studnicky',
-          '_ATTR_URL_'   => $this->ga->campaignUrl('http://labspace.open.ac.uk/b2s', $params->mode, TRACKER_RDF_ATTR_LINK, $source_host, $result->identifier),
+          '_ATTR_NAME_'  => $result->attribution_name,  #'OpenLearn/ Andrew Studnicky',
+          '_ATTR_URL_'   => $this->ga->campaignUrl($result->attribution_url, $params->mode, TRACKER_RDF_ATTR_LINK, $source_host, $result->identifier),
           '_TITLE_' => $title,
           '_SOURCE_URL_' => $this->ga->campaignUrl($params->url, $params->mode, TRACKER_RDF_SRC_LINK, $source_host, $result->identifier),
-          '_SOURCE_TEXT_'=> $params->url,
+          '_SOURCE_TEXT_'=> htmlentities($params->url),
           '__COURSE_HOST__'=> $source_host,
           '__COURSE_ID__'  => $result->identifier,
           '__WORK_ID__'    => $filename,

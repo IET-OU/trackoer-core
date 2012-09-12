@@ -163,7 +163,7 @@ EOF;
 
     $batch_template = $this->load->view('cc_code/batch_template', $view_data = NULL, $return = TRUE);
 
-    $source_host = parse_url($params->url, PHP_URL_HOST);
+    $src_host = parse_url($params->url, PHP_URL_HOST);
     $license_url = $this->cc->getLicenseUrl($params->lic);
 
 
@@ -202,18 +202,22 @@ EOF;
         $batch_template,
         array(
           '__GA_ID__' => $params->ac,
-          '__CC_TEXT_URL__' => $this->ga->campaignUrl($license_url, $params->mode, TRACKER_RDF_LIC_LINK, $source_host, $result->identifier),
-          '__CC_ICON_URL__' => $this->ga->campaignUrl($license_url, $params->mode, TRACKER_RDF_LIC_ICON, $source_host, $result->identifier),
+          '__CC_TEXT_URL__' => $this->ga->campaignUrl($license_url,
+            $params->mode, TRACK_RDF_LIC_LINK, $src_host, $result->identifier),
+          '__CC_ICON_URL__' => $this->ga->campaignUrl($license_url,
+            $params->mode, TRACK_RDF_LIC_ICON, $src_host, $result->identifier),
           '__CC_ICON_SRC__' => $this->cc->getImageUrl($params->lic),
           #'__CC_TERMS__' => str_replace('cc:', '', $params->lic),   # License terms, eg. 'by', 'by-nc-sa'
           #'__CC_VJ__'    => '3.0',     # License version[/jurisdiction], eg. '2.0/uk' or '3.0'
           '__CC_LABEL__' => 'Creative Commons Attribution 3.0 Unported License',
           '_ATTR_NAME_'  => $result->attribution_name,  #'OpenLearn/ Andrew Studnicky',
-          '_ATTR_URL_'   => $this->ga->campaignUrl($result->attribution_url, $params->mode, TRACKER_RDF_ATTR_LINK, $source_host, $result->identifier),
+          '_ATTR_URL_'   => $this->ga->campaignUrl($result->attribution_url, 
+            $params->mode, TRACK_RDF_ATTR_LINK, $src_host, $result->identifier),
           '_TITLE_' => $title,
-          '_SOURCE_URL_' => $this->ga->campaignUrl($params->url, $params->mode, TRACKER_RDF_SRC_LINK, $source_host, $result->identifier),
+          '_SOURCE_URL_' => $this->ga->campaignUrl($params->url,
+            $params->mode, TRACK_RDF_SRC_LINK, $src_host, $result->identifier),
           '_SOURCE_TEXT_'=> htmlentities($params->url),
-          '__COURSE_HOST__'=> $source_host,
+          '__COURSE_HOST__'=> $src_host,
           '__COURSE_ID__'  => $result->identifier,
           '__WORK_ID__'    => $filename,
           '__MODE__'       => $params->mode,  	# 'scorm', 'ims' etc.

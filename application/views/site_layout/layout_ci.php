@@ -1,5 +1,6 @@
 <?php
   $piwik_url = $this->config->item('piwik_url');
+  $test_menu = $this->config->item('test_menu');
   $feed_url = str_replace('/view/', '/rss/', BLOG_URL);
 
   // Create HTML body classes - 'page' and/or 'route'.
@@ -44,16 +45,18 @@
 	</nav>
 <?php endif; ?>
 
+
 <?php if ('test' == $segment_1): ?>
+	<?php if ($test_menu): ?>
 	<ul id=test-nav>
-		<li><a href="<?php echo site_url('test/b2s_learn') ?>">Learning to Learn/ B2S</a>
-		<li><a href="<?php echo site_url('test/b2s_learn_section') ?>">Learning to Learn section/page</a>
-		<li><a href="<?php echo site_url('test/b2s_learn_gajs') ?>?param1=value1#hash">Google Analytics custom script</a>
-		<li><a href="<?php echo site_url('test/capret/math/course-view') ?>">Succeed with Math/ CaPReT 1</a>
-		<li><a href="<?php echo site_url('test/capret/math/course-piwik') ?>">Maths/ CaPReT-Piwik</a>
+	<?php foreach ($test_menu as $text => $path): ?>
+		<li><a href="<?php echo FALSE===strpos($path, '://') ? site_url($path) : $path ?>"><?php echo $text ?></a>
+	<?php endforeach; ?>
 	</ul>
+	<?php endif; ?>
 	<div class=warn><p>Note, this is a test/ demonstration page, which contains a Creative Commons license <a href="#cc-code">image-tracker</a>.</div>
 <?php endif; ?>
+
 
 <?php if ($with_unit_tests): ?>
 <p class=go-test-result>&rarr; <a href="#test-result">Unit test results</a></p>

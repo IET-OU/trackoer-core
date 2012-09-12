@@ -29,6 +29,19 @@ $config['http_proxy'] = 'wwwcache.open.ac.uk:80';
 
 /*
 |--------------------------------------------------------------------------
+| Test navigation.
+*/
+$config['test_menu'] = array(
+  'Learning to Learn/ B2S' => 'test/b2s_learn',
+  'Learning to Learn section/page' => 'test/b2s_learn_section',
+  'Google Analytics custom script' => 'test/b2s_learn_gajs?param1=value1#hash',
+  'Succeed with Math/ CaPReT 1' => 'test/capret/math/course-view',
+  'Maths/ CaPReT-Piwik' => 'test/capret/math/course-piwik',
+);
+
+
+/*
+|--------------------------------------------------------------------------
 | Set the base URL for a Piwik installation (no trailing slash).
 | Base URL to the Piwik Install
 | @link  https://github.com/wingdspur/codeigniter-piwik

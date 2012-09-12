@@ -124,8 +124,8 @@ h1 em, h2 em {
 	padding:3px 6px;
 }
 .pg-home .tm-toer-home, .rt-about .tm-about, .pg-test .tm-test, .pg-oerform .tm-form {
-	background:#eee;
-	border:1px solid #e8e8e8;
+	background:#e8e8e8;
+	border:1px solid #ddd;
 }
 .pg-home .tm-toer-home a, .rt-about .tm-about a, .pg-test .tm-test a, .pg-oerform .tm-form a {
 	color: #36a;
@@ -238,12 +238,16 @@ input[type=submit]{ cursor:pointer; padding:.8em; }
 
 /* Bookmarklet link.
 */
-#bookmarklet{
+#bookmarklet a{
 	display:block;
 	position:fixed;
 	bottom:0;
 	left:0;
-	padding:8px;
-	border:2px solid gray;
-	background:#eee;
+	padding:.6em 3px;
+	border:2px solid #999;
+	background:#e8e8e8;
 }
+#bookmarklet a:before{
+	content:"Bookmarklet:"; color:#111; font-size:.9em;
+}
+#bookmarklet span{ display:none; }

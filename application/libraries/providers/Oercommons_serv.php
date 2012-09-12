@@ -31,10 +31,12 @@ EOT;
   public $_about_url= 'http://oercommons.org/information';
   public $_logo_url = 'http://www.oercommons.org/media/images/logo.png';
 
-  public $_regex_real = 'oercommons\.org\/courses\/([a-z-]+)';
+  public $_regex_real = 'oercommons\.org\/(courses|community)\/([0-9a-z-]+)';
 
   public $_examples = array(
     'http://oercommons.org/courses/campaigns-and-elections/view',
+    'http://oercommons.org/courses/abraham-lincoln-and-music',
+    'PDF' => 'http://oercommons.org/community/100-ideas-for-educators/view',
     '_RSS' => 'http://oercommons.org/search?f.search=law+contemporary&feed=yes'
 
   );
@@ -46,12 +48,13 @@ EOT;
   * @return object
   */
   public function call($url, $matches) {
-    $course_id = $matches[1];
+    $course_type = $matches[1];
+    $course_id = $matches[2];
 
     $search_url = 'http://www.oercommons.org/search?feed=yes&f.search=%22'
         . str_replace('-', '+', $course_id)
         . '%22';
-    $iframe_url = "http://www.oercommons.org/courses/$course_id/view";
+    $iframe_url = "http://www.oercommons.org/$course_type/$course_id/view";
 
     $result = $this->_http_request($iframe_url);
 

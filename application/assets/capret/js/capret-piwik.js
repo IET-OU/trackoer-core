@@ -14,14 +14,15 @@
 	jQuery = jQuery.noConflict(); //(Not removeAll=true)
 
 	function get_data(key, mydefault) {
-		var val = jQuery('script[src*=capret-piwik]').data('piwik-' + key);
+		// Drupal 6/jQuery 1.3.2 doesn't fix $.data('my-prop') to $.data('myProp') - '_' for consistency.
+		var val = jQuery('script[src*=capret-piwik]').data('piwik_' + key);
 		return val || mydefault;
 	}
 
 	var piwik_url = get_data('url', 'http://track.olnet.org/piwik'),
 		idsite = get_data('idsite', 1),
-		source_ref = get_data('src-ref', true),   // Put document.location in 'urlref' Piwik param? (default: true)
-		msie_hack = get_data('msie-hack', false), // Append beacon to source document for IE? (default: false)
+		source_ref = get_data('src_ref', true),   // Put document.location in 'urlref' Piwik param? (default: true)
+		msie_hack = get_data('msie_hack', false), // Append beacon to source document for IE? (default: false)
 		record = get_data('rec', 1),
 		debug = get_data('debug', false),
 	// Aliases

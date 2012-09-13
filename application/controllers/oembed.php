@@ -73,7 +73,7 @@ class Oembed extends MY_Controller {
     $this->load->tracker($request->tracker);
 
     $source_url = isset($result->source_url) ? $result->source_url : $request->url;
-    $source_host = $this->provider->parse_url_norm($source_url, PHP_URL_HOST);
+    $src_host = $this->provider->parse_url_norm($source_url, PHP_URL_HOST);
 
     $result->_tracker_code = $result->_piwik_site_id = $result->_piwik_site_url = $_beacon_url = NULL;
 
@@ -81,7 +81,7 @@ class Oembed extends MY_Controller {
     switch ($request->tracker) {
       case 'Piwik':
         $result = $this->_get_piwik_site_id($result);
-        $_beacon_url = $this->tracker->getBeaconUrl($result->_piwik_site_id, $request->lic, $source_host, $result->identifier, $request->url, NULL, $result->_title);
+        $_beacon_url = $this->tracker->getBeaconUrl($result->_piwik_site_id, $request->lic, $src_host, $result->identifier, $request->url, NULL, $result->_title);
         $result->_beacon_url = $_beacon_url;
         $result->_cc_icon = $_cc_icon = $this->cc->getImageUrl($request->lic);
 
@@ -117,11 +117,13 @@ class Oembed extends MY_Controller {
       $cc_template->html,
       array(
         #'__GA_ID__' => $params->ac,
-        #'__CC_TEXT_URL__' => $this->ga->campaignUrl($license_url, $params->mode, TRACKER_RDF_LIC_LINK, $source_host, $result->identifier),
+        #'__CC_TEXT_URL__' => $this->ga->campaignUrl($license_url, $params->mode, TRACK_RDF_LIC_LINK, $src_host, $result->identifier),
         '_ATTR_NAME_'  => $result->attribution_name,
-        '_ATTR_URL_'   => $this->ga->campaignUrl($result->attribution_url, $request->mode, TRACKER_RDF_ATTR_LINK, $source_host, $result->identifier),
+        '_ATTR_URL_'   => $this->ga->campaignUrl($result->attribution_url,
+          $request->mode, TRACK_RDF_ATTR_LINK, $src_host, $result->identifier),
         '_TITLE_' => $result->_title,
-        '_SOURCE_URL_' => $this->ga->campaignUrl($source_url, $request->mode, TRACKER_RDF_SRC_LINK, $source_host, $result->identifier),
+        '_SOURCE_URL_' => $this->ga->campaignUrl($source_url,
+          $request->mode, TRACK_RDF_SRC_LINK, $src_host, $result->identifier),
         '_SOURCE_TEXT_'=> htmlentities($source_url),
 
         $_cc_icon => $_beacon_url,

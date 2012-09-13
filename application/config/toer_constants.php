@@ -50,13 +50,13 @@ define('TRACKER_MODE_DOC', 'doc');
 | @see Google_Tracker::campaignUrl()
 */
 // License image-link
-define('TRACKER_RDF_LIC_ICON', 'lic-icon');
+define('TRACK_RDF_LIC_ICON', 'lic-icon');
 // License text-link
-define('TRACKER_RDF_LIC_LINK', 'lic-link');
+define('TRACK_RDF_LIC_LINK', 'lic-link');
 // Source work link/URL
-define('TRACKER_RDF_SRC_LINK', 'src-link');
+define('TRACK_RDF_SRC_LINK', 'src-link');
 // Attribution link
-define('TRACKER_RDF_ATTR_LINK', 'attr-link');
+define('TRACK_RDF_ATTR_LINK', 'attr-link');
 
 
 /*

@@ -111,6 +111,7 @@ class Test extends MY_Controller {
 		if (! $piwik_idsite) {
 			$piwik_idsite = 2;
 		}
+		$google_ac = 'UA-34064304-5';
 
 		$jq_version = $this->input->get_default('jquery', '1.6.2');
 		if (preg_match('/d(rupal)?6?/i', $jq_version)) {
@@ -122,10 +123,11 @@ class Test extends MY_Controller {
 			##$capret_js_url = 'http://capret.mitoeit.org/js/';
 			'data_piwik_url' => 'http://track.olnet.org/piwik'==$piwik_url ? '': "data-piwik-url='$piwik_url'",
 			'piwik_idsite' => $piwik_idsite,
+			'ga_ac' => $google_ac,
 			'debug' => (bool) $this->input->get('debug'),
 		);
 	
-		if ('course-piwik' == $page) {
+		if ('course-view' != $page) {
 			$this->_load_layout(self::LAYOUT);
 			
 			$this->layout->view("capret_test/labspace-acct-b2s-$course-$page-1", $view_data);

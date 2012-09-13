@@ -15,17 +15,24 @@
 
 	function get_data(key, mydefault) {
 		// Drupal 6/jQuery 1.3.2 doesn't fix $.data('my-prop') to $.data('myProp') - '_' for consistency.
-		var val = jQuery('script[src*=capret-piwik]').data('piwik_' + key);
-		return val || mydefault;
+		//var val = jQuery('script[src*=capret-piwik]').data('piwik_' + key);
+		//return val || mydefault;
+
+		var val = jQuery('script[src*=capret-piwik]').attr('data-piwik_' + key);
+
+		val = typeof val === 'undefined' ? mydefault : val;
+		return '0' === val ? false : val;
 	}
 
 	var piwik_url = get_data('url', 'http://track.olnet.org/piwik'),
 		idsite = get_data('idsite', 1),
 		source_ref = get_data('src_ref', true),   // Put document.location in 'urlref' Piwik param? (default: true)
 		msie_hack = get_data('msie_hack', false), // Append beacon to source document for IE? (default: false)
+		msie_comment = get_data('msie_comment', true),
 		record = get_data('rec', 1),
 		debug = get_data('debug', false),
 	// Aliases
+		ua = jQuery.browser,
 		M = Math,
 		enc = encodeURIComponent,
 		J = JSON,  //3rd party?
@@ -86,15 +93,21 @@
 
 		jQuery('body').clipboard({
 			append: function (e) {
+				var comment = msie_comment && ua.msie ? (
+				'<!--\n * Content copied using Internet Explorer.\n' +
+				' * To paste rich-text cleanly use a different browser or paste into an HTML source editor on your site.\n' +
+				' * For more help visit, http://track.olnet.org/help/capret/ie\n-->') : '';
+				comment = typeof msie_comment == 'string' && msie_comment.length > 1 && ua.msie ? '<!--\n' + msie_comment + '\n-->' : comment;
+
 				// A side effect of adding the image tag to the clipboard is that the browser will make a request out to the stats server.
 				// That notifies us that text was copied
-				if (msie_hack && jQuery.browser.msie) {
+				if (msie_hack && ua.msie) {
 					// Maybe a fix for MSIE 8.. seems to work, partly!
 					jQuery('body').append(image_tag_piwik(e, env));
 
 					return license.license_html;
 				}
-				return image_tag_piwik(e, env) + license.license_html;
+				return comment + image_tag_piwik(e, env) + license.license_html;
 			}
 		});
 	});

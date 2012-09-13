@@ -1,10 +1,12 @@
 /*!
-* capret-piwik.js : Based on capret.js
-* N.D.Freear, 2012-08-21.
-* See, http://piwik.org/docs/tracking-api/reference
+* capret-piwik.js: Based on capret.js
+* ©2012 The Open University/ License MIT/ Author N.D.Freear 2012-08-21.
+* http://track.olnet.org
 */
+// See, http://piwik.org/docs/tracking-api/reference
+
 /*jslint browser:true, devel:true, indent:4, maxerr:500 */
-/*global document:false, window:false, oer_license_parser:false, jQuery:false */
+/*global document, window, oer_license_parser, jQuery */
 
 (function (jQuery) {
 	'use strict';
@@ -29,6 +31,7 @@
 		doc = document,
 		license_parser = oer_license_parser,  //3rd party library.
 		log = function (s) {if (typeof console === 'object' && debug) {console.log(arguments.length <= 1 ? s : arguments); } };
+	log('capret-piwik');
 
 	function truncate(str, length) {
 		if (str.length > length) {

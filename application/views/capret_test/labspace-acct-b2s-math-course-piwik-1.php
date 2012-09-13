@@ -50,19 +50,20 @@ continue on your math journey.</li></ol>
 <![endif]-->
 <script
   src="<?php echo $capret_js_url ?>capret<?php echo $which_capret ?>.js"
-  data-piwik-idsite="<?php echo $piwik_idsite ?>"
+  data-piwik_idsite="<?php echo $piwik_idsite ?>"
   <?php echo $data_piwik_url ?>
-
-  data-piwik-debug="<?php echo $debug ?>"
+<?php if ($debug): ?>
+  data-piwik_debug="1"
+<?php endif; ?>
   ></script>
 
-<p><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img
+<p><a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img
  alt="Creative Commons Licence" style="border-width: 0;"
- src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a>
+ src="http://i.creativecommons.org/l/by/3.0/88x31.png" /></a>
 <br />This work by <a xmlns:cc="http://creativecommons.org/ns#"
  href="http://labspace.open.ac.uk" property="cc:attributionName" rel="cc:attributionURL">Labspace - Bridge to success B2S</a>
- is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p>
-<p>This site is <a href="http://capret.mitoeit.org/">CaPRéT enabled</a>: Cut and Paste Reuse Tracking</p>
+ is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p>
+<p>This site is <a href="http://capret.mitoeit.org/">CaPRéT enabled</a>: Cut and Paste Reuse Tracking <small>(capret-piwik)</small></p>
 <!--Captret-widget ends-->
 
 </div>

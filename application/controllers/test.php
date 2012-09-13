@@ -112,8 +112,12 @@ class Test extends MY_Controller {
 			$piwik_idsite = 2;
 		}
 
+		$jq_version = $this->input->get_default('jquery', '1.6.2');
+		if (preg_match('/d(rupal)?6?/i', $jq_version)) {
+			$jq_version = '1.3.2';
+		}
 		$view_data = array(
-			'jquery_js_url' => 'https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js',
+			'jquery_js_url' => "//ajax.googleapis.com/ajax/libs/jquery/$jq_version/jquery.min.js",
 			'capret_js_url' => base_url() .'capret/js/',
 			##$capret_js_url = 'http://capret.mitoeit.org/js/';
 			'data_piwik_url' => 'http://track.olnet.org/piwik'==$piwik_url ? '': "data-piwik-url='$piwik_url'",

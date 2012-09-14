@@ -1,14 +1,15 @@
 /*!
 * capret-ga.js: Based on capret-piwik.js
-* ©2012 The Open University/ License MIT/ Author N.D.Freear 2012-09-12.
+* Â©2012 The Open University/ License MIT/ Author N.D.Freear 2012-09-12.
 * http://track.olnet.org
 */
 // See, https://developers.google.com/analytics/resources/articles/gaTrackingTroubleshooting#gifParameters
 
 /*jslint browser:true, devel:true, indent:4 */
-/*global document, window, oer_license_parser, jQuery */
+/*global document, window, oer_license_parser, jQuery, gaTrack */
 
-var _gaq = _gaq || [];
+
+//var _gaq = _gaq || [];
 
 (function (jQuery) {
 	'use strict';
@@ -26,12 +27,12 @@ var _gaq = _gaq || [];
 		msie_hack = get_data('msie_hack', false), // Append beacon to source document for IE? (default: false)
 		debug = get_data('debug', false),
 	// Aliases
-		M = Math,
-		enc = encodeURIComponent,
-		doc = document,
-		DL = doc.location,
-		license_parser = oer_license_parser,  //3rd party library.
+		UA = jQuery.browser,
+		Doc = document,
+		DL = Doc.location,
+		LP = oer_license_parser,  //3rd party library.
 		log = function (s) {if (typeof console === 'object' && debug) {console.log(arguments.length <= 1 ? s : arguments); } };
+	log('capret-ga');
 
 	function truncate(str, length) {
 		if (str.length > length) {
@@ -43,43 +44,60 @@ var _gaq = _gaq || [];
 	}
 	function final_params_ga(copy_text, env) {
 		env.len = copy_text.length;
-		env.txt = escape(truncate(copy_text, 100));
-		env.lmod = doc.lastModified;	
-		return jQuery.param(env);
+		env.tx = truncate(copy_text, 100); //Not escape()!
+		env.lmod = Doc.lastModified;
+		env.pcopy = DL.pathname + DL.search + '#!' + env.tx + '!' + 'CaPReT';
+		env.pview = '/Unknown-Dest' + env.pcopy + '/' + 'view';
+		env.title = Doc.title + '/' + env.tx + '/' + env.ct;
+		env.ecopy = '(CapReT*copy*' + env.tx + ')(' + env.len + ')';
+		env.eview = '(CapReT*view*' + env.tx + ')';
+		//return jQuery.param(env);
 	}
-	function image_tag_ga(copy_text, env){		
-		return '<img src="http://www.google-analytics.com/__utm.gif?' + final_params_ga(copy_text, env) + '"/>';
+	function image_tag_ga(copy_text, env) {
+		var img = '<img src="' + gaTrack(env.ac, false, env.pview, env.title, env.direct, env.eview, true) + '" alt=""/>';
+		//return '<img src="http://www.google-analytics.com/__utm.gif?' + final_params_ga(copy_text, env) + '"/>';
+
+		log(img);
+		log(env);
+
+		return img;
 	}
 	jQuery(function() {
-		var env = {};
-		env.utmac = utmac;
-		env.ct = new Date().getTime();
-		//env.id = make_id();
-		var license = license_parser.get_license();
+		var env = {
+			ac: utmac,
+			ct: new Date().toUTCString(),
+			host: DL.hostname,
+			//id: make_id(),
+			direct: true
+		},
+			//scope = 3,
+			license = LP.get_license();
 		jQuery('body').clipboard({
-			append: function(e){
-				var res = final_params_ga(e, env),				
-					scope = 3,
-					path = DL.pathname + DL.search + '#!' + env.txt + '!' + 'capret';
+			append: function(e) {
+				final_params_ga(e, env);
 
-				_gaq.push(['_capret_._setAccount', utmac]);
+				gaTrack(env.ac, env.host, env.pcopy, env.title, env.direct);
+				gaTrack(env.ac, env.host, env.pcopy, env.title, env.direct, env.ecopy);
+
+				/*_gaq.push(['_capret_._setAccount', utmac]);
 				_gaq.push(['_capret_._setCustomVar', 1, 'via', 'CaPReT', scope]);
 				_gaq.push(['_capret_._setCustomVar', 2, 'length', env.len, scope]);
-				_gaq.push(['_capret_._setCustomVar', 3, 'text', env.txt, scope]);
-				_gaq.push(['_capret_._setCustomVar', 5, 'copyTime', ct, scope]);
-				_gaq.push(['_capret_._trackEvent', 'CaPReT', 'copy', env.txt]);
-				_gaq.push(['_capret_._trackPageview', path]);
+				_gaq.push(['_capret_._setCustomVar', 3, 'text', env.tx, scope]);
+				_gaq.push(['_capret_._setCustomVar', 5, 'copyTime', env.ct, scope]);
+				_gaq.push(['_capret_._trackEvent', 'CaPReT', 'copy', env.tx]);
+				_gaq.push(['_capret_._trackPageview', env.pcopy]);
+				*/
 
 				// A side effect of adding the image tag to the clipboard is that the browser will make a request out to the stats server.
 				// That notifies us that text was copied
-				return /*image_tag_ga(e, env) +*/ license.license_html;
+				return image_tag_ga(e, env) + license.license_html;
 			}
 		});				
 	});
 })(jQuery);
 
 
-/*ga-start*/
+/*ga-start*-/
 (function () {
   var s, D = document, ga = D.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
   ga.src = ('https:' === D.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';

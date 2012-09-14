@@ -1,3 +1,7 @@
+/**
+ @preserve CaPReT: Cut & Paste Reuse Tracking: Copyright 2011 Tatemae & MIT-OEIT / License MIT
+ http://capret.mitoeit.org
+*/
 (function( jQuery ){
 	jQuery = jQuery.noConflict(true);
 	function make_id(){

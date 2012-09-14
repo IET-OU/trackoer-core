@@ -1,4 +1,4 @@
-/*(c)2012-08-15 The Open University.
+/** @preserve (c)2012-08-15 The Open University.
 */
 var trackoer = trackoer || {};
 

@@ -1,6 +1,6 @@
 /**
-* @preserve capret-ga.js: Based on capret-piwik.js
-* ©2012 The Open University/ License MIT/ Author N.D.Freear 2012-09-12.
+* @preserve capret-ga.js: Based on capret.js
+* Copyright 2012 The Open University/ License MIT/ Author N.D.Freear 2012-09-12.
 * http://track.olnet.org
 */
 // See, https://developers.google.com/analytics/resources/articles/gaTrackingTroubleshooting#gifParameters

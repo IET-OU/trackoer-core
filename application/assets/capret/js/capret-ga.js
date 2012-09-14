@@ -24,8 +24,9 @@
 	}
 
 	var utmac = get_data('ac', 'UA-12345-6'),
-		msie_hack = get_data('msie_hack', false), // Append beacon to source document for IE? (default: false)
 		debug = get_data('debug', false),
+		//IE_hack = get_data('ie_hack', false),   // Append beacon to source document for IE? (default: false)
+		IE_comment = get_data('ie_comment', true), // Add a help-comment for MSIE? Guy's idea (default: true, i18n)
 	// Aliases
 		UA = jQuery.browser,
 		Doc = document,
@@ -52,7 +53,7 @@
 		env.ecopy = '(CapReT*copy*' + env.tx + ')(' + env.len + ')';
 		env.eview = '(CapReT*view*' + env.tx + ')';
 	}
-	function image_tag_ga(copy_text, env) {
+	function image_tag_ga(env) {
 		var img = '<img src="' + gaTrack(env.ac, false, env.pview, env.title, env.direct, env.eview, true) + '" alt=""/>';
 
 		log(img);
@@ -69,9 +70,17 @@
 			direct: true
 		},
 			//scope = 3,
-			license = LP.get_license();
+			license = LP.get_license(),
+			comment = IE_comment && UA.msie ? (
+				'<!--\n * Content copied using Internet Explorer.\n' +
+				' * To paste rich-text cleanly use a different browser or paste into an HTML source editor on your site.\n' +
+				' * For more help visit, http://track.olnet.org/help/capret/ie\n-->'
+			) : '';
+		comment = typeof IE_comment === 'string' && IE_comment.length > 1 && UA.msie ? '<!--\n' + IE_comment + '\n-->' : comment;
+
 		jQuery('body').clipboard({
 			append: function (e) {
+
 				final_params_ga(e, env);
 
 				gaTrack(env.ac, env.host, env.pcopy, env.title, env.direct);
@@ -88,7 +97,7 @@
 
 				// A side effect of adding the image tag to the clipboard is that the browser will make a request out to the stats server.
 				// That notifies us that text was copied
-				return image_tag_ga(e, env) + license.license_html;
+				return comment + image_tag_ga(env) + license.license_html;
 			}
 		});
 	});

@@ -7,6 +7,21 @@
 AddDefaultCharset UTF-8
 
 
+# force all files to be image/gif:
+#<FilesMatch "\.(js)$">
+#    ForceType application/javascript
+#    AddCharset UTF-8
+#    AddDefaultCharset UTF-8
+#</FilesMatch>
+
+<Files ~ "\.(htm|html|css|js)$">
+    AddDefaultCharset UTF-8
+    DefaultLanguage en-GB
+</Files>
+
+AddType 'text/javascript; charset=UTF-8' .js
+
+
 # Deny OR Allow Folder Indexes.
 # Since we disable access to PHP files you
 # can leave this on without worries.
@@ -38,7 +53,9 @@ DirectoryIndex index.php
     # Still some <\?= syntax in theme-views (<\?= supported in PHP 5.4 without this
     # setting, http://php.net/manual/en/ini.core.php#ini.short-open-tag )
     # (Temporary - not supported by OU-IT hosting.)
-    php_value  short_open_tag         1
+    #php_value  short_open_tag         1
+
+    #php_value  expose_php  0
 </IfModule>
 
 

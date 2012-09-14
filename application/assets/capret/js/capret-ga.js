@@ -30,7 +30,7 @@
 		UA = jQuery.browser,
 		Doc = document,
 		DL = Doc.location,
-		LP = oer_license_parser,  //3rd party library.
+		LP = oer_license_parser,  //3rd party.
 		log = function (s) {if (typeof console === 'object' && debug) {console.log(arguments.length <= 1 ? s : arguments); } };
 	log('capret-ga');
 
@@ -51,18 +51,16 @@
 		env.title = Doc.title + '/' + env.tx + '/' + env.ct;
 		env.ecopy = '(CapReT*copy*' + env.tx + ')(' + env.len + ')';
 		env.eview = '(CapReT*view*' + env.tx + ')';
-		//return jQuery.param(env);
 	}
 	function image_tag_ga(copy_text, env) {
 		var img = '<img src="' + gaTrack(env.ac, false, env.pview, env.title, env.direct, env.eview, true) + '" alt=""/>';
-		//return '<img src="http://www.google-analytics.com/__utm.gif?' + final_params_ga(copy_text, env) + '"/>';
 
 		log(img);
 		log(env);
 
 		return img;
 	}
-	jQuery(function() {
+	jQuery(function () {
 		var env = {
 			ac: utmac,
 			ct: new Date().toUTCString(),
@@ -73,7 +71,7 @@
 			//scope = 3,
 			license = LP.get_license();
 		jQuery('body').clipboard({
-			append: function(e) {
+			append: function (e) {
 				final_params_ga(e, env);
 
 				gaTrack(env.ac, env.host, env.pcopy, env.title, env.direct);
@@ -92,7 +90,7 @@
 				// That notifies us that text was copied
 				return image_tag_ga(e, env) + license.license_html;
 			}
-		});				
+		});
 	});
 })(jQuery);
 
@@ -103,4 +101,4 @@
   ga.src = ('https:' === D.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
   s = D.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 })();
-/*ga-end*/
+/-*ga-end*/

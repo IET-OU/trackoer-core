@@ -111,7 +111,7 @@ class Test extends MY_Controller {
 		if (! $piwik_idsite) {
 			$piwik_idsite = 2;
 		}
-		$google_ac = 'UA-34064304-5';
+		$google_ac = $this->config->item('google_analytics_capret_id');
 
 		$jq_version = $this->input->get_default('jquery', '1.6.2');
 		if (preg_match('/d(rupal)?6?/i', $jq_version)) {

@@ -51,13 +51,25 @@ $config['piwik_url'] = 'http://track.olnet.org/piwik';
 #$config['piwik_url'] = 'http://localhost:8888/toer/piwik';
 
 
-// Google Analytics.
+/*
+|--------------------------------------------------------------------------
+| Google Analytics accounts.
+*/
+// GA default ID.
 #$config['google_analytics_default_id'] = 'UA-XXXXXXXX-Y';
 
-// Piwik analytics site ID (idSite).
+// CaPReT-GA account ID.
+#$config['google_analytics_capret_id'] = 'UA-XXXXXXXX-Z';
+
+
+/*
+|--------------------------------------------------------------------------
+| Piwik analytics site IDs.
+*/
+// Piwik default ID (idSite).
 #$config['piwik_default_id'] = N;
 
-// CaPReT-Piwik analytics site ID.
+// CaPReT-Piwik site ID.
 #$config['piwik_capret_id'] = M;
 
 

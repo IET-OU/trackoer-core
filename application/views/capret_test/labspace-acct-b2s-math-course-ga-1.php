@@ -45,6 +45,7 @@ continue on your math journey.</li></ol>
 <script src="<?php echo $jquery_js_url ?>"></script>
 <script src="<?php echo $capret_js_url ?>jquery.plugin.clipboard.js"></script>
 <script src="<?php echo $capret_js_url ?>oer_license_parser.js"></script>
+<script src="<?php echo $public_js_url ?>gajs-ext.js"></script>
 <script
   src="<?php echo $capret_js_url ?>capret<?php echo $which_capret ?>.js"
   data-utm_ac="<?php echo $ga_ac ?>"
@@ -60,7 +61,7 @@ continue on your math journey.</li></ol>
 <br />This work by <a xmlns:cc="http://creativecommons.org/ns#"
  href="http://labspace.open.ac.uk" property="cc:attributionName" rel="cc:attributionURL">Labspace - Bridge to success B2S</a>
  is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p>
-<p>This site is <a href="http://capret.mitoeit.org/">CaPRéT enabled</a>: Cut and Paste Reuse Tracking <small>(capret-piwik)</small></p>
+<p>This site is <a href="http://capret.mitoeit.org/">CaPRéT enabled</a>: Cut and Paste Reuse Tracking <small>(capret-ga)</small></p>
 <!--Captret-widget ends-->
 
 </div>

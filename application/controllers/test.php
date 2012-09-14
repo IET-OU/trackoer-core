@@ -120,6 +120,7 @@ class Test extends MY_Controller {
 		$view_data = array(
 			'jquery_js_url' => "//ajax.googleapis.com/ajax/libs/jquery/$jq_version/jquery.min.js",
 			'capret_js_url' => base_url() .'capret/js/',
+			'public_js_url' => base_url() .'public/js/',
 			##$capret_js_url = 'http://capret.mitoeit.org/js/';
 			'data_piwik_url' => 'http://track.olnet.org/piwik'==$piwik_url ? '': "data-piwik-url='$piwik_url'",
 			'piwik_idsite' => $piwik_idsite,

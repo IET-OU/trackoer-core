@@ -1,4 +1,8 @@
 //https://github.com/patlockley/openattribute-chrome
+/**
+ @preserve Copyright (C) 2011 by Pat Lockley / License: MIT
+ https://github.com/patlockley/openattribute-chrome
+*/
 
 var oer_license_parser = {
 	

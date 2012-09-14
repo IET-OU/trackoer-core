@@ -1,7 +1,9 @@
-/* 
+/**
+* @preserve
 * @author Niklas von Hertzen <niklas at hertzen.com>
 * @created 14.6.2011 
 * @website http://hertzen.com
+* @license MIT License
 */
 
 

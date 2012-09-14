@@ -1,5 +1,5 @@
-/*!
- trackoer.getPageUrl version 2 + Google Analytics asynch.
+/**
+ @preserve trackoer.getPageUrl version 2 + Google Analytics asynch.
  (c)2012-08-20 The Open University.
 */
 /*jslint browser: true, devel: true, indent: 2 */

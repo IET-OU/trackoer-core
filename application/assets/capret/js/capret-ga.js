@@ -1,4 +1,4 @@
-/*!
+/**
 * @preserve capret-ga.js: Based on capret-piwik.js
 * ©2012 The Open University/ License MIT/ Author N.D.Freear 2012-09-12.
 * http://track.olnet.org

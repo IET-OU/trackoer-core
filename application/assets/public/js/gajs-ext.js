@@ -1,5 +1,5 @@
-/*!
- * Google Analytics JS v1-EXT
+/**
+ * @preserve Google Analytics JS v1-EXT
  * http://code.google.com/p/google-analytics-js/
  * Copyright (c) 2009 Remy Sharp remysharp.com / MIT License
  * $Date: 2009-02-25 14:25:01 +0000 (Wed, 25 Feb 2009) $

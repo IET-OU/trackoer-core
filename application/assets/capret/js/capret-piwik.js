@@ -24,8 +24,8 @@
 	var piwik_url = get_data('url', 'http://track.olnet.org/piwik'),
 		idsite = get_data('idsite', 1),
 		source_ref = get_data('src_ref', true),   // Put document.location in 'urlref' Piwik param? (default: true)
-		IE_hack = get_data('msie_hack', false),   // Append beacon to source document for IE? (default: false)
-		IE_comment = get_data('msie_comment', true), // Add a help-comment for MSIE? Guy's idea (default: true, i18n)
+		IE_hack = get_data('ie_hack', false),     // Append beacon to source document for IE? (default: false)
+		IE_comment = get_data('ie_comment', true), // Add a help-comment for MSIE? Guy's idea (default: true, i18n)
 		record = get_data('rec', 1),
 		debug = get_data('debug', false),
 	// Aliases
@@ -83,7 +83,13 @@
 		var env = {},
 			Win = jQuery(window),
 			urlkey = source_ref ? 'urlref' : 'url',
-			license = LP.get_license();
+			license = LP.get_license(),
+			comment = IE_comment && UA.msie ? (
+				'<!--\n * Content copied using Internet Explorer.\n' +
+				' * To paste rich-text cleanly use a different browser or paste into an HTML source editor on your site.\n' +
+				' * For more help visit, http://track.olnet.org/help/capret/ie\n-->'
+				) : '';
+			comment = typeof IE_comment === 'string' && IE_comment.length > 1 && UA.msie ? '<!--\n' + IE_comment + '\n-->' : comment;
 
 		env[urlkey] = enc(DL.href); //Use 'ContentReuse' Piwik plugin.
 		env.res = enc(Win.width() + 'x' + Win.height());
@@ -91,12 +97,6 @@
 
 		jQuery('body').clipboard({
 			append: function (e) {
-				var comment = IE_comment && UA.msie ? (
-					'<!--\n * Content copied using Internet Explorer.\n' +
-					' * To paste rich-text cleanly use a different browser or paste into an HTML source editor on your site.\n' +
-					' * For more help visit, http://track.olnet.org/help/capret/ie\n-->'
-				) : '';
-				comment = typeof IE_comment === 'string' && IE_comment.length > 1 && UA.msie ? '<!--\n' + IE_comment + '\n-->' : comment;
 
 				// A side effect of adding the image tag to the clipboard is that the browser will make a request out to the stats server.
 				// That notifies us that text was copied

@@ -49,7 +49,6 @@ continue on your math journey.</li></ol>
 <script
   src="<?php echo $capret_js_url ?>capret<?php echo $which_capret ?>.js"
   data-utm_ac="<?php echo $ga_ac ?>"
-  <?php echo $data_piwik_url ?>
 <?php if ($debug): ?>
   data-utm_debug="1"
 <?php endif; ?>

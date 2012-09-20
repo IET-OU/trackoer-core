@@ -21,8 +21,6 @@ class Help extends MY_Controller {
     public function __construct() {
 		parent::__construct();
 
-		$this->load->helper('url');
-		header('Content-Type: text/html; charset=utf-8');
     }
 
 

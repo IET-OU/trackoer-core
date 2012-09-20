@@ -20,8 +20,6 @@ class Test extends MY_Controller {
     public function __construct() {
       parent::__construct();
 
-      header('Content-Type: text/html; charset=utf-8');
-	  $this->load->helper('url');
 	  $this->load->library('Creative_Commons');
     }
 

@@ -55,7 +55,6 @@ class Track extends MY_Controller {
 
 
   public function index() {
-    $this->load->helper('url');
 	redirect('track/r');
   }
 

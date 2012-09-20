@@ -75,7 +75,6 @@ class MY_Controller extends CI_Controller {
   protected function _load_layout($layout = self::LAYOUT) {
     $layout = 'ci'==$layout ? 'ci' : 'ouice_2';
     $this->load->library('Layout', array('layout'=>"site_layout/layout_$layout"));
-	$this->load->helper('url');
   }
 
 

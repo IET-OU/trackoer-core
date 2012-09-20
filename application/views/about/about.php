@@ -3,9 +3,9 @@
 <p>
  Open educational resources have been published by many higher education institutions around the world.
  They are released under licenses that typically allow download, copying and reuse of the content.
- However, once the content leaves the publisher's server it becomes very hard to find out who is using it, and what they are doing with it.
+ However, once the content leaves the publisher's server it becomes very hard to find out who is using it, and what they are doing with it.</p>
 <p>
- The Universities, funding bodies and individuals who invest time and effort in developing OER content need to find out more.
+ The Universities, funding bodies and individuals who invest time and effort in developing OER content need to find out more.</p>
 
 <h2 id=solutions>Solutions</h2>
 <p>
@@ -14,9 +14,9 @@
  It is a rapid innovation project to demonstrate technical solutions, based around software like
  <a href="http://piwik.org/">Piwik</a>, Google Analytics and <a href="http://capret.mitoeit.org/"><abbr title="Cut and Paste Reuse Tracking">CaPRéT</abbr></a>, the
  <a href="http://creativecommons.org/">Creative Commons</a> <a href="http://api.creativecommons.org/" title="Creative Commons API">API</a> and
- <a href="http://oembed.com/">oEmbed</a>.
+ <a href="http://oembed.com/">oEmbed</a>.</p>
 <p>
- Find out more on the <a href="<?php echo BLOG_URL ?>" title="Track OER blog, on Cloudworks">Project blog</a>.
+ Find out more on the <a href="<?php echo BLOG_URL ?>" title="Track OER blog, on Cloudworks">Project blog</a>.</p>
 
 
 
@@ -28,12 +28,6 @@
 ?>
 
 
-<style>
-.X-body{ font:1em sans-serif; }
-#commits li img{ width:36px; height:36px; float:left; margin-right:8px; }
-#commits li{ clear:left; margin-top:8px; }
-#commits li .co{ display:block; }
-</style>
 
 <h2><a href="<?php echo CODE_URL ?>">Software coding activity on Github</a></h2>
 

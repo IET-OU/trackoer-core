@@ -22,9 +22,7 @@
 *
 *     Usage: $ \xampp\php\php index.php build/revision
 *
-* See mediaelement/src/Builder.py
-* See oup-mep/src/build.php
-*
+* @link http://github.com/IET-OU/ouplayer/blob/master/application/controllers/bui..
 * @link http://closure-compiler.appspot.com/home
 * (http://www.minifyjs.com/javascript-compressor/)
 * (http://www.lotterypost.com/css-compress.aspx)
@@ -36,7 +34,7 @@
 class Build extends MY_Controller {
 
   protected $_closure_template = <<<EOF
-<h2><a href="http://track.olnet.org/capret/build/__OUTPUT__">__OUTPUT__</a></h2>
+<h2><a href="/__OUTPUT__">__OUTPUT__</a></h2>
 <pre>
 // ==ClosureCompiler==
 // @output_file_name __OUTPUT__
@@ -127,8 +125,8 @@ EOF;
     }
 
     $closure = str_replace(
-      array('//__URLS__', '__OUTPUT__', '__LEVEL__'),
-      array($url_list, $output, $comp_level),
+      array('//__URLS__', '__OUTPUT__', '__LEVEL__', 'href="/'),
+      array($url_list, $output, $comp_level, 'href="'. $base_url .'capret/build/'),
       $this->_closure_template);
 
     return $closure;

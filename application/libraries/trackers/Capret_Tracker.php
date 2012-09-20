@@ -32,6 +32,9 @@ class Capret_Tracker extends Base_Tracker {
       $scripts['[if IE]'] = $stub .'jsierange.js';
     }
     if ($jquery_version) {
+      if (preg_match('/d(rupal)?6?/i', $jquery_version)) {
+        $jquery_version = '1.3.2';
+      }
       $scripts['jquery'] = 'https://ajax.googleapis.com/ajax/libs/jquery/'. $jquery_version .'/jquery.min.js';
     }
 

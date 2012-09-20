@@ -1,9 +1,10 @@
-# Track OER robots.txt for Track OER
-# (See: http://youtube.com/robots.txt)
+# robots.txt for Track OER
+# (See http'//youtube.com/robots.txt)
 
 User-agent: *
 Disallow: /piwik/
 Disallow: /b2s/
 Disallow: /assets/
 Disallow: /api
+Disallow: /build
 Disallow: /oembed

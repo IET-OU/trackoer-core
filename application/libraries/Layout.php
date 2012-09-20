@@ -3,10 +3,13 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Layout
 {
-    
-    var $obj;
-    var $layout;
-    
+#ou-specific
+    //var $obj;
+    //var $layout;
+    protected $obj;
+    protected $layout;
+#ou-specific ends.
+
     function Layout($layout = "layout_main")
     {
 #ou-specific bug fix

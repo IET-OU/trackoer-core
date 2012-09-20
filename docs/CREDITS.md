@@ -63,6 +63,11 @@
 * License: MIT
 * Code: <http://code.google.com/p/ierange#r32>
 
+### php-markdown-extra-extended: Copyright 2011 Egil Hansen; Copyright (c) 2004-2009 Michel Fortin; Copyright (c) 2003-2006 John Gruber.
+* License: <http://github.com/michelf/php-markdown/blob/master/License.text> BSD (?)
+* Code: <https://github.com/egil/php-markdown-extra-extended>
+* Code: <http://michelf.ca/projects/php-markdown/extra/>
+
 ### yUML.me: Copyright Tobin Harris/ Engineroom.
  * Tool: <http://yuml.me>
  * Online tool for UML class diagrams.

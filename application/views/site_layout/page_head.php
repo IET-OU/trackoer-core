@@ -64,7 +64,7 @@ h1{ font-family:"<?php echo $ggl_font ?>", Helvetica, sans-serif; }
 </style>
 <?php endif; ?>
 
-<script src="http://cdn.enderjs.com/jeesh.js"></script>
+<script src="http://cdn.enderjs.com/jeesh.min.js"></script>
 <script src="<?php echo $assets_url ?>site/js/trackoer-site.js"></script>
 
 

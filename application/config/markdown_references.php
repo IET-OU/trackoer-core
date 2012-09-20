@@ -23,6 +23,13 @@
 [ou]: http://www.open.ac.uk/ "The Open University"
 [iet]: http://iet.open.ac.uk/ "Institute of Educational Technology"
 
+
+<?php
+/* php-markdown-extra: abbreviations.
+*/
+?>
+*[API]: Application programming interface
+*[OER]: Open Educational Resource
 *[CaPRéT]: Cut and Paste Reuse Tracking
 *[JISC]: Joint Information Systems Committee
 *[HEFCE]: Higher Education Funding Council for England

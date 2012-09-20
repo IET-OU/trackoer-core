@@ -26,7 +26,8 @@ class Capret_Tracker extends Base_Tracker {
     $scripts = array();
 
     if ($debug) {
-      $scripts['[if lt IE 9]'] = 'http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js';
+      //$scripts['[if lt IE 9]'] = 'http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js';
+      $scripts['[if lt IE 9]'] = 'https://cdnjs.cloudflare.com/ajax/libs/firebug-lite/1.4.0/firebug-lite.js';
     }
     if ($clipboard_2) {
       $scripts['[if IE]'] = $stub .'jsierange.js';

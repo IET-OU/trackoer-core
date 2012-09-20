@@ -29,6 +29,13 @@ $config['http_proxy'] = 'wwwcache.open.ac.uk:80';
 
 /*
 |--------------------------------------------------------------------------
+| Markdown - enable in views?
+*/
+#$config['markdown'] = TRUE;
+
+
+/*
+|--------------------------------------------------------------------------
 | Test navigation.
 */
 $config['test_menu'] = array(

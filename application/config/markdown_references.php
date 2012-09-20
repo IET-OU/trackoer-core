@@ -22,3 +22,7 @@
 [hefce]: http://www.hefce.ac.uk/ "Higher Education Funding Council for England"
 [ou]: http://www.open.ac.uk/ "The Open University"
 [iet]: http://iet.open.ac.uk/ "Institute of Educational Technology"
+
+*[CaPRéT]: Cut and Paste Reuse Tracking
+*[JISC]: Joint Information Systems Committee
+*[HEFCE]: Higher Education Funding Council for England

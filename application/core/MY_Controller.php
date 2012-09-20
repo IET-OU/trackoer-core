@@ -74,7 +74,13 @@ class MY_Controller extends CI_Controller {
   */
   protected function _load_layout($layout = self::LAYOUT) {
     $layout = 'ci'==$layout ? 'ci' : 'ouice_2';
-    $this->load->library('Layout', array('layout'=>"site_layout/layout_$layout"));
+    $layout_r = array('layout' => "site_layout/layout_$layout");
+
+    if ($this->config->item('markdown')) {
+      $this->load->library('Layout_Markdown', $layout_r, 'layout');
+    } else {
+      $this->load->library('Layout', $layout_r);
+    }
   }
 
 

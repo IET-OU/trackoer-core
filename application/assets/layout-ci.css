@@ -251,3 +251,11 @@ input[type=submit]{ cursor:pointer; padding:.8em; }
 	content:"Bookmarklet:"; color:#111; font-size:.9em;
 }
 #bookmarklet span{ display:none; }
+
+
+/* Github commits
+*/
+.X-body{ font:1em sans-serif; }
+#commits li img{ width:36px; height:36px; float:left; margin-right:8px; }
+#commits li{ clear:left; margin-top:8px; }
+#commits li .co{ display:block; }

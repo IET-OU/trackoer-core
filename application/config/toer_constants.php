@@ -10,6 +10,20 @@ $config['_toer_constants'] = 'dummy';
 
 
 /*
+|--------------------------------------------------------------------------
+| Debug constants.
+*/
+// NONE: no console logging, minified Javascripts/CSS.
+define('TRACK_DEBUG_NONE', 0);
+// MIN: Javascript console logging, minified/concatenated Javascripts/CSS.
+define('TRACK_DEBUG_MIN',  1);
+// MAX: Javascript console logging, un-minified/separate Javascripts/CSS.
+define('TRACK_DEBUG_MAX',  2);
+
+define('TRACK_DEBUG_THRES_MAX',  3);
+
+
+/*
 | Separator character for Analytics 'page' URLs.
 | "!" is reserved as an application-specific ('sub-delims') URI delimiter in RFC 3986
 | @link http://tools.ietf.org/html/rfc3986#section-2.2
@@ -65,6 +79,14 @@ define('TRACK_RDF_ATTR_LINK', 'attr-link');
 */
 define('XMLNS_OU_OEMBED_EXTEND', 'http://embed.open.ac.uk/2012/extend#');
 define('XMLNS_OU_RSS_PLAYER', 'http://podcast.open.ac.uk/2012');
+
+
+/*
+|--------------------------------------------------------------------------
+| Javascript/ Library versions.
+*/
+define('TRACK_JQUERY_DEFAULT_VERSION', '1.6.2');
+define('TRACK_JQUERY_DRUPAL_VERSION', '1.3.2');
 
 
 /**

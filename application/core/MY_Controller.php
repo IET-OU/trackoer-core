@@ -100,11 +100,18 @@ class MY_Controller extends CI_Controller {
     return $this->status;
   }
 
-  public function _is_debug($threshold = 0) {
+  /**
+  *
+  * @return mixed (Default: boolean)
+  */
+  public function _is_debug($threshold = 0, $score = FALSE) {
     $is_debug = 0;
 	$is_debug += (int) $this->input->get('debug');
 	$is_debug += (int) $this->config->item('debug');
 	#var_dump(__FUNCTION__, $is_debug, $threshold);
+	if ($score) {
+	  return $is_debug;
+	}
 	return $is_debug > $threshold;
   }
 

@@ -111,19 +111,21 @@ class Test extends MY_Controller {
 		}
 		$google_ac = $this->config->item('google_analytics_capret_id');
 
-		$jq_version = $this->input->get_default('jquery', '1.6.2');
-		if (preg_match('/d(rupal)?6?/i', $jq_version)) {
-			$jq_version = '1.3.2';
+		$jquery_version = $this->input->get_default('jquery', TRACK_JQUERY_DEFAULT_VERSION);
+		if (preg_match('/d(rupal)?6?/i', $jquery_version)) {
+			$jquery_version = TRACK_JQUERY_DRUPAL_VERSION;
 		}
 		$view_data = array(
-			'jquery_js_url' => "//ajax.googleapis.com/ajax/libs/jquery/$jq_version/jquery.min.js",
+			'jquery_js_url' => "//ajax.googleapis.com/ajax/libs/jquery/$jquery_version/jquery.min.js",
 			'capret_js_url' => base_url() .'capret/js/',
 			'public_js_url' => base_url() .'public/js/',
+			'build_js_url' => base_url() .'capret/build/',
 			##$capret_js_url = 'http://capret.mitoeit.org/js/';
 			'data_piwik_url' => 'http://track.olnet.org/piwik'==$piwik_url ? '': "data-piwik-url='$piwik_url'",
 			'piwik_idsite' => $piwik_idsite,
 			'ga_ac' => $google_ac,
-			'debug' => (bool) $this->input->get('debug'),
+			'debug' => $this->_is_debug(NULL, TRUE),
+			//'debug' => (bool) $this->input->get('debug'),
 		);
 	
 		if ('course-view' != $page) {

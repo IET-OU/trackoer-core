@@ -266,9 +266,13 @@ elementCookieHide("inst9","Show Versions block","Hide Versions block");
 <!--Capret-widget begins-->
 <p>
 <script src="<?php echo $jquery_js_url ?>"></script>
+<?php if ($debug > TRACK_DEBUG_MAX): ?>
 <script src="<?php echo $capret_js_url ?>jquery.plugin.clipboard.js"></script>
 <script src="<?php echo $capret_js_url ?>oer_license_parser.js"></script>
 <script src="<?php echo $capret_js_url ?>capret.js"></script>
+<?php else: ?>
+<script src="<?php echo $build_js_url ?>capret.min.js"></script>
+<?php endif; ?>
 </p>
 <p><a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons Licence" style="border-width: 0;" src="http://i.creativecommons.org/l/by/3.0/88x31.png" /></a><br />This work by <a xmlns:cc="http://creativecommons.org/ns#" href="http://labspace.open.ac.uk" property="cc:attributionName" rel="cc:attributionURL">Labspace - Bridge to success B2S</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>.</p>
 <p>This site is <a href="http://capret.mitoeit.org/">CaPRéT enabled</a>: Cut and Paste Reuse Tracking</p>

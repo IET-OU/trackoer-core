@@ -43,6 +43,7 @@ continue on your math journey.</li></ol>
 
 <!--Capret-widget starts (src=// below is deliberate)-->
 <script src="<?php echo $jquery_js_url ?>"></script>
+<?php if ($debug > TRACK_DEBUG_MAX): ?>
 <script src="<?php echo $capret_js_url ?>jquery.plugin.clipboard.js"></script>
 <script src="<?php echo $capret_js_url ?>oer_license_parser.js"></script>
 <!--[if lt IE 8]>
@@ -50,6 +51,10 @@ continue on your math journey.</li></ol>
 <![endif]-->
 <script
   src="<?php echo $capret_js_url ?>capret<?php echo $which_capret ?>.js"
+<?php else: ?>
+<script
+  src="<?php echo $build_js_url ?>capret<?php echo $which_capret ?>.min.js"
+<?php endif; ?>
   data-piwik_idsite="<?php echo $piwik_idsite ?>"
   <?php echo $data_piwik_url ?>
 <?php if ($debug): ?>

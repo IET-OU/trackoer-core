@@ -13,7 +13,11 @@ require_once APPPATH .'/third_party/php-markdown-extra-extended/markdown_extende
 require_once APPPATH .'/libraries/Layout.php';
 
 
-
+/**
+ * Extend the Layout library to parse views using php-markdown-extra-extended.
+ *
+ * @see MY_Controller::_load_layout method
+ */
 class Layout_Markdown extends Layout {
 
   protected $references;
@@ -22,6 +26,7 @@ class Layout_Markdown extends Layout {
   public function __construct($layout = "layout_main") {
     parent::__construct($layout);
 
+    // Load markdown references from the pseudo-config view.
     $this->references = $this->obj->load->view('../config/markdown_references', NULL, true);
   }
 
@@ -33,13 +38,13 @@ class Layout_Markdown extends Layout {
 
     return $this->obj->load->view($this->layout, $loadedData, $return);
 
-    if($return) {
+    /*if($return) {
       $output = $this->obj->load->view($this->layout, $loadedData, true);
       return $output;
     }
     else {
       $this->obj->load->view($this->layout, $loadedData, false);
-    }
+    }*/
   }
 
 }

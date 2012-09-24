@@ -36,6 +36,7 @@ class Oerform extends Oembed {
           $result = parent::index();
 
           $view_data = array(
+            'page_title' => 'OER license-tracker form',
             'url' => $result->original_url,
             'oembed_url' => $this->oembedUrl($result->original_url),
             'cc_code' => $result->html,

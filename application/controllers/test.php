@@ -115,7 +115,9 @@ class Test extends MY_Controller {
 		if (preg_match('/d(rupal)?6?/i', $jquery_version)) {
 			$jquery_version = TRACK_JQUERY_DRUPAL_VERSION;
 		}
+		//$this->view_data += array(
 		$view_data = array(
+			'page_title' => 'CaPRéT test/demonstration',
 			'jquery_js_url' => "//ajax.googleapis.com/ajax/libs/jquery/$jquery_version/jquery.min.js",
 			'capret_js_url' => base_url() .'capret/js/',
 			'public_js_url' => base_url() .'public/js/',
@@ -127,7 +129,7 @@ class Test extends MY_Controller {
 			'debug' => $this->_is_debug(NULL, TRUE),
 			//'debug' => (bool) $this->input->get('debug'),
 		);
-	
+
 		if ('course-view' != $page) {
 			$this->_load_layout(self::LAYOUT);
 			

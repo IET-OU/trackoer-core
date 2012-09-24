@@ -5,6 +5,7 @@
   $ggl_font = $this->config->item('google_font');
   $robots = $this->config->item('robots');
 
+  $page_title = isset($page_title) ? $page_title : NULL;
 
 ?>
 <?php
@@ -12,7 +13,7 @@
  * Basic site setup - encoding, HTML5 Javascript shim/shiv, mobiles, robots.
  */
 ?>
-<meta charset="utf-8" /><title>Track OER &lsaquo; Analytics for open educational resources - OER &rsaquo;<?php /*rapid innovation alpha*/ ?></title>
+<meta charset="utf-8" /><title><?php if($page_title): echo $page_title ?> - Track OER<?php else: ?>Track OER &lsaquo; Analytics for open educational resources - OER &rsaquo;<?php endif; /*rapid innovation alpha*/ ?></title>
 <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5-els.js"></script>
 <![endif]-->

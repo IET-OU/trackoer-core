@@ -3,7 +3,8 @@
 
 
 ### trackoer-core: Copyright (c) 2012 The Open University. All rights reserved.
-* License: free/ open-source -- license to be confirmed.
+* License: <http://gnu.org/licenses/gpl-2.0.html> GNU General Public License version 2 or later,
+* Code: <https://github.com/IET-OU/trackoer-core>
 * Author: Nick Freear <n.d.freear+@+open.ac.uk> / Institute of Educational Technology.
 
 ### Bridge to Success content: Copyright 2011 The Open University.

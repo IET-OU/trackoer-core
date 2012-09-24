@@ -1,17 +1,17 @@
 trackoer-core
 =============
 
-'Track OER' is a JISC and HEFCE-funded project to facilitate Web analytics for Open Educational Resources.
+__Track OER__ is a JISC and HEFCE-funded project to facilitate Web analytics for Open Educational Resources.
 
 `trackoer-core` is the central web application for the Project, providing clean
-URL redirection to no-Javascript web-bugs for Piwik and Google Analytics,
-and test/demonstration pages.
+URL redirection to no-Javascript web-bugs for Piwik, an OER license-tracker embed-code service
+for Creative Commons, Piwik and Google Analytics, and test/demonstration pages.
 
 ## Requirements
 
  * PHP 5.2+
  * Apache 2.2+
- * (Piwik 1.8+ -- this can be run on a separate server/host.)
+ * ([Piwik 1.8+][piwik] -- this can be run on a separate server/host.)
 
 ## Installation
 
@@ -45,22 +45,26 @@ and test/demonstration pages.
 * DONE. Tidy up oerform UI - minimalist!
 * ? Fix the tracking snippet - source-path,
 * DONE. Fix "oucontent/view.php?id=471422§ion=3" - &amp; matters!
-* LOW. Javascript 'select-all' for oerform,
+* DONE. Javascript 'select-all' for oerform,
 * Document the proposed oEmbed/oerform API,
-* Implement Ga_Tracker,
-* About page, donottrack etc.
+* DONE. Implement GA/Google_Tracker,
+* PART. About page; Todo - donottrack etc.
 
 
 ## License
 
 trackoer-core: Copyright 2012 The Open University.
 
-* License:  [free/open source -- license to be decided]
+* License:  [GNU GPL version 2 or later][gpl2]
 
 ## Credits
 
 Track OER (trackoer-core) is developed by the [Institute of Educational Technology at The Open University](http://iet.open.ac.uk),
 with support from [JISC](http://jisc.ac.uk).
 
-For full credits and licenses see docs/CREDITS.md
+For full credits and licenses see [docs/CREDITS.md][credit]
 
+
+[piwik]: http://piwik.org/
+[credit]: https://github.com/IET-OU/trackoer-core/tree/master/docs/CREDITS.md
+[gpl2]: http://gnu.org/licenses/gpl-2.0.html

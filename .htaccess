@@ -100,6 +100,9 @@ DirectoryIndex index.php
     RewriteRule ^(assets|engines)(/.*)$ application/$1$2 [QSA,L]
     RewriteRule ^(public|site|capret)(/.*)$ application/assets/$1$2 [QSA,L]
 
+	# 'Redirect' for B2S archive tests.
+	RewriteRule ^(b2s)(/.*)/$  $1$2/index.html  [QSA,L]
+
 #ou-specific ends.
 
     # If the file/dir is NOT real go to index

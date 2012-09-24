@@ -15,7 +15,7 @@
 <h1>Track OER - Google Analytics custom Javascript</h1>
 
 
-<p>[Creative Commons RDFa license snippet]
+[Creative Commons RDFa license snippet]
 
 
 <div id=cc-code><p>

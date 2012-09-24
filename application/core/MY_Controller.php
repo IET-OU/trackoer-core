@@ -179,7 +179,7 @@ class MY_Controller extends CI_Controller {
 }
 
 
-/* Placeholder for translate text function.
+/* Placeholder for translate text function - Internationalization @18n
  * See: cloudengine/libs./MY_Language; Drupal.
  * @link https://github.com/IET-OU/ouplayer/blob/master/application/core/MY_Lang.php
  */

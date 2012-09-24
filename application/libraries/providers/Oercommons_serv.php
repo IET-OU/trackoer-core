@@ -17,6 +17,10 @@
  */
 class Oercommons_serv extends Oembed_Provider {
 
+  // Was '%22' in the OER Commons search-RSS call.
+  const URL_QUOTE = '';
+
+
   public $regex = 'http://oercommons.org/courses/*';
   public $about = <<<EOT
   Get the tracker-enabled Creative Commons license snippet for an OER.
@@ -51,9 +55,10 @@ EOT;
     $course_type = $matches[1];
     $course_id = $matches[2];
 
-    $search_url = 'http://www.oercommons.org/search?feed=yes&f.search=%22'
+    $search_url = 'http://www.oercommons.org/search?feed=yes&f.search='
+        . self::URL_QUOTE
         . str_replace('-', '+', $course_id)
-        . '%22';
+        . self::URL_QUOTE;
     $iframe_url = "http://www.oercommons.org/$course_type/$course_id/view";
 
     $result = $this->_http_request($iframe_url);
@@ -71,6 +76,8 @@ EOT;
       $id = $matches_id[1]; #35.35915
     }
 
+    $this->CI->_debug("Oercommons-API; ". $search_url);
+
     $rdf_result = $this->_http_request_work_rdf($search_url, $is_rss = TRUE);
 
     if (! $rdf_result->success) {
@@ -82,6 +89,10 @@ EOT;
 
     $rdf = $rdf_result->rdf;
 
+    if (! $rdf->title) {
+      $this->_addStatus("RDF-RSS feed problem.");
+      $this->title = $course_id;
+    }
 
     $rdf->original_url = $url;
     $rdf->source_url = $course_url;
@@ -112,6 +123,8 @@ EOT;
 
     $search_url = "http://$locale.wikipedia.org/w/api.php?action=query&list=search&srprop=timestamp&format=json&srsearch=" . str_replace('www.', '', $host);
     $result = $this->_http_request_json($search_url);
+
+    $this->CI->_debug('WP-API; '. $search_url);
 
     if (! $result->success) {
       $this->_error("Error requesting Wikipedia search, $search_url", $result->http_code);

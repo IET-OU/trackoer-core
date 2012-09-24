@@ -123,8 +123,10 @@ class MY_Controller extends CI_Controller {
     static $where, $count = 0;
     if ($this->_is_debug()) {
       # $where could be based on __FUNCTION__ or debug_stacktrace().
-      if(!$where) $where = str_replace(array('_', '.'), '-', basename(__FILE__));
-      @header("X-D-$where-".sprintf('%02d', $count).': '.json_encode($exp));
+      if(!$where) $where = str_replace(array('.php', '_', '.'), '-', basename(__FILE__));
+      $value = json_encode($exp);
+      $value = is_string($exp) ? str_replace('\/', '/', $value) : $value;
+      @header("X-D-$where-".sprintf('%02d', $count).': '. $value);
 
       foreach (func_get_args() as $c => $arg) {
         if($c > 0) $this->_debug($arg); #Recurse.

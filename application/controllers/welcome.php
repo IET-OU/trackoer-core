@@ -32,7 +32,12 @@ class Welcome extends MY_Controller {
 	public function about($layout = self::LAYOUT) {
 		$this->_load_layout($layout);
 
-		$this->layout->view('about/about');
+		$view_data = array(
+			'page_title'  => t('About'),
+			'about_links' => $this->config->item('about_links'),
+		);
+
+		$this->layout->view('about/about', $view_data);
 	}
 }
 

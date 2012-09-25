@@ -49,6 +49,15 @@ $config['test_menu'] = array(
 
 /*
 |--------------------------------------------------------------------------
+| About page - useful links.
+*/
+$config['about_links'] = array(
+  'Google Analytics/ CaPReT custom report configuration'=> 'https://www.google.com/analytics/web/permalink?uid=5gO2UUPiS6OCk_-vCgE8AA',
+);
+
+
+/*
+|--------------------------------------------------------------------------
 | Set the base URL for a Piwik installation (no trailing slash).
 | Base URL to the Piwik Install
 | @link  https://github.com/wingdspur/codeigniter-piwik

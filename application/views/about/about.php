@@ -17,6 +17,15 @@ It is a rapid innovation project to demonstrate technical solutions, based aroun
 Find out more on the [Project blog][blog].
 
 
+<?php if($about_links): ?>
+## Useful links  {#links}
+
+<?php foreach ($about_links as $text => $url): ?>
+ * [<?php echo $text ?>](<?php echo $url ?>)
+<?php endforeach; ?>
+<?php endif; ?>
+
+
 ---
 
 <?php

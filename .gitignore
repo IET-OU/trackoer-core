@@ -1,4 +1,8 @@
+
+Thumbs.db
 .DS_Store
+.project
+.settings
 
 application/config/trackoer_config.php
 application/config/batch_config.php
@@ -7,13 +11,16 @@ application/cache/*
 !application/cache/index.html
 !application/cache/.htaccess
 
-application/logs/*
-!application/logs/index.html
-!application/logs/.htaccess
+application/logs/*.php
+# !application/logs/index.html
 
 *.patch
 *.diff
 * copy.*
+*- Copy*
+
+/*.css
+/*.js
 
 piwik/*
 b2s/*

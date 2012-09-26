@@ -36,8 +36,8 @@ class MY_URI extends CI_URI {
 		foreach ($args as $key => $arg) {
 		  if (0==$key) continue;
 
-          //NDF: allow *nix file-paths in arguments in command-line/CLI mode.
-		  $args[$key] = str_replace('/', '%2F', $arg);
+		  //NDF: allow *nix/Window file-paths in arguments in command-line/CLI mode.
+		  $args[$key] = str_replace(array('/', '\\'), '%2F', $arg);
 		}
 
 		return $args ? '/' . implode('/', $args) : '';

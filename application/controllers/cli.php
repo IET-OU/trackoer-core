@@ -38,6 +38,10 @@ class Cli extends Oembed { #MY_Controller {
   public function __construct() {
     parent::__construct();
 
+    if (! $this->input->is_cli_request()) {
+      $this->_error('command-line only');
+    }
+
     $this->load->tracker('Google', NULL);
     $this->load->library('Creative_Commons');
 
@@ -252,6 +256,34 @@ EOF;
 
     echo "$cn_proc files processed, OK" .PHP_EOL;
     echo "$cn_dir/$cn_nohtml directories/no-HTML files skipped." .PHP_EOL;
+    exit (0);
+  }
+
+
+
+  /**
+  * THE cli/md - Markdown public method.
+  */
+  public function md($args = NULL) {
+    #$params = $this->_parse_batch_args(func_get_args());
+
+    if (! $args) {
+      $this->_cli_error("cli/md requires a file-path argument.");
+    }
+    $args = str_replace('%2F', '/', $args);
+
+    $file = @file_get_contents($args);
+    if (! $file) {
+      $this->_cli_error("cli/md problem reading file, $args"); #. $php_errormsg );
+    }
+
+    require_once APPPATH .'/third_party/php-markdown-extra-extended/markdown_extended.php';
+
+    $markdown_references = $this->load->view('../config/markdown_references', NULL, true);
+
+    $output = MarkdownExtended($file . $markdown_references);
+
+    echo $output;
     exit (0);
   }
 

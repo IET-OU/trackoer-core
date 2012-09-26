@@ -97,6 +97,63 @@ class Api extends MY_Controller {
   }
 
 
+
+  // ============================================================================
+
+  /**
+  * Utility: a 'myip' information service (JSON).
+  * @link http://www.domaintools.com/research/my-ip/myip.xml
+  * @author NDF, 25 Sep 2012.
+  */
+  public function myip() {
+	$server_vars = 'HTTP_HOST,HTTP_CONNECTION,HTTP_CACHE_CONTROL,HTTP_USER_AGENT,HTTP_ACCEPT,HTTP_ACCEPT_ENCODING,HTTP_ACCEPT_LANGUAGE,HTTP_ACCEPT_CHARSET,HTTP_REFERER,HTTP_VIA,HTTP_X_FORWARDED_FOR,SERVER_PROTOCOL,REMOTE_ADDR,REMOTE_PORT,REQUEST_TIME';
+	$http_vars = (object) array(
+		'service_provider' => 'IET-OU',
+		'provider_url' => 'http://track.olnet-org/',
+		'date' => NULL,
+		'unix_time' => NULL,
+		'ip_address' => NULL,
+	);
+	foreach (explode(',', $server_vars) as $key) {
+		$name = strtolower(str_replace('HTTP_', '', $key));
+		$http_vars->{$name} = $this->input->server($key);
+	}
+
+	$http_vars->date = date('c', $http_vars->request_time);
+	$http_vars->unix_time = $http_vars->request_time;
+	$http_vars->ip_address = $http_vars->x_forwarded_for ? $http_vars->x_forwarded_for : $http_vars->remote_addr;
+	$http_vars->proxy = $http_vars->via ? $http_vars->via : FALSE;
+	$http_vars->proxy_ip = $http_vars->via ? $http_vars->remote_addr : NULL;
+
+	$this->_render($http_vars);
+  }
+
+
+  /**
+  * Utility: USNO time XML service.
+  * @author NDF, 26 Sep 2012.
+  */
+  public function time($format = 'xml') {
+	$param_n = $this->input->get('n');
+	if (! $param_n) {
+		$this->_error('The parameter {n} (start response unix timestamp) is required.', 400);
+	}
+
+	$this->load->library('Http');
+
+	$url = 'http://tycho.usno.navy.mil/cgi-bin/time.pl?n=' . $param_n;
+
+	$result = $this->http->request($url);
+
+	if (! $result->success) {
+		$this->_error('Unknown', $this->http_code);
+	}
+
+	@header('Content-Type: application/xml; charset=UTF-8');
+	echo $result->data;
+  }
+
+
   /** Basic JSON rendering.
   */
   protected function _render($data) {

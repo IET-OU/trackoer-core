@@ -153,6 +153,10 @@ class Api extends MY_Controller {
 	echo $result->data;
   }
 
+  public function time_widget() {
+    $this->load->view('api/time_widget_usno.php');
+  }
+
 
   /** Basic JSON rendering.
   */

@@ -1,4 +1,5 @@
 <!doctype html><html lang="en"><meta charset="utf-8" /><title>*Clock widget (USNO)</title>
+<meta name="ROBOTS" content="noindex,nofollow" />
 <style>
 body{ font-family:Arial, helvetica, sans-serif; text-align:center; }
 h1{ margin:0; }

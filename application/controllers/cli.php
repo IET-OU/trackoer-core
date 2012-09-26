@@ -277,11 +277,12 @@ EOF;
       $this->_cli_error("cli/md problem reading file, $args"); #. $php_errormsg );
     }
 
-    require_once APPPATH .'/third_party/php-markdown-extra-extended/markdown_extended.php';
+    //require_once APPPATH .'/third_party/php-markdown-extra-extended/markdown_extended.php';
+    require_once APPPATH .'/libraries/markdown_extended_ex.php';
 
     $markdown_references = $this->load->view('../config/markdown_references', NULL, true);
 
-    $output = MarkdownExtended($file . $markdown_references);
+    $output = MarkdownExtended_Ex($file . $markdown_references);
 
     echo $output;
     exit (0);

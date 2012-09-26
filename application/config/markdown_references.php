@@ -1,7 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
 |--------------------------------------------------------------------------
-| References for Markdown reference-style labels, with Internationalization @i18n
+| Common references for Markdown reference-style labels, with Internationalization @i18n
 |--------------------------------------------------------------------------
 | @link http://michelf.ca/projects/php-markdown/dingus/
 |
@@ -28,8 +28,31 @@
 /* php-markdown-extra: abbreviations - case-sensitive.
 */
 ?>
+*[URL]: Uniform resource locator,
 *[API]: <?php echo t('Application programming interface') ?>,
 *[OER]: <?php echo t('Open Educational Resource') ?>,
 *[CaPRéT]: <?php echo t('Cut and Paste Reuse Tracking') ?>,
 *[JISC]: Joint Information Systems Committee
 *[HEFCE]: Higher Education Funding Council for England
+*[B2S]: Bridge to Success project
+*[ISP]: Internet service provider
+*[GA]: Google Analytics
+*[MSIE]: Microsoft Internet Explorer browser
+*[B2S]: Bridge to Success project
+
+
+<?php
+/* markdown_extended_ex.php: Interwiki links - case-sensitive.
+*  Note, if just php-markdown-extra is used then these references are hidden in output - good!
+*/
+?>
+[@:*]: https://twitter.com/
+[Define:*]: http://google.com/search?q=define%3A
+[Wiki:*]: http://en.wikipedia.org/wiki/
+[Gdoc:*]: https://docs.google.com/document/d/
+[Gdev:*]: https://developers.google.com/
+
+[Cloud:*]: http://cloudworks.ac.uk/cloud/view/
+[Labspace:*]: http://labspace.open.ac.uk/
+[Toer:*]: http://track.olnet.org/
+

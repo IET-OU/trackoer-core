@@ -14,6 +14,7 @@ application/cache/*
 application/logs/*.php
 # !application/logs/index.html
 
+# *.markdown
 *.patch
 *.diff
 * copy.*
@@ -21,6 +22,8 @@ application/logs/*.php
 
 /*.css
 /*.js
+/*.html
+docs/*.html
 
 piwik/*
 b2s/*

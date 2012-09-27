@@ -22,6 +22,7 @@ $(document).ready(function(){
 
 
 	trackoer_show_embed();
+	trackoer_bookmarklet_help();
 });
 
 /* Make every test License-tracker code clickable. A click reveals the code-snippet.
@@ -88,3 +89,27 @@ function trackoer_show_embed(){
 	}
 }
 
+function trackoer_bookmarklet_help() {
+	var hint = $('#bookmarklet').attr('title'),
+		id = 'bookmarklet-hint',
+		el,
+		vis = false;
+
+	if (! hint) return;
+
+	el = $('<p id="'+ id +'" style="display:none">'+ hint +'</p>');
+	$('body').append(el);
+
+	$('#bookmarklet a')
+	/*.click(function (ev) {
+		alert(hint);
+	})*/
+	.bind('mouseover mouseout focus blur', function (ev) {
+		if (vis) {
+			el.css('display', 'none');
+		} else {
+			el.css('display', 'block');
+		}
+		vis = !vis;
+	});
+}

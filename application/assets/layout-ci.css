@@ -259,6 +259,7 @@ input[type=submit]{ cursor:pointer; padding:.8em; }
 #bookmarklet-hint{
 	bottom:2em;
 	border:1px solid orange;
+	line-height:1.8em;
 }
 
 /* Github commits

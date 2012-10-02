@@ -27,6 +27,8 @@ class Oembed extends MY_Controller {
     $this->load->library('Creative_Commons');
 
     $this->load->config('providers');
+
+    @header('Content-Disposition: inline; filename=trackoer-oembed.json-p-xml.txt');
   }
 
 
@@ -164,7 +166,7 @@ class Oembed extends MY_Controller {
         'url' => $this->input->get('url'),
         'format' => $this->input->get_default('format', 'json'),
         // JSON-P - a common oEmbed extension.
-        'callback'=> $this->input->get('callback', $xs_clean=TRUE),
+        'callback'=> $this->_jsonp_callback_check(),
         // Extended - track OER-specific.
         'mode' => $this->input->get_default('mode', 'online'), #Was 'fmt'
         'lic' => $this->input->get_default('lic', 'cc:by/3.0'),

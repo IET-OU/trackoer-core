@@ -1,4 +1,6 @@
 
+<!-- -*- markdown -*- -->
+
 ## The problem  {#problem}
 <p>
  Open educational resources have been published by many higher education institutions around the world.

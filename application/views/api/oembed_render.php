@@ -1,5 +1,5 @@
 <?php
-/** oEmbed renderer view.
+/** oEmbed XML/JSON/JSON-P renderer view.
 */
 
 // 'Services' controller.
@@ -7,11 +7,16 @@ if (! isset($not_oembed)) {
   $oembed['version'] = "1.0";
 }
 
+if (isset($oembed['description'])) {
+  $oembed['description'] = str_replace(array('    ', '  ', "\r", "\n"), array(' ', ''), $oembed['description']);
+}
+
 if ('json'==$format):
   //application/json+oembed
   if ($this->input->get('debug') || $callback) {
     // text/javascript if there is a callback.
-    @header("Content-Type: text/javascript; charset=UTF-8");
+    @header('X-content-type: application/json-p');
+    @header("Content-Type: application/javascript; charset=UTF-8");
   } else {
     @header("Content-Type: application/json; charset=UTF-8");
   }

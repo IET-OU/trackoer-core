@@ -47,10 +47,12 @@
 */
 ?>
 [@:*]: https://twitter.com/
+[In:*]: http://linkedin.com/
 [Define:*]: http://google.com/search?q=define%3A
 [Wiki:*]: http://en.wikipedia.org/wiki/
 [Gdoc:*]: https://docs.google.com/document/d/
 [Gdev:*]: https://developers.google.com/
+[Slideshare:*]: http://slideshare.net/
 
 [Cloud:*]: http://cloudworks.ac.uk/cloud/view/
 [Labspace:*]: http://labspace.open.ac.uk/

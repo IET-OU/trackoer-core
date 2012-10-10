@@ -271,6 +271,7 @@ EOF;
       $this->_cli_error("cli/md requires a file-path argument.");
     }
     $args = str_replace('%2F', '/', $args);
+    $args = 0 === strpos($args, '..') ? getcwd() .'/'. $args : $args;
 
     $file = @file_get_contents($args);
     if (! $file) {

@@ -10,6 +10,7 @@
   $with_nav = TRUE;
 
   $with_unit_tests = isset($with_unit_tests) && $with_unit_tests;
+  $rev = isset($rev) ? $rev : NULL;
 
 
 ?>
@@ -92,7 +93,7 @@
 		<li class="f-tx"><a href="http://www.open.ac.uk/conditions">Conditions of use</a>
 		<li class="f-tx"><a href="<?php echo CONTACT_URL ?>">Contact us/ Feedback</a>
 		<li class="f-rss"><a href="<?php echo $feed_url ?>" title="RSS feed for the Project blog, on Cloudworks">Feed</a>
-		<li class="ci-footer"><abbr title="Page rendered in {elapsed_time} seconds">{elapsed_time}s</abbr></li>
+<?php /*<li class="ci-footer"><abbr title="Page rendered in {elapsed_time} seconds">{elapsed_time}s</abbr>*/ ?>
 		<li id="forkme-banner"><a href="<?php echo CODE_URL ?>" title="Fork me on GitHub"><span>Fork me on </span>GitHub</a></li>
 		</ul>
 	<?php
@@ -116,5 +117,6 @@
 ?>
 
 
+<span id='server_response_time' data-time='{elapsed_time}'<?php if($rev): ?> data-rev='<?php echo $rev->describe ?>'<?php endif; ?>></span>
 </body>
 </html>

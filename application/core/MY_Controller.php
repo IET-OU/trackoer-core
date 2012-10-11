@@ -53,7 +53,9 @@ class MY_Controller extends CI_Controller {
     $this->_request = array(
       'locale' => $this->input->get_default('locale', 'en'),
       'format' => $this->input->get_default('format', 'html'),
+      'revision' => $this->_git_revision(),
 	);
+    $this->_debug(array('rev', $this->request('revision')->describe));
   }
 
 
@@ -102,6 +104,33 @@ class MY_Controller extends CI_Controller {
 
   protected function oembedUrl($url, $service = 'oembed', $format = NULL) {
     return site_url($service) .'?url='. urlencode($url);
+  }
+
+
+  protected function _git_revision($full = TRUE) {
+    $raw_log = $raw_desc = $raw_orig = array();
+    $res = exec('git log -1', $raw_log, $return_var);
+
+    $output = array();
+    foreach ($raw_log as $line) {
+      if ('' == $line) continue;
+      $pos = strpos($line, ' ');
+      if (0 === $pos) {
+        $output['message'] = trim($line);
+      } else {
+        $key = trim(substr($line, 0, $pos), ' :');
+        $output[strtolower($key)] = trim(substr($line, $pos));
+      }
+    }
+    $output['timestamp'] = strtotime($output['date']);
+    if ($full) {
+      $res = exec('git describe', $raw_desc, $return_var);
+      #$res = exec('git config --get remote.origin.url', $raw_orig, $return_var);
+      $output['describe'] = $raw_desc[0];
+      #$output['origin'] = $raw_orig[0];
+    }
+
+    return (object) $output;
   }
 
   /** Add a message to the status queue.

@@ -6,6 +6,7 @@ class Welcome extends MY_Controller {
       parent::__construct();
 
       header('Content-Type: text/html; charset=utf-8');
+      @header('Last-Modified: '. date('r', $this->request('revision')->timestamp));
     }
 
 	/**
@@ -26,13 +27,17 @@ class Welcome extends MY_Controller {
 	public function index($layout = self::LAYOUT) {
 		$this->_load_layout($layout);
 
-		$this->layout->view('welcome_message');
+		$view_data = array(
+			'rev' => $this->request('revision'),
+		);
+		$this->layout->view('welcome_message', $view_data);
 	}
 
 	public function about($layout = self::LAYOUT) {
 		$this->_load_layout($layout);
 
 		$view_data = array(
+			'rev' => $this->request('revision'),
 			'page_title'  => t('About'),
 			'about_links' => $this->config->item('about_links'),
 		);

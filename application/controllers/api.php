@@ -25,6 +25,12 @@ class Api extends MY_Controller {
   }
 
 
+  public function version($return = FALSE) {
+    $result = $this->_git_revision($full = TRUE);
+
+    $this->_render($result);
+  }
+
   /**
   * Call a Piwik API method - echo the result as JSON.
   * How to get optional parameters?  (idSite, url, format, token_auth ..)

@@ -6,6 +6,7 @@
   $robots = $this->config->item('robots');
 
   $page_title = isset($page_title) ? $page_title : NULL;
+  $rev = isset($rev) ? $rev : NULL;
 
 ?>
 <?php
@@ -27,9 +28,10 @@
 <?php
 /*
  * Meta-data - including Facebook Open Graph {@link http://davidwalsh.name/facebook-meta-tags}
+ *
  * @link http://ogp.me/
  * @link http://developers.facebook.com/tools/debug/og/object?q=track.olnet.org
- * @link http://graph.facebook.com/375383159206190
+ * @link http://graph.facebook.com/375383159206190?callback=FN
  */ ?>
 <meta property="og:title" content="Track OER project" />
 <meta property="og:type" content="website" />
@@ -43,6 +45,9 @@
 "Track OER is a JISC-funded project at The Open University to demonstrate technical solutions to Web analytics for Open Educational Resources." />
 <?php /*<meta prefix="fb: http://ogp.me/ns/fb#" property="fb:app_id" content="115190258555800">
 <link rel="alternate" type="application/rdf+xml" href="http://ogp.me/ns/ogp.me.rdf">*/ ?>
+<?php if($rev): ?>
+<meta property="og:updated_time" content="<?php echo $rev->timestamp ?>" />
+<?php endif; ?>
 
 <meta name="copyright" content="&copy;2012 The Open University." />
 <meta name="description" content=

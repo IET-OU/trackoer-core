@@ -74,9 +74,9 @@
 
 <?php /*<style>
 #logo1{ position:relative; z-index:1; }
-#logo2{ position:relative; z-index:999; top:-68px; height:62px; opacity:.65; background:#fefefe; color:#111; font:bold 1.62em Amaranth; text-align:center;
- padding-top:38px; padding-right:2px; word-spacing:-.2em; letter-spacing:-.06em; }
-#logo2 span{ font-weight:normal; }
+#logo2{ position:relative; z-index:999; top:-205px; height:202px; opacity:.7; background:#fefefe; color:#220d00; /*#441d10; #111*-/ font:bold 4.55em Amaranth; text-align:center;
+ padding-top:121px; padding-right:2px; word-spacing:-.2em; letter-spacing:-.06em; }
+#logo2 span{ font-weight:normal; x-font-style:italic; }
 </style>*/ ?>
 
 

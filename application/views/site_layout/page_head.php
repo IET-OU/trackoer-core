@@ -35,10 +35,10 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="<?php echo base_url() ?>" />
 <?php /* Logo based on {@link https://github.com/IET-OU/trackoer-core/graphs/commit-activity} */ ?>
-<meta property="og:image" content="<?php echo $assets_url ?>site/trackoer-ca-logo.png" />
+<meta property="og:image" content="<?php echo $assets_url ?>site/trackoer-ca-logo-big.png" />
 <meta property="og:image:type" content="image/png" />
-<meta property="og:image:width" content="81" />
-<meta property="og:image:height" content="61" />
+<meta property="og:image:width" content="222" />
+<meta property="og:image:height" content="201" />
 <meta property="og:description" content=
 "Track OER is a JISC-funded project at The Open University to demonstrate technical solutions to Web analytics for Open Educational Resources." />
 <?php /*<meta prefix="fb: http://ogp.me/ns/fb#" property="fb:app_id" content="115190258555800">

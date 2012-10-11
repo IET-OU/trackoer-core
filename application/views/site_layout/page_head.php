@@ -27,10 +27,22 @@
 <?php
 /*
  * Meta-data - including Facebook Open Graph {@link http://davidwalsh.name/facebook-meta-tags}
+ * @link http://ogp.me/
+ * @link http://developers.facebook.com/tools/debug/og/object?q=track.olnet.org
+ * @link http://graph.facebook.com/375383159206190
  */ ?>
-<meta property="og:site_name" content="Track OER project"/>
-<meta name="og:description" content=
-"Track OER is a JISC and HEFCE-funded project to demonstrate technical solution to Web analytics for Open Educational Resources." />
+<meta property="og:title" content="Track OER project" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="<?php echo base_url() ?>" />
+<?php /* Logo based on {@link https://github.com/IET-OU/trackoer-core/graphs/commit-activity} */ ?>
+<meta property="og:image" content="<?php echo $assets_url ?>site/trackoer-ca-logo.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="81" />
+<meta property="og:image:height" content="61" />
+<meta property="og:description" content=
+"Track OER is a JISC-funded project at The Open University to demonstrate technical solutions to Web analytics for Open Educational Resources." />
+<?php /*<meta prefix="fb: http://ogp.me/ns/fb#" property="fb:app_id" content="115190258555800">
+<link rel="alternate" type="application/rdf+xml" href="http://ogp.me/ns/ogp.me.rdf">*/ ?>
 
 <meta name="copyright" content="&copy;2012 The Open University." />
 <meta name="description" content=

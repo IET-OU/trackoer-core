@@ -72,16 +72,27 @@
 
 <?php elseif ($with_nav): ?>
 
+<?php /*<style>
+#logo1{ position:relative; z-index:1; }
+#logo2{ position:relative; z-index:999; top:-68px; height:62px; opacity:.65; background:#fefefe; color:#111; font:bold 1.62em Amaranth; text-align:center;
+ padding-top:38px; padding-right:2px; word-spacing:-.2em; letter-spacing:-.06em; }
+#logo2 span{ font-weight:normal; }
+</style>*/ ?>
+
+
 	<div id="ou-org-footer">
 		<ul>
 		<li class="f-logo ou"><a href="http://www.open.ac.uk/"><img title="&copy;2012 The Open University" src="http://www8.open.ac.uk/score/sites/all/themes/zen_score/footerLogos/OpenUniversityLogo.png"></a>
 		<li class="f-logo f-extern jisc"><a href="http://www.jisc.ac.uk/"><img title="Joint Information Systems Committee" src="http://www.open.ac.uk/blogs/OULDI/wp-content/uploads/2010/11/JISCcolour23.jpg"></a>
 		<li class="f-logo f-extern hefce"><a href="http://www.hefce.ac.uk/"><img title="Higher Education Funding Council for England" src="http://www8.open.ac.uk/score/sites/all/themes/zen_score/footerLogos/HEFCELogo.png" data-X-src="http://jisc.ac.uk/aboutus/~/media/JISC/aboutus/funders/HEFCE48.ashx"></a>
+		<li class="f-logo site"><a href="<?php echo site_url() ?>"><img id="logo1" title="Track OER home" src="<?php echo base_url() ?>assets/site/trackoer-ca-logo.png"></a>
+			<?php /*<div id="x-logo2"></div>
+			<div id="logo2"><div>Track <span>OER</span></div></div>*/ ?>
 		<li class="f-tx"><a href="http://www.open.ac.uk/privacy-ol">Privacy and cookies</a>
 		<li class="f-tx"><a href="http://www.open.ac.uk/conditions">Conditions of use</a>
 		<li class="f-tx"><a href="<?php echo CONTACT_URL ?>">Contact us/ Feedback</a>
 		<li class="f-rss"><a href="<?php echo $feed_url ?>" title="RSS feed for the Project blog, on Cloudworks">Feed</a>
-		<li class="ci-footer">Page rendered in <strong>{elapsed_time}</strong> seconds</li>
+		<li class="ci-footer"><abbr title="Page rendered in {elapsed_time} seconds">{elapsed_time}s</abbr></li>
 		<li id="forkme-banner"><a href="<?php echo CODE_URL ?>" title="Fork me on GitHub"><span>Fork me on </span>GitHub</a></li>
 		</ul>
 	<?php

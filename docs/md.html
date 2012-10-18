@@ -1,12 +1,6 @@
 <!doctype html><html><title>*Markdown.js editor</title>
 
-<style>
-*{ background:#222; color:#eee; margin:0; }
-textarea{ width:49%; height:25em; font-size:1em; }
-</style>
-
-
-<textarea id="wmd-input" >
+<textarea id=input cols=75 rows=30>
 # Header 1 #
 
 Hi, I'm [@nfreear][@ndf], a developer in IET at the OU.
@@ -17,24 +11,8 @@ I'm into OERs.
 </textarea>
 
 
-<textarea readonly id="wmd-preview" class="wmd-panel wmd-preview"></textarea>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/yepnope/1.5.4/yepnope.min.js"></script>
+<script src="../application/assets/site/js/md.js" data-id="input"></script>
 
-
-<script src="http://cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Converter.js"></script>
-<script src="../application/assets/site/js/md.js"></script>
-
-</script>
-
-<pre>
-
-&copy;N.D.Freear, 2012-10-18.
-
-<!--
- * http://dillinger.io
- * http://showdown.im
- * http://pagedown.googlecode.com/hg/demo/browser/demo.html
- * http://michelf.ca/projects/php-markdown/dingus/
- * http://cdnjs.com#markd
- * http://ender.no.de/#jeesh
--->
+<p>&copy;N.D.Freear, 2012-10-18.
 </html>

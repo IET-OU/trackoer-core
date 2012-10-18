@@ -24,6 +24,7 @@ application/logs/*.php
 /*.js
 /*.html
 docs/*.html
+!docs/md.html
 
 piwik/*
 b2s/*

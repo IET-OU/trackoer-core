@@ -4,8 +4,9 @@
 yepnope({
 load: [
 //require([
-  'http://cdn.enderjs.com/jeesh.min.js',
-  'http://cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Converter.js'
+  'http://cdn.enderjs.com/jeesh.min.js'
+, 'http://cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Converter.js'
+, '../application/assets/site/css/md.css'
   ///cdnjs.cloudflare.com/ajax/libs/require.js/2.0.6/require.min.js
 ],
 //callback: function(u, r, k) {},
@@ -14,14 +15,15 @@ complete: function () {
   $('#' + id).after('<textarea readonly id="wmd-out"/>');
   var conv = new Markdown.Converter()
     , cssb = {
-        background:'#222', color:'#eee', margin:0
+        //background:'#222', color:'#eee', margin:0
     }
     , csst = {
-        background:'#222', color:'#eee', width:'49%', height:'28em', 'font-size':'1em', margin:'1px'
+        //background:'#222', color:'#eee', width:'49%', 'min-width':'20em', /*height:'28em',*/ 'font':'1em sans-serif', margin:'1px', position:'fixed', top:0, bottom:0
     }
     , abbr = {
         'Track OER':'Track OER'
-      , TOER: 'Track OER'
+      , TOER: '*Track OER*'
+      , CaPReT: 'CaPRéT' //Cut and Paste Reuse Tracking
       , GA  : 'Google Analytics'
       , OER : 'Open Educational Resource'
       , OU  : 'Open University' //'The OU'
@@ -50,9 +52,14 @@ complete: function () {
 
   out
     .html(conv.makeHtml(inp.html()))
-    .css(csst);
-  inp.css(csst);
-  $('body').css(cssb);
+    //.css(csst)
+    //.css({ right:0 })
+    ;
+  inp
+    //.css(csst)
+    //.css({ left:0 })
+    ;
+  //$('body').css(cssb);
 }
 });
 

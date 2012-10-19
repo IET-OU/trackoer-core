@@ -1,0 +1,25 @@
+
+* {
+  background:#222;
+  color:#eee;
+  margin:0;
+  font:1em sans-serif;
+}
+textarea {
+  width:49%;
+  min-width:14em;
+  min-height:25em;
+  margin:1px;
+  position:fixed;
+  top:0;
+  bottom:0;
+}
+#input{ left:0; }
+#wmd-out{ right:0; }
+
+@media screen and (max-width: 500px) {
+  textarea {
+    position:static;
+	width:98%;
+  }
+}

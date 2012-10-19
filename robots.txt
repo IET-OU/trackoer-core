@@ -4,6 +4,7 @@
 User-agent: *
 Disallow: /piwik/
 Disallow: /b2s/
+Disallow: /docs/
 Disallow: /assets/
 Disallow: /api
 Disallow: /build

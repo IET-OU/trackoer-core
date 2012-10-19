@@ -21,12 +21,15 @@ complete: function () {
     }
     , abbr = {
         'Track OER':'Track OER'
+      , TOER: 'Track OER'
+      , GA  : 'Google Analytics'
       , OER : 'Open Educational Resource'
-      , OU  : 'The Open University'
-      , IET : 'Inst of Educational Technology'
+      , OU  : 'Open University' //'The OU'
+      , IET : 'Institute of Educational Technology'
+      //, '\\\\': ''
     }
     , abk = Object.keys(abbr).join('|')
-    , abre = new RegExp('(\\s)('+ abk +')([s\\.,\\s])', 'g')
+    , abre = new RegExp('([\\s\\[])('+ abk +')([s\\.,\\s\\]])', 'g')
     , inp = $('#' + id)
     , out = $('#wmd-out')
     ;

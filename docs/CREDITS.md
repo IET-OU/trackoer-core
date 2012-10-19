@@ -69,9 +69,19 @@
 * Code: <https://github.com/egil/php-markdown-extra-extended>
 * Code: <http://michelf.ca/projects/php-markdown/extra/>
 
+### yepnope.js: By Alex Sexton, Ralph Holzmann
+ * License: WTFPL/ [MIT][mit]/ BSD
+ * Code: <https://github.com/SlexAxton/yepnope.js/>
+
+### PageDown/Markdown.Converter.js: balpha@stackoverflow
+ * License: [MIT][mit]
+ * Code: <http://code.google.com/p/pagedown/>
+
 ### yUML.me: Copyright Tobin Harris/ Engineroom.
  * Tool: <http://yuml.me>
  * Online tool for UML class diagrams.
 
+
+[mit]: http://opensource.org/licenses/mit-license
 
 [End.]

@@ -13,7 +13,7 @@ require_once APPPATH .'/controllers/oembed.php';
 
 
 /**
- * Controller for command-line interface (CLI) - batch processing.
+ * Controller for command-line interface (CLI) - batch processing and Markdown rendering.
  */
 class Cli extends Oembed { #MY_Controller {
 
@@ -266,6 +266,9 @@ EOF;
   */
   public function md($args = NULL) {
     #$params = $this->_parse_batch_args(func_get_args());
+    #var_dump($_SERVER['argv'], $_SERVER['_']);
+
+    $output = '';
 
     if (! $args) {
       $this->_cli_error("cli/md requires a file-path argument.");
@@ -278,12 +281,28 @@ EOF;
       $this->_cli_error("cli/md problem reading file, $args"); #. $php_errormsg );
     }
 
-    //require_once APPPATH .'/third_party/php-markdown-extra-extended/markdown_extended.php';
     require_once APPPATH .'/libraries/markdown_extended_ex.php';
 
     $markdown_references = $this->load->view('../config/markdown_references', NULL, true);
 
-    $output = MarkdownExtended_Ex($file . $markdown_references);
+
+    // Some pre-processing.
+    $file = preg_replace('/ -- /', ' &ndash; ', $file);
+    $file = preg_replace('/\.\.\./', '…', $file);
+
+
+    $cmd = implode(' ', $_SERVER['argv']);
+    $output .= <<<EOF
+<!doctype html><meta charset=utf-8 />
+<!-- -*- markdown -*- -->
+<!--
+  \$ php $cmd  ..
+-->
+
+
+EOF;
+
+    $output .= MarkdownExtended_Ex($file . $markdown_references);
 
     echo $output;
     exit (0);

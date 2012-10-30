@@ -1,28 +1,28 @@
 # Track OER -- outputs register #
 
-NDF, 23 August-7 September 2012
+* **Author**: NDF, 23 August-7 September 2012
+* **Tags**: analytics   CaPReT   javascript   jisc   jiscri   oer   outputs   outputslist   php   piwik   project   TrackOER   ukoer
+* **Link**: <http://cloudworks.ac.uk/cloud/view/6442>
 
-<http://cloudworks.ac.uk/cloud/view/6442>
-
-We're developing re-usable software components at quite a rate. So I thought it best to note some meta-data as I go along. There will be technical detail, but I'll try to keep things readable for non-techies too!
+We're developing re-usable software components at quite a rate. So I thought it best to note some meta-data as we go along. There will be technical detail, but I'll try to keep things readable for non-techies too!
 
 ### Useful tools ###
 
 Note, these browser plugins are not just for developers!
 
-* Get [Firebug][firebug] for the Firefox browser - to view Javascript output, network activity and so on for the examples below,
+* Get [Firebug][firebug] for the Firefox browser -- to view Javascript output, network activity and so on for the examples below,
 * The [console in the Chrome][chrome-bug] browser,
 * The [console in the Opera][opera-bug] browser,
 
-Extra content
+<!-- Extra content -->
 
 ## AlternateImage -- Piwik plugin ##
 
-* **Purpose**: To substitute a configurable graphic in place of Piwik's regular 1-pixel 'hidden' web-beacon ("web bug") GIF image. Currently supports/ includes Creative Commons License PNG images (88x31 pixels).
-* **Code link**: [Github: IET-OU/ piwik-alternateimage-plugin][ietgit:piwik-alternateimage-plugin] 
-* (**Old code link**: [Github: IET-OU/ piwik-trackoer/tree.../plugins/AlternateImage][piwikgit:tree/trackoer/plugins/AlternateImage])
+* Purpose: To substitute a configurable graphic in place of [Piwik's][piwik] regular 1-pixel 'hidden' web-beacon ("web bug") GIF image. Currently supports/ includes Creative Commons License PNG images (88x31 pixels).
+* Code link: [Github: IET-OU/ piwik-alternateimage-plugin][ietgit:piwik-alternateimage-plugin] 
+* (Old code link: [Github: IET-OU/ piwik-trackoer/tree.../plugins/AlternateImage][piwikgit:tree/trackoer/plugins/AlternateImage])
 * Example: <http://track.olnet.org/piwik/piwik.php?img=cc:by-sa&x=/2.0/uk/88x31&idsite=1&rec=0>
-* Language(s): PHP, Piwik plugin.
+* Language: PHP, Piwik plugin.
 * License: [GNU General Public License v2 or later][gpl2] (Piwik compatible)
 * Date coded: 8 August 2012.
 * Todos: 1. React to bug #4, [add hook in core/Tracker.php][piwikgit:issues/4]; 2. Separate out into an individual Git repository for submission to the Piwik plugins directory.
@@ -75,7 +75,7 @@ Extra content
 * Date coded: 14-21 August 2012.
 * Todos: incorporate in written documentation!
 * Maturity: ongoing
-* Comments: I use [yUML.me][yuml] - thanks guys!
+* Comments: We use [yUML.me][yuml] - thanks guys!
 
 ![Track OER controller classes yUML][yuml-controller]
 
@@ -106,8 +106,8 @@ Extra content
 
 ## CLI/ command line batch processor ##
 
-* Purpose: An initial solution to inject a license-tracking snippet in the HTML pages in OpenLearn-LabSpace/ B2S download packages (Zip, SCORM etc.).
-* Code link: [Github: IET-OU/ trackoer-core/tree/...controllers/ Cli::batch][toergit:controllers/cli.php#L138]
+* Purpose: An initial solution to inject a license-tracking snippet in the HTML pages in OpenLearn-LabSpace/ [B2S][b2s] download packages (Zip, SCORM etc.).
+* Code link: [Github: IET-OU/ trackoer-core/ ...controllers/ Cli::batch][toergit:controllers/cli.php#L138]
 * Example: [Github: .../config/ batch_config.sample][toergit:config/batch_config.sample.php] `$ php index.php cli/batch --url=http://labspace.open.ac.uk/..`
 * Language: PHP
 * License: free/open source license (TBD)
@@ -119,7 +119,7 @@ Extra content
 ## CaPReT -- pull request #10 ##
 
 * Purpose: Merging some fixes and additions from IET-OU into the main CaPReT development.
-* Code link: [Github: tatemae/capret/pull/10][github:tatemae/capret/pull/10] - 6 commits
+* Code link: [Github: tatemae/capret/pull/10][github:tatemae/capret/pull/10] -- 6 commits
 * Example: N/A
 * Language: Javascript
 * License: [MIT][mit] (CaPReT compatible)
@@ -144,6 +144,7 @@ Extra content
 [yuml]: http://yuml.me/
 [yuml-controller]: http://track.olnet.org/docs/trackoer-controller-classes-yuml-v2.png
 [hirst-comment]: http://cloudworks.ac.uk/cloud/view/6433#comment-6111
+[b2s]: http://labspace.open.ac.uk/b2s
 
 [toer-b2s-page]: http://track.olnet.org/track/r/piwik/2/cc:by-nc-sa/labspace.open.ac.uk/Learning_to_Learn_1.0/?p=mod/oucontent/view.php?id=471422&section=3&t=Learning+to+Learn
 
@@ -153,4 +154,16 @@ Extra content
 [piwikgit:*]: https://github.com/IET-OU/piwik-trackoer/
 [toergit:*]: https://github.com/IET-OU/trackoer-core/tree/master/application/
 
-*[CaPReT]: CaPRéT
+*[CaPReT]: CaPRéT - cut and paste reuse tracking
+*[SCORM]: Sharable Content Object Reference Model
+*[UML]: Unified Modelling Language
+*[XSLT]: Extensible Stylesheet Language Transformations
+*[OU]: The Open University
+*[LTS]: Learning and Teaching Solutions
+
+<!--
+ Extra Content
+ http://cloudworks.ac.uk/content/edit/1502
+ ..
+ http://cloudworks.ac.uk/content/edit/1514
+-->

@@ -31,6 +31,7 @@ class MY_Loader extends CI_Loader {
    $lib_register = array(
       '_Gitlib' => 'git',
       '_Sams_Auth' => 'auth',
+      #'MarkdownExtraExtended_Ex_Parser' => 'md',
       'Creative_Commons' => 'cc',
       'PiwikEx' => 'piwik',
       'trackers/Google_Tracker' => 'ga',

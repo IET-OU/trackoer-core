@@ -268,8 +268,6 @@ EOF;
     #$params = $this->_parse_batch_args(func_get_args());
     #var_dump($_SERVER['argv'], $_SERVER['_']);
 
-    $output = '';
-
     if (! $args) {
       $this->_cli_error("cli/md requires a file-path argument.");
     }
@@ -283,27 +281,13 @@ EOF;
 
     require_once APPPATH .'/libraries/markdown_extended_ex.php';
 
-    $markdown_references = $this->load->view('../config/markdown_references', NULL, true);
+    $parser = new MarkdownExtraExtended_Ex_Parser();
+    $markdown_references = $parser->loadReferences();
 
-
-    // Some pre-processing.
-    $file = preg_replace('/ -- /', ' &ndash; ', $file);
-    $file = preg_replace('/\.\.\./', '…', $file);
-
-    $base_url = TRACKOER_LIVE_URL; #'/toer';
     $cmd = implode(' ', $_SERVER['argv']);
-    $output .= <<<EOF
-<!doctype html><html class=md-out><meta charset=utf-8 />
-<link rel=stylesheet href="$base_url/assets/site/css/md.css" />
-<!-- -*- markdown -*- -->
-<!--
-  \$ php $cmd  ..
--->
 
-
-EOF;
-
-    $output .= MarkdownExtended_Ex($file . $markdown_references);
+    $output = $parser->getHtmlHead("\$ php $cmd ..");
+    $output .= $parser->transform($file);
 
     echo $output;
     exit (0);

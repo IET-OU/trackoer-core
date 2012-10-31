@@ -110,11 +110,14 @@ class Api extends MY_Controller {
   /** Utility: render a Markdown file provided via {url} as HTML.
   */
   public function markdown($refs = FALSE) {
-    $output = '';
-    $markdown_references = $this->load->view('../config/markdown_references', NULL, TRUE);
+    $this->load->library('Http');
+    require_once APPPATH .'/libraries/markdown_extended_ex.php';
+
+    $parser = new MarkdownExtraExtended_Ex_Parser();
+
+    $markdown_references = $parser->loadReferences();
     if ($refs) {
       header('Content-Type: text/plain; charset=UTF-8');
-      header('Content-Disposition: inline; filename=markdown-references.md');
       echo $markdown_references;
       exit;
     }
@@ -124,27 +127,13 @@ class Api extends MY_Controller {
       $this->_error('Error, the {url} parameter is missing or unsupported.', 400);
     }
 
-    $this->load->library('Http');
-    require_once APPPATH .'/libraries/markdown_extended_ex.php';
-
     $result = $this->http->request($url);
     if (! $result->success) {
       $this->_error('Error retrieving file over HTTP.', $result->http_code);
     }
 
-    $base_url = base_url();
-    #$cmd = implode(' ', $_SERVER['argv']);
-    $output .= <<<EOF
-<!doctype html><html class=md-out><meta charset=utf-8 />
-<link rel=stylesheet href="$base_url/assets/site/css/md.css" />
-<link rel=glossary type=text/markdown href="$base_url/api/markdown/references" />
-<link rel=alternate type=text/markdown href="$url" />
-
-
-
-EOF;
-
-    $output .= MarkdownExtended_Ex($result->data . $markdown_references);
+    $output = $parser->getHtmlHead($url, base_url());
+    $output .= $parser->transform($result->data);
     //output .= PHP_EOL . '</html>';
     echo $output;
   }

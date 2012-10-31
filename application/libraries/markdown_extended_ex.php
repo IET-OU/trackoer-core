@@ -1,6 +1,6 @@
 <?php
 /**
- * Extending php-markdown-extra-extended, with interwiki links..
+ * Extending php-markdown-extra-extended, with interwiki links, support for references config..
  *
  * @link https://github.com/egil/php-markdown-extra-extended
  * @link http://michelf.ca/projects/php-markdown/extra/
@@ -19,6 +19,7 @@ function MarkdownExtended_Ex($text, $default_classes = array()){
 class MarkdownExtraExtended_Ex_Parser extends MarkdownExtraExtended_Parser {
 
 	protected $interwikis = array();
+	protected $references = NULL;
 
 	function __construct() {
 	#
@@ -33,11 +34,59 @@ class MarkdownExtraExtended_Ex_Parser extends MarkdownExtraExtended_Parser {
 		//	);
 		$this->span_gamut += array(
 			'doInterwikis'    => 6, #70, 60
+			'processDash'     => 5,
 			);
 
 		parent::__construct();
+
+		@header('X-Markdown-extra-extended-version: '. implode('/', $this->getVersions()));
 	}
 
+
+	public function getVersions() {
+		return array(
+			'MARKDOWN_VERSION' => MARKDOWN_VERSION,
+			'MARKDOWNEXTRA_VERSION' => MARKDOWNEXTRA_VERSION,
+			'MARKDOWNEXTRAEXTENDED_VERSION' => MARKDOWNEXTRAEXTENDED_VERSION,
+		);
+	}
+
+
+	public function getHtmlHead($url = NULL, $base_url = TRACKOER_LIVE_URL) {
+		if ($url) {
+			@header('Content-Disposition: inline; filename='. basename($url) .'.html');
+		}
+		return <<<EOF
+<!doctype html><html class=md-out><meta charset=utf-8 />
+<link rel=stylesheet href="$base_url/assets/site/css/md.css" />
+<link rel=glossary type=text/markdown href="$base_url/api/markdown/references" />
+<link rel=alternate type=text/markdown href="$url" />
+
+
+EOF;
+	}
+
+
+	/** Load an extended Markdown reference config-view (requires CodeIgniter).
+	*/
+	public function loadReferences($file = '../config/markdown_references') {
+		@header('Content-Disposition: inline; filename='. basename($file) .'.md');
+		$CI =& get_instance();
+		$this->references = $CI->load->view($file, NULL, TRUE);
+		return $this->references;
+	}
+
+
+	public function transform($text) {
+		return parent::transform($text . $this->references);
+	}
+
+
+	function processDash($text) {
+		$text = preg_replace('/ -- /', ' &ndash;* ', $text);
+		$text = preg_replace('/\.\.\./', '…', $text);
+		return $text;
+	}
 
 	### Interwiki links ###
 

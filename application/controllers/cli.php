@@ -290,10 +290,11 @@ EOF;
     $file = preg_replace('/ -- /', ' &ndash; ', $file);
     $file = preg_replace('/\.\.\./', '…', $file);
 
-
+    $base_url = TRACKOER_LIVE_URL; #'/toer';
     $cmd = implode(' ', $_SERVER['argv']);
     $output .= <<<EOF
-<!doctype html><meta charset=utf-8 />
+<!doctype html><html class=md-out><meta charset=utf-8 />
+<link rel=stylesheet href="$base_url/assets/site/css/md.css" />
 <!-- -*- markdown -*- -->
 <!--
   \$ php $cmd  ..

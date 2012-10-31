@@ -1,9 +1,14 @@
-
-* {
+@charset "UTF-8";
+/*!
+ Markdown editor/output styles / N.D.Freear, 2012-10-18.
+*/
+body, textarea {
   background:#222;
   color:#eee;
-  margin:0;
   font:1em sans-serif;
+}
+body.md-edit{
+  margin:0;
 }
 textarea {
   width:49%;
@@ -14,6 +19,13 @@ textarea {
   top:0;
   bottom:0;
 }
+a {
+  color:#ace;
+}
+abbr {
+  border-bottom:1px dotted #ddd;
+  cursor:help;
+}
 #input{ left:0; }
 #wmd-out{ right:0; }
 
@@ -21,5 +33,7 @@ textarea {
   textarea {
     position:static;
 	width:98%;
+    bottom:auto;
+    height:auto;
   }
 }

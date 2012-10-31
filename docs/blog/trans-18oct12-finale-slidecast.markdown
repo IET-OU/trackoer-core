@@ -2,7 +2,7 @@
 
 [![Three minute slide cast by lead developer, Dr Nick Freear, 2012-10-19][yt-img-freear]][yt-vid-freear]
 
-## Transcript ##
+## Transcript for [the slide cast][slides-freear] ##
 
 * Slide 1
 
@@ -14,7 +14,7 @@
 
   And that's bad for the continued funding and development of OERs.
 
-* Slide 3: Early on we decided to pilot Track OER on the [Bridge to Success][b2s-site] content on The OU's [OpenLearn-LabSpace][b2s-site].
+* Slide 3: Early on we decided to pilot Track OER on the [Bridge to Success][b2s-site] content on The OU's [OpenLearn-LabSpace][b2s].
 
 * Slide 4: The project comprised two strands...
 
@@ -44,7 +44,7 @@
 
    ..That's Web, an [online] API and batch processing from the command line.
 
-* Slide 11: There are many outputs from Track OER, all licensed under GPL-compatible open source licenses.
+* Slide 11: There are many outputs from Track OER, all licensed under [GPL][gpl2]-compatible open source licenses.
 
   See the [outputs register][outputslist] for details
 
@@ -54,7 +54,7 @@
 
 * Slide 13: Next steps include deploying the tested and approved code to LabSpace, developing XSLT templates for OpenLearn based on our PHP specification and more dissemination work.
 
-* Slide 14: Visit the Track OER project at, <http://track.olnet.org>
+* [Slide 14][slides-freear]: Visit the Track OER project at, <http://track.olnet.org>
 
   Thanks for watching!
 

@@ -31,6 +31,7 @@ class Api extends MY_Controller {
     $this->_render($result);
   }
 
+
   /**
   * Call a Piwik API method - echo the result as JSON.
   * How to get optional parameters?  (idSite, url, format, token_auth ..)
@@ -105,6 +106,49 @@ class Api extends MY_Controller {
 
 
   // ============================================================================
+
+  /** Utility: render a Markdown file provided via {url} as HTML.
+  */
+  public function markdown($refs = FALSE) {
+    $output = '';
+    $markdown_references = $this->load->view('../config/markdown_references', NULL, TRUE);
+    if ($refs) {
+      header('Content-Type: text/plain; charset=UTF-8');
+      header('Content-Disposition: inline; filename=markdown-references.md');
+      echo $markdown_references;
+      exit;
+    }
+
+    $url = $this->input->get('url');
+    if (! $url || ! preg_match('#:\/\/(.*\.ac\.uk|.*\.olnet\.org|.*.github\.com)\/#', $url)) {
+      $this->_error('Error, the {url} parameter is missing or unsupported.', 400);
+    }
+
+    $this->load->library('Http');
+    require_once APPPATH .'/libraries/markdown_extended_ex.php';
+
+    $result = $this->http->request($url);
+    if (! $result->success) {
+      $this->_error('Error retrieving file over HTTP.', $result->http_code);
+    }
+
+    $base_url = base_url();
+    #$cmd = implode(' ', $_SERVER['argv']);
+    $output .= <<<EOF
+<!doctype html><html class=md-out><meta charset=utf-8 />
+<link rel=stylesheet href="$base_url/assets/site/css/md.css" />
+<link rel=glossary type=text/markdown href="$base_url/api/markdown/references" />
+<link rel=alternate type=text/markdown href="$url" />
+
+
+
+EOF;
+
+    $output .= MarkdownExtended_Ex($result->data . $markdown_references);
+    //output .= PHP_EOL . '</html>';
+    echo $output;
+  }
+
 
   /**
   * Utility: a 'myip' information service (JSON).

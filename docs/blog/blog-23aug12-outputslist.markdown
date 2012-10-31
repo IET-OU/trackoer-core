@@ -134,6 +134,7 @@ Note, these browser plugins are not just for developers!
 * [Example of CaPReT-Piwik Javscript plugin use, with Piwik configuration][gist:3437266]
 
 
+[piwik]: http://piwik.org/
 [firebug]: http://getfirebug.com/
 [chrome-bug]: https://developers.google.com/chrome-developer-tools/docs/console
 [opera-bug]: http://www.opera.com/dragonfly/documentation/console/

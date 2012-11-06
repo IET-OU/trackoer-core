@@ -10,6 +10,14 @@ body, textarea {
 body.md-edit{
   margin:0;
 }
+code, pre {
+  background:#3a3a3a;
+}
+pre {
+  margin:1em 2em;
+  padding:.5em 1em;
+  border:1px dashed #999;
+}
 textarea {
   width:49%;
   min-width:14em;

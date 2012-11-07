@@ -145,12 +145,18 @@ class Api extends MY_Controller {
   * @author NDF, 25 Sep 2012.
   */
   public function myip() {
+	$this->load->library('user_agent');
+	$agent = $this->agent;
 	$server_vars = 'HTTP_HOST,HTTP_CONNECTION,HTTP_CACHE_CONTROL,HTTP_USER_AGENT,HTTP_ACCEPT,HTTP_ACCEPT_ENCODING,HTTP_ACCEPT_LANGUAGE,HTTP_ACCEPT_CHARSET,HTTP_REFERER,HTTP_VIA,HTTP_X_FORWARDED_FOR,SERVER_PROTOCOL,REMOTE_ADDR,REMOTE_PORT,REQUEST_TIME';
 	$http_vars = (object) array(
 		'service_provider' => 'IET-OU',
-		'provider_url' => 'http://track.olnet-org/',
+		'provider_url' => TRACKOER_LIVE_URL,
 		'date' => NULL,
 		'unix_time' => NULL,
+		'browser' => $agent->browser(),
+		'version' => $agent->version(),
+		'mobile' => $agent->mobile(),
+		'platform' => $agent->platform(),
 		'ip_address' => NULL,
 	);
 	foreach (explode(',', $server_vars) as $key) {

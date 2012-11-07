@@ -9,9 +9,10 @@
 ::webkit-selection{ background-color: #E13300; color: white; }
 
 body {
-	background-color: #fff;
+	background-color: #ffcfcfc;
 	margin: 40px;
-	font: 13px/20px normal Helvetica, Arial, sans-serif;
+	/*font: 13px/20px normal Helvetica, Arial, sans-serif; //ou-specific */
+	font: 1em Helvetica,sans-serif;
 	color: #4F5155;
 }
 
@@ -25,7 +26,7 @@ h1 {
 	color: #444;
 	background-color: transparent;
 	border-bottom: 1px solid #D0D0D0;
-	font-size: 19px;
+	x-font-size: 19px;
 	font-weight: normal;
 	margin: 0 0 14px 0;
 	padding: 14px 15px 10px 15px;
@@ -55,8 +56,10 @@ p {
 </head>
 <body>
 	<div id="container">
-		<h1><?php echo $heading; ?></h1>
-		<?php echo $message; ?>
+		<h1><?php //echo $heading; //ou-specific ?>We're sorry</h1>
+		<?php //echo $message; ?><p>We could not find the page you requested (404)
+		<p><?php echo function_exists('anchor') ? anchor('', 'Go home') : '' ?>
+		<p><img src="<?php echo defined('ERROR_ICON') ? ERROR_ICON : 'http://www.open.ac.uk/img/err_block_sm.jpg' ?>" alt="" />
 	</div>
 </body>
 </html>

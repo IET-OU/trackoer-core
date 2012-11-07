@@ -10,6 +10,15 @@ $config['_toer_constants'] = 'dummy';
 
 
 /*
+| Image(s) for errors/error_general
+| http://commons.wikimedia.org/wiki/File:Emoticon_frown.svg#!Public-domain
+*/
+define('ERROR_ICON', 'http://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Emoticon_frown.svg/200px-Emoticon_frown.svg.png');
+#define('ERROR_ICON', 'http://www.open.ac.uk/img/err_block_sm.jpg');
+#define('ERROR_ICON', 'http://www.briarpress.org/?q=system/files/images/frown.png'); #http://www.briarpress.org/890#CC:by-nc © 1995-2012 One Art New York, Inc.
+
+
+/*
 |--------------------------------------------------------------------------
 | Debug constants.
 */

@@ -15,7 +15,6 @@
  */
 
 
-
 /**
 * Based on,
 *  @link  https://github.com/IET-OU/ouplayer/blob/master/application/core/MY_Controller.php
@@ -201,7 +200,7 @@ class MY_Controller extends CI_Controller {
     #@header('HTTP/1.1 '. (integer) $code);
 
     $ex =& load_class('Exceptions', 'core');
-    echo $ex->show_error('Track OER error', "$message ($code)", 'error_general', (integer) $code);
+    echo $ex->show_error('Sorry! Track OER error', "$message ($code)", 'error_general', (integer) $code);
     exit;
   }
 

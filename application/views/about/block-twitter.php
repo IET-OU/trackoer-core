@@ -10,7 +10,7 @@ new TWTR.Widget({
   type: 'search',
   search: '<?php echo TWITTER_SEARCH ?>',
   interval: 30000,
-  title: 'Track OER',
+  title: '<?php echo str_replace(array('OR', '#'), array('or', ''), TWITTER_SEARCH) ?>',
   subject: 'A JISC-funded project',
   width: 250,
   height: 300,

@@ -122,6 +122,11 @@ define('OU_OER_URL', 'http://www8.open.ac.uk/about/open-educational-resources/')
 // OLnet site.
 define('_disable_OLNET_URL', 'http://www.olnet.org/');
 
-// Twitter search.
-define('TWITTER_SEARCH', '#TrackOER');
+// JISC OERRI
+define('OERRI_URL', 'http://www.jisc.ac.uk/whatwedo/programmes/ukoer3/rapidinnovation.aspx');
+
+define('OERRI_FEED_JS_URL', 'http://feed2js.org/feed2js.php?src=http%3A//www.medev.ac.uk/feeds/blog/b2217ff0-1071-11e0e-D38d-ka1be41b8761/&utf=y&au=n&desc=40&num=5');
+
+// Twitter search, was '#TrackOER' (' OR #ukOER'?)
+define('TWITTER_SEARCH', '#TrackOER OR #OERRI');
 

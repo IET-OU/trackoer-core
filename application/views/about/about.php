@@ -14,7 +14,7 @@ The Universities, funding bodies and individuals who invest time and effort in d
 
 __Track OER__ is a [JISC][jisc] and [HEFCE][hefce]-funded project to facilitate Web analytics for Open Educational Resources.
 
-It is a rapid innovation project to demonstrate technical solutions, based around software like [Piwik][piwik], [Google Analytics][ga] and [CaPRéT][capret], the [Creative Commons][cc] [API][cc-api] and [oEmbed][oembed].
+It is a [rapid innovation project][oerri] to demonstrate technical solutions, based around software like [Piwik][piwik], [Google Analytics][ga] and [CaPRéT][capret], the [Creative Commons][cc] [API][cc-api] and [oEmbed][oembed].
 
 Find out more on the [Project blog][blog].
 
@@ -33,8 +33,8 @@ Find out more on the [Project blog][blog].
 <?php
   $this->load->view('about/block-cloudworks');
   $this->load->view('about/block-twitter');
+  $this->load->view('about/block-oerri');
 ?>
-
 
 ## [Software coding activity on Github][code]
 
@@ -74,5 +74,5 @@ Find out more on the [Project blog][blog].
 
 
 
-<?php $this->load->view('about/block-github') ?>
+<?php $this->load->view('about/block-github') // Javascript. ?>
 

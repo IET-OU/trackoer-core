@@ -20,6 +20,8 @@
 [code]: <?php echo CODE_URL ?> "<?php echo t('%s project code, on %s', array('Track OER', 'GitHub')) ?>"
 [jisc]: http://www.jisc.ac.uk/ "Joint Information Systems Committee"
 [hefce]: http://www.hefce.ac.uk/ "Higher Education Funding Council for England"
+[oerri]: <?php echo OERRI_URL ?> "OER Rapid Innovation strand at JISC (OERRI)"
+[feed2js]: http://feed2js.org/ "Powered by Feed2JS"
 [ou]: http://www.open.ac.uk/ "<?php echo t('The Open University') ?>"
 [iet]: http://iet.open.ac.uk/ "<?php echo t('Institute of Educational Technology') ?>"
 

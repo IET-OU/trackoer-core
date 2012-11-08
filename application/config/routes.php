@@ -43,6 +43,7 @@ $route['404_override'] = '';
 
 
 $route['about'] = 'welcome/about';
+$route['search'] = 'welcome/search';
 
 
 /* End of file routes.php */

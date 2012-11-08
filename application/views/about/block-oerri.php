@@ -3,10 +3,11 @@
 
 This is a strand of the JISC and Higher Education Academy Open Educational Resources (OER) Programme. <small>[More on OERRI...][oerri].</small>
 
-Latest activity:
+Latest blog activity:
+<style>.rss-item{ font-size:small; } .rss-item a{ font-size:medium; }</style>
 <script src="<?php echo OERRI_FEED_JS_URL ?>" charset="UTF-8"></script><!--<noscript>-->
 
-<small><a href="<?php echo OERRI_FEED_JS_URL ?>&amp;html=y" title="Broken :(">View RSS feed</a> | [Feed2JS][feed2js].</small><!--</noscript>-->
+<small><a href="<?php echo OERRI_FEED_JS_URL ?>&amp;html=y" title="Broken :(">View RSS feed for OERRI</a> | [Feed2JS][feed2js].</small><!--</noscript>-->
 
 <?php /*
 <!--

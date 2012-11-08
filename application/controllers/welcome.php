@@ -44,6 +44,19 @@ class Welcome extends MY_Controller {
 
 		$this->layout->view('about/about', $view_data);
 	}
+
+
+	/** Google custom search for OERRI.
+	*/
+	public function search($layout = self::LAYOUT) {
+		$this->_load_layout($layout);
+
+		$view_data = array(
+			'page_title'  => t('Search OERRI'),
+		);
+
+		$this->layout->view('about/search', $view_data);
+	}
 }
 
 /* End of file welcome.php */

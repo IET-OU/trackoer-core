@@ -20,7 +20,7 @@ var gcse_callback = function() {
       if (r.length == 0) {
         $('#gsc-r0').css({ display: 'none' });
       }
-    }, 800);
+    }, 1400); // A hack!
 
     $.log('GCSE search complete.');
 

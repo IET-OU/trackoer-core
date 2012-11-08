@@ -61,6 +61,6 @@ window.__gcse = {
 </script>
 <!-- Place this tag where you want both of the search box and the search results to render -->
 <!-- https://developers.google.com/custom-search/docs/element#javascript -->
-<gcse:search autoSearchOnLoad="true"></gcse:search>
+<gcse:search autoSearchOnLoad="true" enableAutoComplete="true" enableOrderBy="true"></gcse:search>
 
-<!--<div class="gcse-searchbox" data-autoSearchOnLoad="true" ></div>-->
+<?php /*<div class="gcse-searchbox" data-autoSearchOnLoad="true" ></div>*/ ?>

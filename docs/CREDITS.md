@@ -2,10 +2,16 @@
 ## Credits and licenses
 
 
+Particular thanks to... [Scott Leslie][leslie-blog] who got the ball rolling as an [OLnet visiting fellow][leslie-olnet].
+
+
 ### trackoer-core: Copyright (c) 2012 The Open University. All rights reserved.
 * License: <http://gnu.org/licenses/gpl-2.0.html> GNU General Public License version 2 or later,
 * Code: <https://github.com/IET-OU/trackoer-core>
 * Author: Nick Freear <n.d.freear+@+open.ac.uk> / Institute of Educational Technology.
+
+### No-JS redirect to Piwik/ Google Analytics webbug: Copyright 2010-07-20 The Open University
+* Code: <http://snipplr.com/view/37647>
 
 ### Bridge to Success content: Copyright 2011 The Open University.
 * License: <http://creativecommons.org/licenses/by/3.0/>
@@ -21,7 +27,7 @@
 * Code: <http://codeigniter.com/wiki/layout_library>
 
 ### codeigniter-piwik: Copyright 2010 Bryce Johnston
-* License: MIT
+* License: [MIT][mit]
 * Code: <https://github.com/wingdspur/codeigniter-piwik>
 
 ### php-po-parser: Copyright (C) 2008, Iulian Ilea (http://iulian.net), all rights reserved.
@@ -29,7 +35,7 @@
 * Code: <http://code.google.com/p/php-po-parser/>
 
 ### oer_license_parser.js: Copyright (C) 2011 by Pat Lockley.
-* License: MIT
+* License: [MIT][mit]
 * Author: <patrick.lockley@googlemail.com>
 * Code: <https://github.com/patlockley/openattribute-chrome>
 * Via:  <https://github.com/tatemae/capret/tree/master/public/js>
@@ -52,7 +58,7 @@
 * License: MIT
 * Code: <http://ender.no.de/#jeesh>
 
-### CaPReT public Javascript: CaPR�T was developed by Tatemae and the [MIT Office of Educational Innovation and Technology](http://oeit.mit.edu)
+### CaPRéT public Javascript: CaPRéT was developed by Tatemae and the [MIT Office of Educational Innovation and Technology](http://oeit.mit.edu)
 * License: MIT
 * Code: <https://github.com/tatemae/capret/tree/master/public/js>
 
@@ -83,5 +89,7 @@
 
 
 [mit]: http://opensource.org/licenses/mit-license
+[leslie-blog]: http://www.edtechpost.ca/wordpress/2010/07/12/olnet-tracking-oer-first-stab/
+[leslie-olnet]: http://www.olnet.org/content/scott-leslie
 
 [End.]

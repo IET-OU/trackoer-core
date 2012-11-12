@@ -105,9 +105,9 @@ class Api extends MY_Controller {
 
 
 
-  // ============================================================================
+  // ========================================================================
 
-  /** Utility: render a Markdown file provided via {url} as HTML.
+  /** Utility: render a Markdown file provided via {url} as HTML. Optional {theme}
   */
   public function markdown($refs = FALSE) {
     $this->load->library('Http');
@@ -123,6 +123,7 @@ class Api extends MY_Controller {
     }
 
     $url = $this->input->get('url');
+    $theme = $this->input->get('theme');
     if (! $url || ! preg_match('#:\/\/(.*\.ac\.uk|.*\.olnet\.org|.*.github\.com)\/#', $url)) {
       $this->_error('Error, the {url} parameter is missing or unsupported.', 400);
     }
@@ -132,7 +133,7 @@ class Api extends MY_Controller {
       $this->_error('Error retrieving file over HTTP.', $result->http_code);
     }
 
-    $output = $parser->getHtmlHead($url, base_url());
+    $output = $parser->getHtmlHead($url, base_url(), $theme);
     $output .= $parser->transform($result->data);
     //output .= PHP_EOL . '</html>';
     echo $output;

@@ -106,6 +106,9 @@ class MY_Controller extends CI_Controller {
   }
 
 
+  /** Get the output from git-log and git-describe.
+   *  Fails (sometimes?) on Mac OS X.
+   */
   protected function _git_revision($full = TRUE) {
     $raw_log = $raw_desc = $raw_orig = array();
     $res = exec('git log -1', $raw_log, $return_var);
@@ -121,6 +124,8 @@ class MY_Controller extends CI_Controller {
         $output[strtolower($key)] = trim(substr($line, $pos));
       }
     }
+    if (! isset($output['date'])) return (object) array('describe'=>NULL);
+
     $output['timestamp'] = strtotime($output['date']);
     if ($full) {
       $res = exec('git describe', $raw_desc, $return_var);

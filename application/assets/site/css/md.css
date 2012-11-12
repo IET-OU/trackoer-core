@@ -37,6 +37,17 @@ abbr {
 #input{ left:0; }
 #wmd-out{ right:0; }
 
+.bw body {
+  background:#fcfcfc;
+  color:#333;
+}
+.bw a {
+  color:blue;
+}
+.bw pre, .bw code {
+  background:#f6f6f6;
+}
+
 @media screen and (max-width: 500px) {
   textarea {
     position:static;

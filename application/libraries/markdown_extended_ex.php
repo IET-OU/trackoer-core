@@ -52,12 +52,13 @@ class MarkdownExtraExtended_Ex_Parser extends MarkdownExtraExtended_Parser {
 	}
 
 
-	public function getHtmlHead($url = NULL, $base_url = TRACKOER_LIVE_URL) {
+	public function getHtmlHead($url = NULL, $base_url = TRACKOER_LIVE_URL, $theme = 'bw') {
 		if ($url) {
 			@header('Content-Disposition: inline; filename='. basename($url) .'.html');
 		}
+		$theme = htmlentities($theme);
 		return <<<EOF
-<!doctype html><html class=md-out><meta charset=utf-8 />
+<!doctype html><html class="md-out $theme"><meta charset=utf-8 />
 <link rel=stylesheet href="$base_url/assets/site/css/md.css" />
 <link rel=glossary type=text/markdown href="$base_url/api/markdown/references" />
 <link rel=alternate type=text/markdown href="$url" />

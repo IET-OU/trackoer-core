@@ -113,12 +113,12 @@ class MY_Controller extends CI_Controller {
     $raw_log = $raw_desc = $raw_orig = array();
     $res = exec('git log -1', $raw_log, $return_var);
 
-    $output = array();
+    $output = array('commit'=>'', 'message'=>'');
     foreach ($raw_log as $line) {
       if ('' == $line) continue;
       $pos = strpos($line, ' ');
       if (0 === $pos) {
-        $output['message'] = trim($line);
+        $output['message'] .= trim($line) ."\n";
       } else {
         $key = trim(substr($line, 0, $pos), ' :');
         $output[strtolower($key)] = trim(substr($line, $pos));

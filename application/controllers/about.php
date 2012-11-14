@@ -1,6 +1,23 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Track OER
+ *
+ * A web application to facilitate analytics for Open Educational Resources.
+ *
+ * @package		trackoer-core
+ * @copyright	Copyright 2012 The Open University.
+ * @author		N.D.Freear, 9 August 2012.
+ * @license
+ * @link		https://github.com/IET-OU/trackoer-core
+ * @since		Version 1.0
+ * @filesource
+ */
 
-class Welcome extends MY_Controller {
+
+/**
+ * Was: Welcome
+ */
+class About extends MY_Controller {
 
     public function __construct() {
       parent::__construct();
@@ -10,6 +27,8 @@ class Welcome extends MY_Controller {
     }
 
 	/**
+	 * Was: index
+	 *
 	 * Index Page for this controller.
 	 *
 	 * Maps to the following URL
@@ -24,7 +43,7 @@ class Welcome extends MY_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index($layout = self::LAYOUT) {
+	public function welcome($layout = self::LAYOUT) {
 		$this->_load_layout($layout);
 
 		$view_data = array(
@@ -33,7 +52,10 @@ class Welcome extends MY_Controller {
 		$this->layout->view('welcome_message', $view_data);
 	}
 
-	public function about($layout = self::LAYOUT) {
+	/**
+	* Was: about
+	*/
+	public function index($layout = self::LAYOUT) {
 		$this->_load_layout($layout);
 
 		$view_data = array(

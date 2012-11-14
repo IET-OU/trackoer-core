@@ -5,7 +5,8 @@
 Particular thanks to... [Scott Leslie][leslie-blog] who got the ball rolling as an [OLnet visiting fellow][leslie-olnet].
 
 
-### trackoer-core: Copyright (c) 2012 The Open University. All rights reserved.
+### trackoer-core
+* Copyright (c) 2012 The Open University. All rights reserved. Developed in [IET][iet] with support from [JISC][jisc].
 * License: <http://gnu.org/licenses/gpl-2.0.html> GNU General Public License version 2 or later,
 * Code: <https://github.com/IET-OU/trackoer-core>
 * Author: Nick Freear <n.d.freear+@+open.ac.uk> / Institute of Educational Technology.
@@ -58,7 +59,8 @@ Particular thanks to... [Scott Leslie][leslie-blog] who got the ball rolling as 
 * License: MIT
 * Code: <http://ender.no.de/#jeesh>
 
-### CaPRéT public Javascript: CaPRéT was developed by Tatemae and the [MIT Office of Educational Innovation and Technology](http://oeit.mit.edu)
+### CaPReT public Javascript
+* CaPRéT was developed by Tatemae and the [MIT Office of Educational Innovation and Technology][oeit] with support from [JISC CETIS][cetis].
 * License: MIT
 * Code: <https://github.com/tatemae/capret/tree/master/public/js>
 
@@ -70,7 +72,8 @@ Particular thanks to... [Scott Leslie][leslie-blog] who got the ball rolling as 
 * License: MIT
 * Code: <http://code.google.com/p/ierange#r32>
 
-### php-markdown-extra-extended: Copyright 2011 Egil Hansen; Copyright (c) 2004-2009 Michel Fortin; Copyright (c) 2003-2006 John Gruber.
+### php-markdown-extra-extended
+* Copyright 2011 Egil Hansen; Copyright (c) 2004-2009 Michel Fortin; Copyright (c) 2003-2006 John Gruber.
 * License: <http://github.com/michelf/php-markdown/blob/master/License.text> BSD (?)
 * Code: <https://github.com/egil/php-markdown-extra-extended>
 * Code: <http://michelf.ca/projects/php-markdown/extra/>
@@ -91,5 +94,9 @@ Particular thanks to... [Scott Leslie][leslie-blog] who got the ball rolling as 
 [mit]: http://opensource.org/licenses/mit-license
 [leslie-blog]: http://www.edtechpost.ca/wordpress/2010/07/12/olnet-tracking-oer-first-stab/
 [leslie-olnet]: http://www.olnet.org/content/scott-leslie
+[jisc]: http://www.jisc.ac.uk/
+[iet]: http://iet.open.ac.uk/
+[oeit]: http://oeit.mit.edu/
+[cetis]: http://jisc.cetis.ac.uk/
 
 [End.]

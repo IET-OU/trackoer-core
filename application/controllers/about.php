@@ -68,6 +68,21 @@ class About extends MY_Controller {
 	}
 
 
+	/** CaPReT: explain the different variants.
+	*/
+	public function capret($layout = self::LAYOUT) {
+		$this->_load_layout($layout);
+		$this->load->file(APPPATH . 'controllers/help.php');
+
+		$view_data = array(
+			'rev' => $this->request('revision'),
+			'page_title'  => t('CaPRéT: Cut and Paste Reuse Tracking'),
+			#'capret_help_url' => Help::HELP_URL,
+		);
+
+		$this->layout->view('about/capret', $view_data);
+	}
+
 	/** Google custom search for OERRI.
 	*/
 	public function search($layout = self::LAYOUT) {

@@ -122,6 +122,9 @@ define('OU_OER_URL', 'http://www8.open.ac.uk/about/open-educational-resources/')
 // OLnet site.
 define('_disable_OLNET_URL', 'http://www.olnet.org/');
 
+// CaPReT end-user help.
+define('CAPRET_HELP_URL', 'https://docs.google.com/document/d/1687Lejn4z10sbQtLk-e7xasA8WFw6KDIybeBX8OjxUk/edit#heading=h.3ain78xagbs6');
+
 // JISC OERRI
 define('OERRI_URL', 'http://www.jisc.ac.uk/whatwedo/programmes/ukoer3/rapidinnovation.aspx');
 

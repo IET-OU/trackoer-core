@@ -16,7 +16,7 @@
  */
 class Help extends MY_Controller {
 
-	const HELP_URL = 'https://docs.google.com/document/d/1687Lejn4z10sbQtLk-e7xasA8WFw6KDIybeBX8OjxUk/edit#heading=h.3ain78xagbs6';
+	#const HELP_URL = 'https://docs.google.com/document/d/1687Lejn4z10sbQtLk-e7xasA8WFw6KDIybeBX8OjxUk/edit#heading=h.3ain78xagbs6';
 
     public function __construct() {
 		parent::__construct();
@@ -26,7 +26,7 @@ class Help extends MY_Controller {
 
 	public function capret($heading = 'ie') {
 		// For the moment redirect to our draft Google Doc.
-		redirect(self::HELP_URL);
+		redirect(CAPRET_HELP_URL);
 	}
 }
 	

@@ -140,7 +140,7 @@ EOF;
 
 
   protected function _cli_error($message) {
-    echo 'Error, '. $message . PHP_EOL;
+    fprintf(STDERR, 'Error, '. $message . PHP_EOL);
     $this->_echo_batch_help();
   }
 

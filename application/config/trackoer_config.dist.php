@@ -33,6 +33,8 @@ $config['http_proxy'] = 'wwwcache.open.ac.uk:80';
 */
 #$config['markdown'] = TRUE;
 
+$config['markdown_url_regex'] = '#:\/\/(.*\.ac\.uk\/|.*olnet\.org\/|.*github\.com\/|dl.dropbox\.com\/u\/32)#';
+
 
 /*
 |--------------------------------------------------------------------------

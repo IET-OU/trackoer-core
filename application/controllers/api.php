@@ -118,13 +118,16 @@ class Api extends MY_Controller {
     $markdown_references = $parser->loadReferences();
     if ($refs) {
       header('Content-Type: text/plain; charset=UTF-8');
+      ?><!-- -*- markdown -*- -->
+<?php
       echo $markdown_references;
       exit;
     }
 
     $url = $this->input->get('url');
     $theme = $this->input->get('theme');
-    if (! $url || ! preg_match('#:\/\/(.*\.ac\.uk|.*\.olnet\.org|.*.github\.com)\/#', $url)) {
+    $regex = $this->config->item('markdown_url_regex');
+    if (! $url || ! preg_match($regex, $url)) {
       $this->_error('Error, the {url} parameter is missing or unsupported.', 400);
     }
 

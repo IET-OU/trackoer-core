@@ -27,15 +27,13 @@
 [iet]: http://iet.open.ac.uk/ "<?php echo t('Institute of Educational Technology') ?>"
 
 
-<?php
-/* php-markdown-extra: abbreviations - case-sensitive.
-*/
-?>
+<!-- php-markdown-extra: abbreviations - case-sensitive. -->
 *[URL]: Uniform resource locator,
 *[API]: <?php echo t('Application programming interface') ?>,
 *[OER]: <?php echo t('Open Educational Resource') ?>,
 *[CaPRéT]: <?php echo t('Cut and Paste Reuse Tracking') ?>,
 *[JISC]: Joint Information Systems Committee
+*[CETIS]: Centre for Educational Technology and Interoperability Standards
 *[HEFCE]: Higher Education Funding Council for England
 *[B2S]: Bridge to Success project
 *[ISP]: Internet service provider
@@ -44,11 +42,9 @@
 *[B2S]: Bridge to Success project
 
 
-<?php
-/* markdown_extended_ex.php: Interwiki links - case-sensitive.
-*  Note, if just php-markdown-extra is used then these references are hidden in output - good!
-*/
-?>
+<!-- markdown_extended_ex.php: Interwiki links. <?php /*
+ Case sensitive. Note, if just php-markdown-extra is used then these references are hidden in output - good! */ ?>
+-->
 [@:*]: https://twitter.com/
 [In:*]: http://linkedin.com/
 [Define:*]: http://google.com/search?q=define%3A

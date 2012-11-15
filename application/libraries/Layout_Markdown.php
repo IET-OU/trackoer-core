@@ -9,7 +9,7 @@
  * @author		N.D.Freear, 20 September 2012.
  * @filesource
  */
-require_once APPPATH .'/third_party/php-markdown-extra-extended/markdown_extended.php';
+require_once APPPATH .'/libraries/markdown_extended_ex.php';
 require_once APPPATH .'/libraries/Layout.php';
 
 
@@ -20,21 +20,24 @@ require_once APPPATH .'/libraries/Layout.php';
  */
 class Layout_Markdown extends Layout {
 
-  protected $references;
+  protected $parser;
 
 
   public function __construct($layout = "layout_main") {
     parent::__construct($layout);
 
+    $this->parser = new MarkdownExtraExtended_Ex_Parser();
+
     // Load markdown references from the pseudo-config view.
-    $this->references = $this->obj->load->view('../config/markdown_references', NULL, true);
+    $references = $this->parser->loadReferences();
   }
 
 
   public function view($view, $data=null, $return=false) {
     $loadedData = array();
     $loadedData['_raw'] = $this->obj->load->view($view, $data, true);
-    $loadedData['content_for_layout'] = MarkdownExtended($loadedData['_raw'] . $this->references);
+    $loadedData['content_for_layout']
+          = $this->parser->transform($loadedData['_raw']);
 
     return $this->obj->load->view($this->layout, $loadedData, $return);
 

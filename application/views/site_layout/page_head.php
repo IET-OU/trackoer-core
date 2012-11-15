@@ -45,7 +45,7 @@
 "Track OER is a JISC-funded project at The Open University to demonstrate technical solutions to Web analytics for Open Educational Resources." />
 <?php /*<meta prefix="fb: http://ogp.me/ns/fb#" property="fb:app_id" content="115190258555800">
 <link rel="alternate" type="application/rdf+xml" href="http://ogp.me/ns/ogp.me.rdf">*/ ?>
-<?php if($rev): ?>
+<?php if (isset($rev->timestamp)): ?>
 <meta property="og:updated_time" content="<?php echo $rev->timestamp ?>" />
 <?php endif; ?>
 

@@ -30,9 +30,9 @@ for Creative Commons, Piwik and Google Analytics, and test/demonstration pages.
 ## Links
 
  * Project site: [track.olnet.org](http://track.olnet.org/)
- * Project blog: [cloudworks.ac.uk/tag/view/trackoer](http://cloudworks.ac.uk/tag/view/trackoer)
- * piwik-trackoer:  [github.com/IET-OU/piwik-trackoer](https://github.com/IET-OU/piwik-trackoer)
- * JISC page: [jisc.ac.uk/whatwedo/programmes/ukoer3/rapidinnovation/trackoer.aspx](http://jisc.ac.uk/whatwedo/programmes/ukoer3/rapidinnovation/trackoer.aspx)
+ * Project blog: [Cloudworks: tag/ TrackOER][blog]
+ * piwik-trackoer:  [Github: IET-OU/ piwik-trackoer](https://github.com/IET-OU/piwik-trackoer)
+ * JISC page: [JISC: whatwedo/ programmes/ ukoer3/ rapidinnovation/ trackoer][jisc-page]
 
 
 ## Todos
@@ -65,6 +65,20 @@ with support from [JISC](http://jisc.ac.uk).
 For full credits and licenses see [docs/CREDITS.md][credit]
 
 
+![][piwik-bug]
+
+[![Ohloh project report][ohloh-icon]][ohloh]
+<!-- [![License: GPL v2 +][gpl-icon]][gpl2]  [![Build Status][travis-icon]][travis] -->
+
+
+[blog]: http://cloudworks.ac.uk/tag/view/TrackOER
+[jisc-page]: http://jisc.ac.uk/whatwedo/programmes/ukoer3/rapidinnovation/trackoer.aspx
 [piwik]: http://piwik.org/
 [credit]: https://github.com/IET-OU/trackoer-core/tree/master/docs/CREDITS.md
 [gpl2]: http://gnu.org/licenses/gpl-2.0.html
+[gpl-icon]: http://www.gnu.org/graphics/gnubanner-2.png
+[ohloh]: http://www.ohloh.net/p/trackoer-core?ref=github "Ohloh project report for Track OER"
+[ohloh-icon]: https://www.ohloh.net/p/trackoer-core/widgets/project_thin_badge.gif
+[travis]: http://travis-ci.org/cdnjs/cdnjs
+[travis-icon]: https://secure.travis-ci.org/cdnjs/cdnjs.png
+[piwik-bug]: http://track.olnet.org/piwik/piwik.php?idsite=1&rec=1

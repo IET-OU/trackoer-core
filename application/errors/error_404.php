@@ -1,3 +1,10 @@
+<?php
+  $CI =& get_instance();
+  if ($CI->input->is_cli_request()) {
+    fprintf(STDERR, "Error, $message".PHP_EOL);
+    exit (1);
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

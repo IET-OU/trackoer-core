@@ -34,6 +34,15 @@ class Cli extends Oembed { #MY_Controller {
   const ARGS = 'url ac fmt lic dir out log jspath css e v h'; //All.
   const ARGS_REQ = 'dir out';
 
+  const IMS_RESOURCE = <<<EOF
+
+      <!--__TIME__-->
+      <resource identifier="Shared99" type="webcontent" href="Shared/__FILE__">
+        <file href="Shared/__FILE__"/>
+      </resource>
+
+EOF;
+
 
   public function __construct() {
     parent::__construct();
@@ -49,6 +58,12 @@ class Cli extends Oembed { #MY_Controller {
     $this->load->config('batch_config');
   }
 
+  protected function _imsmanifest_resource($file = 'trackoer-ga.js') {
+    echo strtr(self::IMS_RESOURCE, array(
+      '__TIME__' => date('c'),
+      '__FILE__' => $file,
+    ));
+  }
 
   protected function _echo_batch_version() {
     $version = <<<EOF
@@ -228,6 +243,7 @@ EOF;
           '__SCRIPT_PATH__'=> $params->jspath, # Relative path.
           '__SCRIPT_ARG__' => 'type="text/javascript"', # HTML5 ''.
           '__STYLE__' => $params->css,
+          '__TIME__' => date('c'),
         )
       );
 
@@ -256,6 +272,9 @@ EOF;
 
     echo "$cn_proc files processed, OK" .PHP_EOL;
     echo "$cn_dir/$cn_nohtml directories/no-HTML files skipped." .PHP_EOL;
+
+    $this->_imsmanifest_resource();
+
     exit (0);
   }
 

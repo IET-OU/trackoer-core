@@ -86,8 +86,8 @@ EOF;
 
 
 	function processDash($text) {
-		$text = preg_replace('/ -- /', ' &ndash; ', $text);
-		$text = preg_replace('/\.\.\./', '�', $text);
+		$text = preg_replace('/ -- /', ' – ', $text); # &ndash; &#x2013
+		$text = preg_replace('/\.\.\./', '…', $text); # &hellip;
 		return $text;
 	}
 

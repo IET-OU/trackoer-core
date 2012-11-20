@@ -65,7 +65,7 @@ with support from [JISC](http://jisc.ac.uk).
 For full credits and licenses see [docs/CREDITS.md][credit]
 
 
-![][piwik-bug]
+[![][piwik-bug]][piwik]
 
 [![Ohloh project report][ohloh-icon]][ohloh]
 <!-- [![License: GPL v2 +][gpl-icon]][gpl2]  [![Build Status][travis-icon]][travis] -->

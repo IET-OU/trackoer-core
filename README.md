@@ -9,8 +9,10 @@ for Creative Commons, Piwik and Google Analytics, and test/demonstration pages.
 
 ## Requirements
 
- * PHP 5.2+
  * Apache 2.2+
+   * `mod_rewrite` and `.htaccess` (or access to `httpd.conf`)
+ * PHP 5.2+
+   * cURL, `json_encode`
  * ([Piwik 1.8+][piwik] -- this can be run on a separate server/host.)
 
 ## Installation

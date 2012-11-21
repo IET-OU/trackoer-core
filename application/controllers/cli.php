@@ -36,7 +36,7 @@ class Cli extends Oembed { #MY_Controller {
 
   const IMS_RESOURCE = <<<EOF
 
-      <!--__TIME__-->
+      <!--TOER/__TIME__-->
       <resource identifier="Shared99" type="webcontent" href="Shared/__FILE__">
         <file href="Shared/__FILE__"/>
       </resource>

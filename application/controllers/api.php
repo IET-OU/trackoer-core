@@ -110,6 +110,8 @@ class Api extends MY_Controller {
   /** Utility: render a Markdown file provided via {url} as HTML. Optional {theme}
   */
   public function markdown($refs = FALSE) {
+var_dump(base_url()); exit;
+
     $this->load->library('Http');
     require_once APPPATH .'/libraries/markdown_extended_ex.php';
 
@@ -127,6 +129,8 @@ class Api extends MY_Controller {
     $url = $this->input->get('url');
     $theme = $this->input->get('theme');
     $regex = $this->config->item('markdown_url_regex');
+
+    $url = preg_replace('#^//(\w)#', 'http://$1', $url);
     if (! $url || ! preg_match($regex, $url)) {
       $this->_error('Error, the {url} parameter is missing or unsupported.', 400);
     }

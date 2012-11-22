@@ -21,22 +21,27 @@ for Creative Commons, Piwik and Google Analytics, and test/demonstration pages.
 
 To install `trackoer-core` follow these steps:
 
-    # 1. Download [a Zip][zip], or clone [the code][code]
-    git clone git@github.com:IET-OU/trackoer-core.git
-    cd trackoer-core/application
+ 1. Download [a Zip][zip], or clone [the code][code]
+
+        git clone git@github.com:IET-OU/trackoer-core.git
+        cd trackoer-core/application
+
+ 2. Copy the default configuration file
+
+        cp config/trackoer_config.dist.php config/trackoer_config.php
+
+ 3. Edit the configuration file.. (see comments in the PHP for now)
+
+        vi config/trackoer_config.php
+
+ 4. CLI mode: copy and edit the batch configuration file
+
+        cp config/batch_config.sample.php config/batch_config.php
+        vi config/batch_config.php
     
-    # 2. Copy the default configuration file
-    cp config/trackoer_config.dist.php config/trackoer_config.php
-    
-    # 3. Edit the configuration file.. (see comments in the PHP for now)
-    vi config/trackoer_config.php
-    
-    # 4. CLI mode: copy and edit the batch configuration file
-    cp config/batch_config.sample.php config/batch_config.php
-    vi config/batch_config.php
-    
-    # 5. Web/Web-API modes: (Re-)start Apache
-    service httpd restart
+ 5. Web/Web-API modes: (Re-)start Apache
+
+        service httpd restart
 
 ## Links
 

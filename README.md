@@ -7,9 +7,11 @@ __Track OER__ is a JISC and HEFCE-funded project to facilitate Web analytics for
 URL redirection to no-Javascript web-bugs for Piwik, an OER license-tracker embed-code service
 for Creative Commons, Piwik and Google Analytics, and test/demonstration pages.
 
+`trackoer-core` combines three user-interfaces or modes in one: Web, Web-API and commandline (CLI) batch processing.
+
 ## Requirements
 
- * Apache 2.2+
+ * Apache 2.2+ - Web/ Web-API modes only
    * `mod_rewrite` and `.htaccess` (or access to `httpd.conf`)
  * PHP 5.2+
    * cURL, `json_encode`
@@ -17,16 +19,23 @@ for Creative Commons, Piwik and Google Analytics, and test/demonstration pages.
 
 ## Installation
 
+To install `trackoer-core` follow these steps:
+
+    # 1. Download [a Zip][zip], or clone [the code][code]
     git clone git@github.com:IET-OU/trackoer-core.git
     cd trackoer-core/application
     
-    # Copy the default configuration file
+    # 2. Copy the default configuration file
     cp config/trackoer_config.dist.php config/trackoer_config.php
     
-    # Edit the configuration file.. (see comments in the PHP for now)
+    # 3. Edit the configuration file.. (see comments in the PHP for now)
     vi config/trackoer_config.php
     
-    # (Re-)start Apache
+    # 4. CLI mode: copy and edit the batch configuration file
+    cp config/batch_config.sample.php config/batch_config.php
+    vi config/batch_config.php
+    
+    # 5. Web/Web-API modes: (Re-)start Apache
     service httpd restart
 
 ## Links
@@ -67,12 +76,14 @@ with support from [JISC](http://jisc.ac.uk).
 For full credits and licenses see [docs/CREDITS.md][credit]
 
 
-[![][piwik-bug]][piwik]
+<img src="http://track.olnet.org/piwik/piwik.php?idsite=1&rec=1" alt="" />
 
 [![Ohloh project report][ohloh-icon]][ohloh]
 <!-- [![License: GPL v2 +][gpl-icon]][gpl2]  [![Build Status][travis-icon]][travis] -->
 
 
+[code]: https://github.com/IET-OU/trackoer-core
+[zip]: https://github.com/IET-OU/trackoer-core/archive/master.zip "Zip of the latest code"
 [blog]: http://cloudworks.ac.uk/tag/view/TrackOER
 [jisc-page]: http://jisc.ac.uk/whatwedo/programmes/ukoer3/rapidinnovation/trackoer.aspx
 [piwik]: http://piwik.org/

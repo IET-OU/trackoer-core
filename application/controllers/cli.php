@@ -138,7 +138,7 @@ EOF;
 
 
     // Output help or version info.
-    if (isset($param->h)) {
+    if (isset($params->h)) {
       $this->_echo_batch_help();
     }
     if (isset($params->v)) {

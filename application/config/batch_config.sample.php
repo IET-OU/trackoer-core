@@ -3,13 +3,21 @@
 |--------------------------------------------------------------------------
 | TRACKOER-core CLI / command line batch configuration file.
 |--------------------------------------------------------------------------
+| Basic usage:
+|     php index.php cli/batch
+|
+| Usage with options:
+|     php index.php cli/batch --url=http://labspace.. --ac=UA-123..
+|
+| Get help:
+|     php index.php cli/batch -h
 */
 
 
 $_dir = 'C:/Users/<USER>/workspace/_trackoer/Learning_to_Learn_1.0_plain';
 
 /*
-| Command line batch processing configuration.
+| Command line batch processing -- options will override this configuration.
 */
 $config['cli_batch'] = array(
     'url' => 'http://labspace.open.ac.uk/Learning_to_Learn_1.0', //Course URL.

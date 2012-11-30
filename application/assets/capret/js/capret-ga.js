@@ -6,30 +6,29 @@
 // See, https://developers.google.com/analytics/resources/articles/gaTrackingTroubleshooting#gifParameters
 
 /*jslint browser:true, devel:true, indent:4 */
-/*global document, window, oer_license_parser, jQuery, gaTrack */
+/*global document, window, oer_license_parser, jQuery, $, gaTrack */
 
 
 //var _gaq = _gaq || [];
 
-(function (jQuery) {
+(function ($) {
 	'use strict';
 
-	jQuery = jQuery.noConflict(); //(Not removeAll=true)
+	var Doc = document,
+		jQuery = Doc.capret_no_conflict ? $.noConflict() : window.$,  //(Not removeAll=true)
+		get_data = function (key, mydefault) {
+			// Drupal 6/jQuery 1.3.2 doesn't fix $.data('my-prop') to $.data('myProp') - '_' for consistency.
+			var val = jQuery('script[src*=capret-ga]').attr('data-utm_' + key);
 
-	function get_data(key, mydefault) {
-		// Drupal 6/jQuery 1.3.2 doesn't fix $.data('my-prop') to $.data('myProp') - '_' for consistency.
-		var val = jQuery('script[src*=capret-ga]').attr('data-utm_' + key);
-		val = typeof val === 'undefined' ? mydefault : val;
-		return '0' === val ? false : val;
-	}
-
-	var utmac = get_data('ac', 'UA-12345-6'),
+			val = typeof val === 'undefined' ? mydefault : val;
+			return '0' === val ? false : val;
+		},
+		utmac = get_data('ac', 'UA-12345-6'),
 		debug = get_data('debug', false),
 		//IE_hack = get_data('ie_hack', false),   // Append beacon to source document for IE? (default: false)
 		IE_comment = get_data('ie_comment', true), // Add a help-comment for MSIE? Guy's idea (default: true, i18n)
 	// Aliases
 		UA = jQuery.browser,
-		Doc = document,
 		DL = Doc.location,
 		LP = oer_license_parser,  //3rd party.
 		log = function (s) {if (typeof console === 'object' && debug) {console.log(arguments.length <= 1 ? s : arguments); } };

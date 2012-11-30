@@ -6,22 +6,21 @@
 // See, http://piwik.org/docs/tracking-api/reference
 
 /*jslint browser:true, devel:true, indent:4, maxerr:500 */
-/*global document, window, oer_license_parser, jQuery */
+/*global document, window, oer_license_parser, jQuery, $ */
 
-(function (jQuery) {
+(function ($) {
 	'use strict';
 
-	jQuery = jQuery.noConflict(); //(Not removeAll=true)
+	var Doc = document,
+		jQuery = Doc.capret_no_conflict ? $.noConflict() : window.$,  //(Not removeAll=true)
+		get_data = function (key, mydefault) {
+			// Drupal 6/jQuery 1.3.2 doesn't fix $.data('my-prop') to $.data('myProp') - '_' for consistency.
+			var val = jQuery('script[src*=capret-piwik]').attr('data-piwik_' + key);
 
-	function get_data(key, mydefault) {
-		// Drupal 6/jQuery 1.3.2 doesn't fix $.data('my-prop') to $.data('myProp') - '_' for consistency.
-		var val = jQuery('script[src*=capret-piwik]').attr('data-piwik_' + key);
-
-		val = typeof val === 'undefined' ? mydefault : val;
-		return '0' === val ? false : val;
-	}
-
-	var piwik_url = get_data('url', 'http://track.olnet.org/piwik'),
+			val = typeof val === 'undefined' ? mydefault : val;
+			return '0' === val ? false : val;
+		},
+		piwik_url = get_data('url', 'http://track.olnet.org/piwik'),
 		idsite = get_data('idsite', 1),
 		source_ref = get_data('src_ref', true),   // Put document.location in 'urlref' Piwik param? (default: true)
 		IE_hack = get_data('ie_hack', false),     // Append beacon to source document for IE? (default: false)
@@ -33,11 +32,18 @@
 		M = Math,
 		enc = encodeURIComponent,
 		J = JSON,  //3rd party?
-		Doc = document,
 		DL = Doc.location,
 		LP = oer_license_parser,  //3rd party.
 		log = function (s) {if (typeof console === 'object' && debug) {console.log(arguments.length <= 1 ? s : arguments); } };
 	log('capret-piwik');
+
+	/*function get_data(key, mydefault) {
+		// Drupal 6/jQuery 1.3.2 doesn't fix $.data('my-prop') to $.data('myProp') - '_' for consistency.
+		var val = jQuery('script[src*=capret-piwik]').attr('data-piwik_' + key);
+
+		val = typeof val === 'undefined' ? mydefault : val;
+		return '0' === val ? false : val;
+	}*/
 
 	function truncate(str, length) {
 		if (str.length > length) {

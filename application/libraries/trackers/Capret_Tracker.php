@@ -56,7 +56,7 @@ class Capret_Tracker extends Base_Tracker {
       break;
       case 'ga':
       case 'google': //Fall-through.
-        $scripts[] = 'public/js/gajs-ext-js';
+        $scripts[] = 'public/js/gajs-ext.js';
         $scripts['@data'] = $stub .'capret-ga.js';
       break;
       case 'classic': // Fall-through.

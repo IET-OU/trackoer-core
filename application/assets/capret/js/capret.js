@@ -2,8 +2,9 @@
  @preserve CaPReT: Cut & Paste Reuse Tracking: Copyright 2011 Tatemae & MIT-OEIT / License MIT
  http://capret.mitoeit.org
 */
-(function( jQuery ){
-	jQuery = jQuery.noConflict(true);
+(function( $ ){
+	var jQuery = document.capret_no_conflict ? $.noConflict() : window.$;  //(Not removeAll=true)
+
 	function make_id(){
 		var result, i, j;
 		result = '';

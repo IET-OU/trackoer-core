@@ -16,7 +16,7 @@ __Track OER__ is a [JISC][jisc] and [HEFCE][hefce]-funded project to facilitate 
 
 It is a [rapid innovation project][oerri] to demonstrate technical solutions, based around software like [Piwik][piwik], [Google Analytics][ga] and [CaPRéT][capret], the [Creative Commons][cc] [API][cc-api] and [oEmbed][oembed].
 
-Find out more on the [Project blog][blog].
+Find out more on the [Project blog][toer-blog].
 
 
 <?php if($about_links): ?>
@@ -36,7 +36,7 @@ Find out more on the [Project blog][blog].
   $this->load->view('about/block-oerri');
 ?>
 
-## [Software coding activity on Github][code]
+## [Software coding activity on Github][toer-code]
 
 <div id=commits>Loading...</div>
 

@@ -16,8 +16,8 @@
 [cc-api]: http://api.creativecommons.org/ "Creative Commons API"
 [oembed]: http://oembed.com/ "<?php echo t('oEmbed specification') ?>"
 
-[blog]: <?php echo BLOG_URL ?> "<?php echo t('%s project blog, on %s', array(t('Track OER'), 'Cloudworks')) ?>"
-[code]: <?php echo CODE_URL ?> "<?php echo t('%s project code, on %s', array('Track OER', 'GitHub')) ?>"
+[toer-blog]: <?php echo BLOG_URL ?> "<?php echo t('%s project blog, on %s', array(t('Track OER'), 'Cloudworks')) ?>"
+[toer-code]: <?php echo CODE_URL ?> "<?php echo t('%s project code, on %s', array('Track OER', 'GitHub')) ?>"
 [jisc]: http://www.jisc.ac.uk/ "Joint Information Systems Committee"
 [hefce]: http://www.hefce.ac.uk/ "Higher Education Funding Council for England"
 [oerri]: <?php echo OERRI_URL ?> "OER Rapid Innovation strand at JISC (OERRI)"
@@ -57,3 +57,4 @@
 [Labspace:*]: http://labspace.open.ac.uk/
 [Toer:*]: http://track.olnet.org/
 
+[end]: http://not-used.example.org

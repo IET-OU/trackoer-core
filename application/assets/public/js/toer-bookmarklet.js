@@ -20,7 +20,10 @@
 		alert("Error, missing 'trackoer_errtext'!");
 	}
 	else if (D.trackoer_srvurl.indexOf(PWL.host) !== -1) {
-		// IF "Self", do nothing..
+		// IF "Self", display a reassuring explanation!
+		alert("Track OER bookmarklet success!\n\nYou're all set up! This button will remain in your Internet browser whenever you use it.");
+		//'Just click this same "Add to Wish List" button while shopping at any online store to save items to any of your Amazon Wish Lists.'
+		//http://www.amazon.co.uk/wishlist/get-button/
 	}
 	else if (PWL.host.match(/(labspace.*?\.open\.ac\.uk|openlearn\.*?\.open\.ac\.uk|oercommons\.org)/)) {
 		PWL.href = D.trackoer_srvurl + 'oerform?' + params + '&url=' + enc(PWL.href);

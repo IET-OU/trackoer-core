@@ -8,4 +8,5 @@ Disallow: /docs/
 Disallow: /assets/
 Disallow: /api
 Disallow: /build
+Disallow: /cli
 Disallow: /oembed

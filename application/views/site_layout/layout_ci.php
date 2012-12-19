@@ -14,7 +14,7 @@
 
 
 ?>
-<!doctype html><html lang="en">
+<!doctype html><html lang="en" prefix="og: http://ogp.me/ns#">
 <?php
 
 

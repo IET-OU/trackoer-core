@@ -29,11 +29,23 @@ $config['http_proxy'] = 'wwwcache.open.ac.uk:80';
 
 /*
 |--------------------------------------------------------------------------
-| Markdown - enable in views?
+| Markdown - enable in views?  Dropbox (freear|brasher)
 */
 #$config['markdown'] = TRUE;
 
-$config['markdown_url_regex'] = '#:\/\/(.*\.ac\.uk\/|.*olnet\.org\/|.*github\.com\/|dl.dropbox\.com\/u\/32)#';
+$config['markdown_url_regex'] = '#:\/\/(.*\.ac\.uk\/.*\.edu\/.*|.*olnet\.org\/|.*github\.com\/|dl.dropbox\.com\/u\/(320|913))#';
+
+
+/*
+|--------------------------------------------------------------------------
+| Meta tags.
+*/
+$config['meta_tags'] = array(
+  # https://www.google.com/webmasters/verification
+  //array('name' => 'google-site-verification', 'content' => 'xxxxxxxxxxxxxxxxxxxxxxxxxx'),
+  # http://support.google.com/webmasters/bin/answer.py?hl=en&answer=1408986&expand=option2
+  //array('property' => 'author', 'content' => 'https://plus.google.com/[profile_ID]?rel=author'),
+);
 
 
 /*

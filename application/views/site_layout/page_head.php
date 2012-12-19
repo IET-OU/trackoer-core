@@ -4,6 +4,7 @@
 
   $ggl_font = $this->config->item('google_font');
   $robots = $this->config->item('robots');
+  $meta_tags = $this->config->item('meta_tags');
 
   $page_title = isset($page_title) ? $page_title : NULL;
   $rev = isset($rev) ? $rev : NULL;
@@ -14,6 +15,7 @@
  * Basic site setup - encoding, HTML5 Javascript shim/shiv, mobiles, robots.
  */
 ?>
+<head>
 <meta charset="utf-8" /><title><?php if($page_title): echo $page_title ?> - Track OER<?php else: ?>Track OER &lsaquo; Analytics for open educational resources - OER &rsaquo;<?php endif; /*rapid innovation alpha*/ ?></title>
 <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5-els.js"></script>
@@ -33,6 +35,11 @@
  * @link http://developers.facebook.com/tools/debug/og/object?q=track.olnet.org
  * @link http://graph.facebook.com/375383159206190?callback=FN
  */ ?>
+<?php foreach ($meta_tags as $tag):
+    $keys = array_keys($tag); ?>
+<meta <?php echo $keys[0] ?>="<?php echo $tag[$keys[0]] ?>" <?php echo $keys[1] ?>="<?php echo $tag[$keys[1]] ?>" />
+<?php endforeach; ?>
+
 <meta property="og:title" content="Track OER project" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="<?php echo base_url() ?>" />
@@ -87,3 +94,4 @@ h1{ font-family:"<?php echo $ggl_font ?>", Helvetica, sans-serif; }
 
 
 <?php $this->load->view('site_layout/site_analytics') ?>
+</head>

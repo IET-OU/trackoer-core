@@ -1,5 +1,15 @@
 # robots.txt for Track OER
-# (See http'//youtube.com/robots.txt)
+# (See http://youtube.com/robots.txt)
+# http://archive.org/details/archive.org_bot
+# https://webarchive.jira.com/wiki/display/ARIH/Robots+Exclusion+Protocol
+
+
+User-agent: archive.org_bot
+Crawl-delay: 5
+Disallow:
+
+User-agent: ia_archiver
+Disallow:
 
 User-agent: *
 Disallow: /piwik/

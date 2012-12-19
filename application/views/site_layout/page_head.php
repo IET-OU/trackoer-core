@@ -5,6 +5,7 @@
   $ggl_font = $this->config->item('google_font');
   $robots = $this->config->item('robots');
   $meta_tags = $this->config->item('meta_tags');
+  $meta_tags = $meta_tags ? $meta_tags : array();
 
   $page_title = isset($page_title) ? $page_title : NULL;
   $rev = isset($rev) ? $rev : NULL;

@@ -29,7 +29,7 @@
 <div id="container">
 
 <?php if ($with_nav): ?>
-	<nav id="nav">
+	<nav role="navigation" id="nav">
 		<ul class="ou-sections">
 		<li class="tm-toer-home"><a href="<?php echo site_url() ?>">Track OER home</a>
 		<li class="tm-about"><a href="<?php echo site_url('about') ?>">About</a>
@@ -64,9 +64,9 @@
 <?php endif; ?>
 
 
-
+<main role="main" id="main">
 	<?php echo $content_for_layout ?>
-
+</main>
 
 
 <?php if ($with_unit_tests): ?>
@@ -81,7 +81,7 @@
 </style>*/ ?>
 
 
-	<div id="ou-org-footer">
+	<div role="contentinfo" id="ou-org-footer">
 		<ul>
 		<li class="f-logo ou"><a href="http://www.open.ac.uk/"><img title="&copy;2012 The Open University" src="http://www8.open.ac.uk/score/sites/all/themes/zen_score/footerLogos/OpenUniversityLogo.png"></a>
 		<li class="f-logo f-extern jisc"><a href="http://www.jisc.ac.uk/"><img title="Joint Information Systems Committee" src="http://www.open.ac.uk/blogs/OULDI/wp-content/uploads/2010/11/JISCcolour23.jpg"></a>

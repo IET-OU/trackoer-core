@@ -4,6 +4,10 @@
 ::moz-selection{ background-color: #E13300; color: white; }
 ::webkit-selection{ background-color: #E13300; color: white; }
 */
+nav, main {
+  display:block;
+}
+
 body {
 	background-color: #fdfdfd; /*#fff*/
 	/*margin: 40px;*/

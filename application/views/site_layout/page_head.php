@@ -19,6 +19,7 @@
 <head>
 <meta charset="utf-8" /><title><?php if($page_title): echo $page_title ?> - Track OER<?php else: ?>Track OER &lsaquo; Analytics for open educational resources - OER &rsaquo;<?php endif; /*rapid innovation alpha*/ ?></title>
 <!--[if lt IE 9]>
+<script> document.createElement('main') </script>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5-els.js"></script>
 <![endif]-->
 

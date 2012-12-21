@@ -130,6 +130,7 @@ class Api extends MY_Controller {
 
     $url = preg_replace('#^//(\w)#', 'http://$1', $url);
     #$url = preg_replace('#^/(\w)#', base_url() . '$1', $url);
+    $this->_debug(0, array('regex', $regex), $url);
     if (! $url || ! preg_match($regex, $url)) {
       $this->_error('Error, the {url} parameter is missing or unsupported.', 400);
     }

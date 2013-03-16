@@ -125,6 +125,9 @@ define('_disable_OLNET_URL', 'http://www.olnet.org/');
 // CaPReT end-user help.
 define('CAPRET_HELP_URL', 'https://docs.google.com/document/d/1687Lejn4z10sbQtLk-e7xasA8WFw6KDIybeBX8OjxUk/edit#heading=h.3ain78xagbs6');
 
+// Buster.JS unit tests, http://track.olnet.org/test/b2s_learn_gajs/buster
+define('BUSTER_JS_URL', 'http://cdn.busterjs.org/releases/0.6.2/buster-test.js');
+
 // JISC OERRI
 define('OERRI_URL', 'http://www.jisc.ac.uk/whatwedo/programmes/ukoer3/rapidinnovation.aspx');
 

@@ -60,7 +60,7 @@ class MarkdownExtraExtended_Ex_Parser extends MarkdownExtraExtended_Parser {
 		}
 		$theme = htmlentities($theme);
 		return <<<EOF
-<!doctype html><html class="md-out $theme"><meta charset=utf-8 /><title>$file/ Markdown</title>
+<!doctype html><html class="md-out theme-$theme"><meta charset=utf-8 /><title>$file/ Markdown</title>
 <link rel=stylesheet href="$base_url/assets/site/css/md.css" />
 <link rel=glossary type=text/markdown href="$base_url/api/markdown/references" />
 <link rel=alternate type=text/markdown href="$url" />

@@ -6,6 +6,7 @@ body, textarea {
   background:#222;
   color:#eee;
   font:1em sans-serif;
+  margin: 10px 1.5em;
 }
 body.md-edit{
   margin:0;
@@ -37,14 +38,15 @@ abbr {
 #input{ left:0; }
 #wmd-out{ right:0; }
 
-.bw body {
-  background:#fcfcfc;
-  color:#333;
+.theme-bw body, .theme-ou body {
+  background:#fdfdfd;
+  color:#222;
 }
-.bw a {
+.theme-bw a, .theme-ou a {
   color:blue;
 }
-.bw pre, .bw code {
+.theme-bw pre, .theme-bw code,
+.theme-ou pre, .theme-ou code {
   background:#f6f6f6;
 }
 

@@ -19,6 +19,9 @@
 */
 class Api extends MY_Controller {
 
+  const OU_HOST_REGEX = '@[\/\.]open\.(ac\.uk|edu)\/@';
+
+
   public function __construct() {
     parent::__construct();
 
@@ -126,10 +129,10 @@ class Api extends MY_Controller {
 
     $url = $this->input->get('url');
     $theme = $this->input->get('theme');
+    $theme = !$theme && preg_match( self::OU_HOST_REGEX, $url ) ? 'ou' : $theme;
     $regex = $this->config->item('markdown_url_regex');
 
     $url = preg_replace('#^//(\w)#', 'http://$1', $url);
-    #$url = preg_replace('#^/(\w)#', base_url() . '$1', $url);
     $this->_debug(0, array('regex', $regex), $url);
     if (! $url || ! preg_match($regex, $url)) {
       $this->_error('Error, the {url} parameter is missing or unsupported.', 400);
@@ -141,11 +144,21 @@ class Api extends MY_Controller {
     }
 
     $output = $parser->getHtmlHead($url, base_url(), $theme);
+    $this->_ou_logo( $theme, $output );
     $output .= $parser->transform($result->data);
     //output .= PHP_EOL . '</html>';
     echo $output;
   }
 
+  protected function _ou_logo( $theme, &$output ) {
+    if ('ou' == $theme) {
+       $output .= <<<EOT
+    <a class="int-ouLogo" href="http://www.open.ac.uk/">
+        <img src="//www.open.ac.uk/oudigital/headerandfooter/assets/img/ou-logo.png" alt="The Open University">
+    </a>
+EOT;
+    }
+  }
 
   /**
   * Utility: a 'myip' information service (JSON).

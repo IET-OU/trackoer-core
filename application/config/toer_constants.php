@@ -94,8 +94,8 @@ define('XMLNS_OU_RSS_PLAYER', 'http://podcast.open.ac.uk/2012');
 |--------------------------------------------------------------------------
 | Javascript/ Library versions.
 */
-define('TRACK_JQUERY_DEFAULT_VERSION', '1.6.2');
-define('TRACK_JQUERY_DRUPAL_VERSION', '1.3.2');
+define( 'TRACK_JQUERY_DEFAULT_VERSION', '1.11.2' ); //Was: '1.6.2'
+define( 'TRACK_JQUERY_DRUPAL_VERSION', '1.7.2' );   //Was: '1.3.2'
 
 
 /**

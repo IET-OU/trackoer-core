@@ -149,6 +149,20 @@ EOF;
 			array(&$this, '_doInterwikis_callback'), $text);
 
 		#
+		#NDF: NEXT, handle reference-style links, no text: [id:term]  OR  [id: #term]
+		#
+		$text = preg_replace_callback('{
+			#(											# wrap whole match in $1
+				\[
+					(?P<text>
+						(?P<id>[^:]+?)[\:](?P<term>\w.*?)	# id = $3, term = $4
+					)
+				\]
+			#)
+			}xs',
+			array(&$this, '_doInterwikis_callback'), $text);
+
+		#
 		# Next, inline-style links: [link text](url "optional title")
 		#...
 
@@ -156,9 +170,17 @@ EOF;
 		return $text;
 	}
 	function _doInterwikis_callback($matches) {
+		if (isset($matches[ 4 ])) {
+
 		$link_text = $matches[2];
 		$link_id = $matches[3];
 		$link_term = $matches[4];
+
+		} else {
+			$link_text = $matches[ 'text' ];  # No explicit link-text
+			$link_id = $matches[ 'id' ];
+			$link_term = $matches[ 'term' ];
+		}
 
 		if (isset($this->interwikis[$link_id])) {
 			$link_url = $this->interwikis[$link_id];
